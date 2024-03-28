@@ -1,0 +1,92 @@
+*{
+    font-family: Arial;
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    background-color: #3c3c47;
+}
+.gradient-border{
+    background: linear-gradient(100deg, var(--violet) 25%, var(--turquoise) 50%, var(--violet) 75%);
+    background-repeat: repeat;    
+    padding: 2rem;
+    margin: 5rem;
+    border-radius: 2rem;
+}
+#imagen{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+}
+#titulo{
+    display: flex;
+    background-color: #848c8c;
+    color:white;
+}
+#tituloTexto{
+    margin-top: 1.5%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+#tituloImagen{
+    margin-top: 1%;
+    margin-left: 10%;
+    margin-bottom: 1%;
+}
+#pregunta{
+    width: auto;
+    color: black;
+    padding-top: 15px;
+    padding-bottom: 1px;
+    margin-top: 2%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 2%;
+    text-align: center;
+    font-size: 150%;
+    border-radius: 30px;
+    background-color: white;
+    border: 3px solid #b7b7c2;
+}
+#pregunta:hover{
+    background-color: white;
+}
+.tarjetas{
+    background-color: #dedee7;
+    border: 3px solid #b7b7c2;
+    border-radius: 5px;
+    display: flex;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+#tar1{
+    margin-right: 3%;
+    padding: 10px;
+    transition: all 0.3s;
+}
+#tar1:hover{
+    transform: scale(1.05);
+}
+#tar2{
+    margin-right: 3%;
+    padding: 10px;
+    transition: all 0.3s;
+}
+#tar2:hover{
+    transform: scale(1.05);
+}
+#tar3{
+    margin-right: 3%;
+    padding: 10px;
+    transition: all 0.3s;
+}
+#tar3:hover{
+    transform: scale(1.05);
+}
+#tar4{
+    padding: 10px;
+    transition: all 0.3s;
+}
+#tar4:hover{
+    transform: scale(1.05);
+}

@@ -10,30 +10,35 @@
     margin-left: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
-    background-color: rgb(107, 112, 107);
+    background-color: #3c3c47;
     border-radius: 20px;
     text-align: center;
     color:white;
 }
 .btn:hover{
-    background-color: rgb(61, 68, 62);
+    background-color:#74748a;
 }
 header{
     display:flex;
     padding-top: 10px;
     padding-left: 160px;
     color: white;
-    background-color: rgb(107, 112, 107);
+    background-color: #848c8c;
 }
 body{
-    background-color: rgb(0, 0, 0);
+    background-color: white;
 }
 #cuerpo{
-    padding-top: 1%;
+    margin-top: 3%;
     margin-left: 10%;
     margin-right: 10%;
     width: 70%;
     height: 90%;
+    text-align: center;
+    border-radius: 5px;
+    border: 6px solid #3c3c44;
+}
+#boton{
     text-align: center;
 }
 #imagen{
