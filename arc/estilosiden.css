@@ -10,18 +10,23 @@
     margin-left: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
-    background-color: #3c3c47;
+    background-color: #848c8c;
     border-radius: 20px;
     color:white;
+    transition: all 0.3s;
 }
 .btn:hover{
-    background-color:#74748a;
+    color:white;
+    background-color:#848c8c;
+    transform: scale(1.20);
 }
 header{
     display:flex;
-    margin-top: 0.3%;
-    margin-left: 1%;
-    margin-right: 1%;
+    margin-top: 2%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 2%;
+    
     padding-top: 10px;
     padding-left: 160px;
     color: white;
@@ -30,13 +35,13 @@ header{
     background-color: #848c8c;
 }
 body{
-    background-color: white;
+    background-color: #3c3c47;
 }
 #cuerpo{
     margin-top: 1%;
     margin-left: 10%;
     margin-right: 10%;
-    width: 70%;
+    width: 80%;
     height: 90%;
     text-align: center;
     border-radius: 5px;
