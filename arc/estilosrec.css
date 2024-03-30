@@ -21,7 +21,7 @@ body {
     position: absolute;
     width: 25%;
     top: 13%;
-    left: 2%;
+    left: 5%;
     font-size: 150%;
 }
 
@@ -32,7 +32,7 @@ body {
     position: absolute;
     width: 25%;
     top: 30%;
-    left: 2%;
+    left: 5%;
     font-size: 280%;
 }
 
@@ -44,17 +44,18 @@ body {
     position: absolute;
     width: 30%;
     top: 60%;
-    left: 2%;
+    left: 5%;
     font-size: 150%;
 }
 
 .imagen {
     border-radius: 20px;
     position: absolute;
-    width: 60%;
-    top: 13%;
+    width: 50%;
+    top: 15%;
+    bottom: 15%;
     right: 10%;
-    left: 35%;
+    left: 45%;
 }
 
 header {
@@ -201,6 +202,7 @@ footer {
     background-color: white;
     border-radius: 30px;
     border: 2px solid #848c8c;
+    margin-bottom: 2%;
     margin-top: 2%;
     margin-left: 10%;
     margin-right: 10%;
