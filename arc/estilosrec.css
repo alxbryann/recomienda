@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 * {
     margin: 0px;
     padding: 0px;
@@ -57,65 +56,8 @@ body {
     right: 10%;
     left: 35%;
 }
-=======
-*{
-    margin: 0px;
-    padding: 0px;
-}
-body {
-    background-color: #3c3c47;
-}
-#fondoPrimer {
-    position: relative;
-    width: 100%;
-    height: 650px;
-    background-color: #848c8c;
-}
-#primerTexto {
-    font-family: "Kanit", sans-serif;
-    font-weight: 300;
-    font-style: normal;
-    position: absolute;
-    width: 25%;
-    top: 5%;
-    left: 3%;
-    font-size: 150%;
-}
-#segundoTexto {
-    font-family: "Poppins", sans-serif;
-    font-weight: 600;
-    font-style: normal;
-    position:absolute;
-    width: 40%;
-    top: 30%;
-    left: 3%;
-    font-size: 280%;
-}
-#tercerTexto {
-    text-align: justify;
-    font-family: "Kanit", sans-serif;
-    font-weight: 300;
-    font-style: normal;
-    position: absolute;
-    width: 30%;
-    top: 60%;
-    left: 3%;
-    font-size: 150%;
-}
-#imagenPrincipal {
-    overflow: hidden;
-    scale: 126%;
-    position: absolute;
-    left: 50%;
-}
-#imagen {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 20px;
-}
->>>>>>> b49718367a318a2ab11e129ce5ff3e668bac1f40
 
-#titulo {
+header {
     display: flex;
     margin-top: 2%;
     margin-left: 10%;
@@ -124,22 +66,19 @@ body {
     border-radius: 15px;
     background-color: #848c8c;
     box-shadow: 10px 14px 20px rgb(34, 34, 34);
-    color: white;
+    justify-content: space-between;
 }
-
+#bienvenido{
+    width: 80%;
+    display: flex;
+}
 #tituloTexto {
-<<<<<<< HEAD
     font-family: "Poppins", sans-serif;
     font-weight: 600;
     font-style: normal;
-    margin-top: 1%;
-    margin-left: 15%;
-    margin-right: 5%;
-=======
+    color: white;
     margin-top: 1.5%;
     margin-left: 20%;
-    margin-right: 20%;
->>>>>>> b49718367a318a2ab11e129ce5ff3e668bac1f40
 }
 
 #tituloImagen {
@@ -147,22 +86,19 @@ body {
     margin-left: 10%;
     margin-bottom: 1%;
 }
-
-<<<<<<< HEAD
-#titulo a{
-    color: white;
-    text-decoration: none;
-    margin-left: 50%;
-    padding-right: 100px;
+#sesion{
+    display: flex;
+    margin-right: 10%;
 }
-
+#sesion a{
+    padding: 10%;
+    color:white;
+    text-decoration: none;
+}
 #textoPregunta {
     font-family: "Kanit", sans-serif;
     font-weight: 300;
     font-style: normal;
-=======
-#textoPregunta {
->>>>>>> b49718367a318a2ab11e129ce5ff3e668bac1f40
     font-size: 150%;
     color: black;
 }
