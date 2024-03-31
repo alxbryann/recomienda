@@ -48,7 +48,6 @@ body {
     font-style: normal;
     width: 50%;
     margin-top: 10%;
-    left: 5%;
     font-size: 150%;
 }
 
@@ -70,45 +69,63 @@ body {
     animation: movimiento 4s linear infinite;
 }
 
-@keyframes movimiento{
-    0%{
-        transform: translateY(0) ;
+@keyframes movimiento {
+    0% {
+        transform: translateY(0);
     }
-    50%{
+
+    50% {
         transform: translateY(10px);
     }
-    100%{
+
+    100% {
         transform: translateY(0);
     }
 }
+
 @media screen and (max-width:1600px) {
-    
-    #segundoTexto{
+
+    #segundoTexto {
         width: 100%;
         scale: 100%;
     }
 
-    #tercerTexto{
+    #tercerTexto {
         width: 80%;
     }
-    
-    .landing .derecha{
+
+    .landing .derecha {
         width: 110%;
         padding-top: 20%;
     }
 
 }
+
 @media screen and (max-width:800px) {
     .landing {
         width: 100%;
         grid-template-columns: repeat(1, 1fr);
     }
-    
-    #segundoTexto{
-        scale: 80%;
+
+    .landing #segundoTexto {
+        text-align: left;
+        font-family: "Poppins", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        width: 80%;
+        scale: 100%;
     }
-    
-    .landing .derecha{
+
+    .landing #tercerTexto {
+        width: 80%;
+        scale: 100%;
+    }
+
+    .landing .btn {
+        width: 80%;
+    }
+
+    .landing .derecha {
         width: 120%;
         padding-top: 0%;
     }
@@ -156,15 +173,15 @@ header {
         margin-left: 10%;
     }
 
-    #tituloImagen{
+    #tituloImagen {
         margin-left: 42%;
     }
 
-    #tituloTexto{
+    #tituloTexto {
         margin-left: 5%;
     }
 
-    #sesion{
+    #sesion {
         margin-left: 22%;
         text-align: center;
     }
