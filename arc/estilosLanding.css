@@ -54,14 +54,17 @@ body {
 
 .landing .btn{
     margin-top: 20%;
+    margin-bottom: 20%;
     width: 70%;
 }
 .landing .derecha {
-    width: 50%;
+    padding-top: 15%;
+    padding-right: 20%;
+    width: 100%;
 }
 
 .landing .derecha .imagen {
-    width: 300%;
+    width: 120%;
 }
 
 header {
