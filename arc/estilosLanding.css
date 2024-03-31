@@ -285,6 +285,7 @@ header {
     .tarjetas {
         display: grid;
         background-color: #ccccd4;
+        border-radius: 20px;
         border: 3px solid #b7b7c2;
         width: 80%;
         margin-left: 10%;
@@ -293,9 +294,9 @@ header {
     }
 
     .card {
-        margin-left: 10%;
+        height: 91%;
+        margin-left: 8%;
         margin-top: 10%;
-        margin-bottom: 0%;
         background-color: white;
     }
 
