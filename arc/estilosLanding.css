@@ -74,7 +74,10 @@ body {
         width: 100%;
         grid-template-columns: repeat(1, 1fr);
     }
-
+    
+    #segundoTexto{
+        scale: 80%;
+    }
     
     .landing .derecha{
         width: 120%;
