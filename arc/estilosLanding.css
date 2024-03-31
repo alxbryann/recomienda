@@ -68,7 +68,18 @@ body {
     border-radius: 20px;
     width: 100%;
 }
+@media screen and (max-width:1600px) {
+    
+    #segundoTexto{
+        scale: 80%;
+    }
+    
+    .landing .derecha{
+        width: 120%;
+        padding-top: 20%;
+    }
 
+}
 @media screen and (max-width:800px) {
     .landing {
         width: 100%;
