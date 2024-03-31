@@ -17,6 +17,7 @@ body {
 }
 
 .landing .izquierda {
+    background-color: red;
     margin-left: 20%;
     border-radius: 20px;
     width: 80%;
