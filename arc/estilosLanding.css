@@ -71,12 +71,25 @@ body {
 @media screen and (max-width:1600px) {
     
     #segundoTexto{
-        scale: 80%;
+        margin-top: 10%;
+        width: 100%;
+        scale: 100%;
     }
     
+    #tercerTexto{
+        margin-top: 10%;
+        width: 80%;
+    }
+    
+    .landing .btn{
+        width: 80%;
+        margin-top: 10%;
+    }
+
     .landing .derecha{
         width: 120%;
-        padding-top: 20%;
+        padding-top: 14%;
+        padding-right: 30%;
     }
 
 }
