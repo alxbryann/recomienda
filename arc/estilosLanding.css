@@ -68,6 +68,12 @@ body {
     width: 100%;
 }
 
+@media screen and (max-width:800px){
+    .landing{
+        width: 100%;
+        grid-template-columns: repeat(1,1fr);
+    } 
+}
 header {
     display: flex;
     margin-top: 8%;
