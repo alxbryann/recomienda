@@ -1,10 +1,10 @@
 <?php
 
 function register_user(string $email, string $nombre, string $apellido, string $direccion, string $telefono, int $cod_pais, 
-int $id_dpto, int $id_mun, string $password, bool $is_admin = false): bool
+int $id_dpto, int $id_mun, string $password, string $activation_code, int $expiry=1*24*60*60, $is_admin = false): bool
 {
-    $sql = 'INSERT INTO usuarios (email_usuario,nombre_usuario, apellido_usuario, dir_usuario, tel_usuario, cod_pais, id_departamento,id_municipio, password, is_admin)
-            VALUES(:email, :nombre, :apellido, :dir, :tel, :cod_pais, :depto, :mun, :password, :is_admin)';
+    $sql = 'INSERT INTO usuarios (email_usuario,nombre_usuario, apellido_usuario, dir_usuario, tel_usuario, cod_pais, id_departamento,id_municipio, password, activation_code, activation_expiry, is_admin)
+            VALUES(:email, :nombre, :apellido, :dir, :tel, :cod_pais, :depto, :mun, :password, :activation_code, :activation_expiry,:is_admin)';
 
     $statement = db()->prepare($sql);
                 
@@ -19,6 +19,8 @@ int $id_dpto, int $id_mun, string $password, bool $is_admin = false): bool
     $statement->bindValue(':mun', $id_mun, PDO::PARAM_INT);
     $statement->bindValue(':password', password_hash($password, PASSWORD_BCRYPT), PDO::PARAM_STR);
     $statement->bindValue(':is_admin', (int)$is_admin, PDO::PARAM_INT);
+    $statement->bindvalue(':activation_code', password_hash($activation_code, PASSWORD_DEFAULT));
+    $statement->bindValue(':activation_expiry', date('Y-m-d H:i:s',  time() + $expiry));
 
     return $statement->execute();   
 
@@ -26,7 +28,7 @@ int $id_dpto, int $id_mun, string $password, bool $is_admin = false): bool
 
 function find_user_by_username(string $username)
 {
-    $sql = 'SELECT email_usuario, password
+    $sql = 'SELECT id_usuario, email_usuario, password, active
             FROM usuarios
             WHERE email_usuario=:username';
 
@@ -70,7 +72,7 @@ function login(string $username, string $password): bool
     $user = find_user_by_username($username);
 
     // if user found, check the password
-    if ($user && password_verify($password, $user['password'])) {
+    if ($user && is_user_active($user) && password_verify($password, $user['password'])) {
 
         // prevent session fixation attack
         session_regenerate_id();
@@ -84,5 +86,10 @@ function login(string $username, string $password): bool
     }
 
     return false;
+}
+
+function is_user_active($user)
+{
+    return (int)$user['active'] === 1;
 }
 ?>

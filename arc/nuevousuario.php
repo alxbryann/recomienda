@@ -9,6 +9,7 @@ require_once 'db_conn.php';
 require_once 'results.php';
 require_once 'connection.php';
 require_once 'db.php';
+require_once 'app.php';
 
 $errors = [];
 $inputs = [];
@@ -26,7 +27,8 @@ if (is_post_request()) {
         'municipio'=>'int',    
         'password' => 'string | required | secure',
         'password2' => 'string | required | same: password',
-        'agree' => 'string | required'
+        'agree' => 'string | required',
+        'activation_code'=>'string',
     ];
 
     // custom messages
@@ -48,9 +50,13 @@ if (is_post_request()) {
             'errors' => $errors
         ]);
     }
+    $activation_code=generate_activation_code();
 
     if (register_user($inputs['email'], $inputs['nombre'], $inputs['apellido'],$inputs['direccion'], $inputs['telefono'],$inputs['pais'],$inputs['departamento'], 
-    $inputs['municipio'], $inputs['password'])) {
+    $inputs['municipio'], $inputs['password'], $activation_code)) {
+
+        send_activation_email($inputs['email'],$activation_code);
+        
         redirect_with_message(
             'login.php',
             'Your account has been created successfully. Please login here.'
