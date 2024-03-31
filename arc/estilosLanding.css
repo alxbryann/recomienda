@@ -84,11 +84,16 @@ body {
 @media screen and (max-width:1600px) {
     
     #segundoTexto{
-        scale: 80%;
+        width: 100%;
+        scale: 100%;
+    }
+
+    #tercerTexto{
+        width: 80%;
     }
     
     .landing .derecha{
-        width: 120%;
+        width: 110%;
         padding-top: 20%;
     }
 
