@@ -34,7 +34,7 @@ else{
 }
 echo $nombre;
 //Diseñamos la instruccion sql
-$instruccion_sql = "insert into comentarios(nombre, email, comentario) values ('$nombre', '$email', '$mensaje')";
+$instruccion_sql = "insert into comentarios(nombre, email, mensaje) values ('$nombre', '$email', '$mensaje')";
 $resultado = mysqli_query($connection, $instruccion_sql);
 ?>
 
