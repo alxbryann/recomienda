@@ -135,7 +135,6 @@ body {
 }
 
 header {
-    position: sticky;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     width: 80%;
@@ -351,6 +350,109 @@ header {
 .btn:hover {
     color: white;
     background-color: #3c3c47;
+}
+.recomendar {
+    margin-top: 10%;
+    overflow: hidden;
+    background-color: #74748a;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 50px;
+    width: 100%;
+}
+
+.recomendar .izquierda {
+    margin-left: 20%;
+    border-radius: 20px;
+    width: 80%;
+}
+
+.recomendar .btn {
+    margin-top: 14%;
+    margin-bottom: 20%;
+    width: 50%;
+}
+
+.recomendar .derecha {
+    padding-top: 8%;
+    padding-right: 20%;
+    width: 100%;
+}
+
+.recomendar .derecha .imagen {
+    margin-top: 10%;
+    border-radius: 20px;
+    width: 100%;
+    animation: movimiento 4s linear infinite;
+}
+
+@keyframes movimiento {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@media screen and (max-width:1600px) {
+
+    #segundoTexto {
+        width: 100%;
+        scale: 100%;
+    }
+
+    #tercerTexto {
+        width: 80%;
+    }
+
+    .recomendar .derecha {
+        margin-top: -10%;
+        width: 110%;
+        padding-top: 20%;
+    }
+    .recomendar .btn{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width:800px) {
+    .recomendar {
+        width: 100%;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .recomendar #segundoTexto {
+        text-align: left;
+        font-family: "Poppins", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        width: 80%;
+        scale: 100%;
+    }
+
+    .recomendar #tercerTexto {
+        width: 80%;
+        scale: 100%;
+    }
+
+    .recomendar .btn {
+        width: 80%;
+    }
+
+    .recomendar .derecha .imagen {
+        margin-top: -30%;
+        margin-left: 7%;
+        border-radius: 20px;
+        scale: 80%;
+        animation: movimiento 4s linear infinite;
+    }
+
 }
 
 footer {
