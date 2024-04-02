@@ -12,7 +12,6 @@ $connection = mysqli_connect($host, $user, $pass);
 $nombre = $_POST["nombre"];
 $email = $_POST["email"];
 $mensaje = $_POST["mensaje"];
-echo "Si recibi" + $nombre;
 
 //Verificamos conexion a bases de datos
 
@@ -33,10 +32,10 @@ if(!$db){
 else{
     echo "<h3>Tabla seleccionada</h3>";
 }
+echo $nombre;
 //Diseñamos la instruccion sql
-$instruccion_sql = "insert into comentarios(nombre, email,
-mensaje) values ('$nombre', '$email', '$mensaje')";
-//$resultado = mysqli_query($connection, $instruccion_sql);
+$instruccion_sql = "insert into comentarios(nombre, email, comentario) values ('$nombre', '$email', '$mensaje')";
+$resultado = mysqli_query($connection, $instruccion_sql);
 ?>
 
 
