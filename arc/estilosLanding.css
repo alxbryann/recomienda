@@ -380,7 +380,7 @@ header {
 }
 
 .recomendar .derecha .imagen {
-    margin-top: 10%;
+    margin-top: 20%;
     border-radius: 20px;
     width: 100%;
     animation: movimiento 4s linear infinite;
@@ -412,8 +412,8 @@ header {
     }
 
     .recomendar .derecha {
-        margin-top: -10%;
-        width: 110%;
+        margin-top: -5%;
+        width: 100%;
         padding-top: 20%;
     }
     .recomendar .btn{
@@ -447,7 +447,7 @@ header {
 
     .recomendar .derecha .imagen {
         margin-top: -30%;
-        margin-left: 7%;
+        margin-left: 12%;
         border-radius: 20px;
         scale: 80%;
         animation: movimiento 4s linear infinite;
