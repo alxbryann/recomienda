@@ -98,7 +98,8 @@ body {
         width: 110%;
         padding-top: 20%;
     }
-    .landing .btn{
+
+    .landing .btn {
         width: 80%;
     }
 }
@@ -351,6 +352,7 @@ header {
     color: white;
     background-color: #3c3c47;
 }
+
 .recomendar {
     margin-top: 10%;
     overflow: hidden;
@@ -367,10 +369,13 @@ header {
     width: 80%;
 }
 
-.recomendar .izquierda #segundoTexto{
+.recomendar .izquierda #segundoTexto {
+    text-align: left;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
     margin-left: -5%;
     scale: 90%;
-    width: 100%;
+    width: 70%;
 }
 
 .recomendar .btn {
@@ -422,7 +427,8 @@ header {
         width: 100%;
         padding-top: 20%;
     }
-    .recomendar .btn{
+
+    .recomendar .btn {
         width: 80%;
     }
 }

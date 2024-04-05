@@ -3,23 +3,6 @@
     margin: 0px;
     padding: 0px;
 }
-.btn{
-    display: inline-block;
-    width: 30%;
-    margin-top: 20px;
-    margin-left: 20px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    background-color: #848c8c;
-    border-radius: 20px;
-    color:white;
-    transition: all 0.3s;
-}
-.btn:hover{
-    color:white;
-    background-color:#848c8c;
-    transform: scale(1.05);
-}
 header{
     display:flex;
     margin-top: 1%;
@@ -51,9 +34,6 @@ body{
     width: 80%;
     text-align: justify;
 }
-#boton{
-    text-align: center;
-}
 #imagen{
     padding-top: 10px;
     padding-bottom: 10px;
@@ -70,49 +50,123 @@ body{
     background-color: #848c8c;
 }
 h2{
-    margin-top: 2%;
+    margin: 1%;
     color: white;
     text-align: center; 
 }
 .integrantes{
-    margin-top: 500%;
-    margin-top: 0%;
     margin-left: 10%;
     margin-right: 10%;
     margin-bottom: 5%;
     color: white;
     width: 85%;
     display: flex;
+    animation: reveal linear both;
+    animation-timeline: scroll(root);
+}
+@keyframes reveal{
+    0%{
+        opacity: 0%;
+        scale: 0%;
+    }
+    100%{
+        opacity: 100%;
+        scale: 100%;
+    }
 }
 .integrantes #textos{  
-    width: 100%;
-    padding-top: 20%;
-    margin-left: 1%;
+    box-shadow: 10px 14px 20px rgb(34, 34, 34);
+    background-color: #3c3c47;
+    border-radius: 30px;
+    margin-top: 22%;
+    padding: 1.5%;
+    padding-left: 10%;
+    width: auto;
+    height: 130px;
+    margin-left: -5%;
     text-align: left;
 }
 .imagenesEquipo{
-    border: 5px solid #74748a;
+    box-shadow: 10px 14px 20px rgb(34, 34, 34);
+    border: 10px solid #ccccd4;
     margin-top: 15%;
     border-radius: 100%;
     width: 30%;
+    z-index: 1;
 }
 @media screen and (max-width:800px){
+    
     #equipo{
         overflow: hidden;
         display: grid;
         grid-template-columns: repeat(1,1fr);
         background-color: #848c8c;
     }
-    .integrantes #textos{  
+    .integrantes{
+        margin-left: -5%;
+        color: white;
         width: 100%;
-        padding-top: 25%;
-        margin-left: 1%;
+        display: grid;
+        animation: none;
+    }
+    .integrantes #textos{  
+        margin-left: 9%;
+        text-align: center;
+        box-shadow: 10px 14px 20px rgb(34, 34, 34);
+        scale: 80%;
+        background-color: #3c3c47;
+        border-radius: 30px;
+        padding: 1.5%;
+        width: auto;
+    }
+    .imagenesEquipo{
+        margin-left: 35%;
+        margin-bottom: -14%;
+        box-shadow: 10px 14px 20px rgb(34, 34, 34);
+        border-radius: 100%;
+        width: 40%;
+        z-index: 1;
+    }
+}
+@media screen and (min-width:1000px) {
+    .integrantes #textos{  
+        box-shadow: 10px 14px 20px rgb(34, 34, 34);
+        border-radius: 30px;
+        margin-top: 20%;
+        padding: 1.5%;
+        padding-left: 10%;
+        width: auto;
+        height: 130px;
+        margin-left: -7%;
         text-align: left;
     }
     .imagenesEquipo{
-        border: 5px solid #74748a;
-        margin-top: 25%;
+        box-shadow: 10px 14px 20px rgb(34, 34, 34);
+        border: 10px solid #ccccd4;
+        margin-top: 15%;
         border-radius: 100%;
-        width: 40%;
+        width: 30%;
+        z-index: 1;
+    }
+}
+@media screen and (min-width:1600px) {
+    .integrantes #textos{         
+        box-shadow: 10px 14px 20px rgb(34, 34, 34);
+        border-radius: 30px;
+        margin-top: 22%;
+        padding: 1.5%;
+        padding-left: 10%;
+        width: auto;
+        height: 130px;
+        margin-left: -5%;
+        text-align: left;
+    }
+    .imagenesEquipo{
+        box-shadow: 10px 14px 20px rgb(34, 34, 34);
+        border: 10px solid #ccccd4;
+        margin-top: 15%;
+        border-radius: 100%;
+        width: 30%;
+        z-index: 1;
     }
 }
