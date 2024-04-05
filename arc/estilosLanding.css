@@ -367,6 +367,12 @@ header {
     width: 80%;
 }
 
+.recomendar .izquierda #segundoTexto{
+    margin-left: -5%;
+    scale: 90%;
+    width: 100%;
+}
+
 .recomendar .btn {
     margin-top: 14%;
     margin-bottom: 20%;

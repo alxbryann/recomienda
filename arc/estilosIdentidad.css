@@ -1,5 +1,5 @@
 *{
-    font-family: Arial;
+    font-family: "Poppins", sans-serif;
     margin: 0px;
     padding: 0px;
 }
@@ -37,11 +37,17 @@ body{
     background-color: #3c3c47;
 }
 #cuerpo{
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    border-radius: 20px;
+    background-color: #848c8c;
     color: white;
     opacity: 100%;
     margin-top: 1%;
     margin-left: 10%;
     margin-right: 10%;
+    padding:3%;
     width: 80%;
     text-align: justify;
 }
@@ -56,4 +62,57 @@ body{
 #tituloTexto{
     padding-left: 20px;
     padding-top: 5px;
+}
+#equipo{
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    background-color: #848c8c;
+}
+h2{
+    margin-top: 2%;
+    color: white;
+    text-align: center; 
+}
+.integrantes{
+    margin-top: 500%;
+    margin-top: 0%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 5%;
+    color: white;
+    width: 85%;
+    display: flex;
+}
+.integrantes #textos{  
+    width: 100%;
+    padding-top: 20%;
+    margin-left: 1%;
+    text-align: left;
+}
+.imagenesEquipo{
+    border: 5px solid #74748a;
+    margin-top: 15%;
+    border-radius: 100%;
+    width: 30%;
+}
+@media screen and (max-width:800px){
+    #equipo{
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+        background-color: #848c8c;
+    }
+    .integrantes #textos{  
+        width: 100%;
+        padding-top: 25%;
+        margin-left: 1%;
+        text-align: left;
+    }
+    .imagenesEquipo{
+        border: 5px solid #74748a;
+        margin-top: 25%;
+        border-radius: 100%;
+        width: 40%;
+    }
 }
