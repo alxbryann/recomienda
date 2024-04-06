@@ -236,6 +236,12 @@ header {
     margin-right: 10%;
 }
 
+.tarjetas .card .card-body h1{
+    scale: 100%;
+    margin-left: -10%;
+    width: 120%;
+}
+
 #tar1 {
     text-align: center;
     margin-right: 3%;
@@ -283,31 +289,6 @@ header {
     transform: scale(1.05);
 }
 
-@media screen and (max-width:800px) {
-    .tarjetas {
-        display: grid;
-        background-color: #ccccd4;
-        border-radius: 20px;
-        border: 3px solid #b7b7c2;
-        width: 80%;
-        margin-left: 10%;
-        margin-right: 10%;
-        grid-template-columns: repeat(1, 1fr);
-    }
-
-    .card {
-        height: 91%;
-        margin-left: 8%;
-        margin-top: 10%;
-        background-color: white;
-    }
-
-    .card-body {
-        background-color: white;
-        width: 450%;
-    }
-}
-
 @media screen and (max-width:1000px) {
     .tarjetas {
         display: grid;
@@ -328,9 +309,9 @@ header {
     }
 
     .card-body {
-        margin-left: -10%;
+        margin-left: -20%;
         background-color: white;
-        width: 350%;
+        width: 400%;
     }
 }
 
