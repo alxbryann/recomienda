@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilosGenerales.css">
+    <title>Crea un recomendado!</title>
+    <style>
+        body {
+            background-color: #3c3c47;
+            /* Cambio de color de fondo */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+            /* Agregado 'select' para aplicar estilos a los campos de selección */
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+            /* Permite ajustar verticalmente */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div id="tituloImagen">
+            <a href="index.html">
+                <img src="logo.png" width="80" />
+            </a>
+        </div>
+        <div id="tituloTexto">
+            <h1>¡Bienvenido a recomienda!</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Recomienda a Alguien</h2>
+        <form action="procesar_formulario.php" method="POST">
+            <div class="form-group">
+                <label for="experto">Experto en:</label>
+                <select id="experto" name="experto" required>
+                    <option value="televisores">Televisores</option>
+                    <option value="neveras">Neveras</option>
+                    <option value="lavadoras">Lavadoras</option>
+                    <option value="microondas">Microondas</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="experiencia">Detalla tu Experiencia:</label>
+                <textarea id="experiencia" name="experiencia" rows="5" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="telefono_recomendado">Telefono del Recomendado:</label>
+                <input type="text" id="telefono_recomendado" name="telefono_recomendado" required>
+            </div>
+            <button type="submit" class="btn">Enviar</button>
+        </form>
+    </div>
+    <footer>
+        <div id="textoTambien">
+            <p>También podría interesarte</p>
+        </div>
+        <nav>
+            <a href="identidad.html">
+                <p>Identidad</p>
+            </a>
+            <a href="contacto.html">
+                <p>Contacto</p>
+            </a>
+        </nav>
+    </footer>
+
+</body>
+
+</html>
