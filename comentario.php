@@ -22,7 +22,7 @@ else{
     echo "<b><h3>Conectado mi papacho</h3></b>";
 }
 //Nombre de la base de datos
-$datab = "recomienda";
+$datab = "u482925761_recomienda";
 //Seleccionamos la base de datos
 $db = mysqli_select_db($connection,$datab);
 

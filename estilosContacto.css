@@ -74,21 +74,6 @@ header {
     font-size: 150%;
 }
 
-#texto {
-    height: 1%;
-    width: 100%;
-    background-color: #74748a;
-    border-radius: 10px;
-    scale: 100%;
-    margin-top: 3%;
-    margin-bottom: 4%;
-    margin-left: 3%;
-    margin-right: 10%;
-    padding-left: 5%;
-    padding-top: 3%;
-    padding-bottom: 8%;
-}
-
 form {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -112,6 +97,7 @@ form .btn-enviar {
 }
 
 form textarea {
+    text-align: start;
     border: none;
     border-radius: 20px;
 }
