@@ -1,9 +1,9 @@
 <?php
 
 //Datos del servidor
-$user = "root";
-$pass = "";
-$host = "localhost";
+$user = "u482925761_admin";
+$pass = "Clavetemporal/2024";
+$host = "82.197.80.210";
 
 //Conexion a la base de datos
 $connection = mysqli_connect($host, $user, $pass);
