@@ -17,6 +17,7 @@ body {
 }
 
 .landing .izquierda {
+    animation: fadeIn 1.5s;
     margin-left: 20%;
     border-radius: 20px;
     width: 80%;
@@ -58,7 +59,8 @@ body {
 }
 
 .landing .derecha {
-    padding-top: 8%;
+    animation: fadeIn 1.5s;
+    padding-top: 16%;
     padding-right: 20%;
     width: 100%;
 }
@@ -146,6 +148,9 @@ header {
     border-radius: 25px;
     background-color: #848c8c;
     box-shadow: 10px 14px 20px rgb(34, 34, 34);
+    animation: fadeIn linear both;
+    animation-timeline: view();
+    animation-range: entry 20% cover 30%;
 }
 
 #tituloTexto {
@@ -225,6 +230,9 @@ header {
     border: 2px solid #848c8c;
     display: flex;
     justify-content: center;
+    animation: fadeIn linear both;
+    animation-timeline: view();
+    animation-range: entry 20% cover 30%;
 }
 
 .tarjetas {
@@ -234,6 +242,9 @@ header {
     width: 80%;
     margin-left: 10%;
     margin-right: 10%;
+    animation: fadeIn linear both;
+    animation-timeline: view();
+    animation-range: entry 20% cover 30%;
 }
 
 .tarjetas .card .card-body h1{
@@ -342,6 +353,9 @@ header {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 50px;
     width: 100%;
+    animation: fadeIn linear both;
+    animation-timeline: view();
+    animation-range: entry 20% cover 30%;
 }
 
 .recomendar .izquierda {
@@ -479,4 +493,15 @@ nav a {
     color: black;
     text-decoration: none;
     padding-right: 10px;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translatey(+40px);
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
