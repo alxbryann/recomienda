@@ -33,38 +33,18 @@
             <h1>¡Recomienda!</h1>
         </div>
     </header>
-
-    <div class="container">
-        <h2>Crea un recomendado!</h2>
-        <form action="procesar_formulario.php" method="POST">
-            <div class="form-group">
-                <label for="experto">Experto en:</label>
-                <select id="experto" name="experto" required>
-                    <option value="televisores">Televisores</option>
-                    <option value="neveras">Neveras</option>
-                    <option value="lavadoras">Lavadoras</option>
-                    <option value="microondas">Microondas</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required>
-            </div>
-            <div class="form-group">
-                <label for="nombre">ID de recomendado:</label>
-                <input type="text" id="nombre" name="nombre">
-            </div>
-            <div class="form-group">
-                <label for="experiencia">Detalla tu Experiencia:</label>
-                <textarea id="experiencia" name="experiencia" rows="5" required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="telefono_recomendado">Telefono del Recomendado:</label>
-                <input type="text" id="telefono_recomendado" name="telefono_recomendado" required>
-            </div>
-            <button type="submit" class="btn">Enviar</button>
-        </form>
-    </div>
+    <main>
+        <div class="container">
+            <form action="nuevo_recomendado.php" method="POST">
+                <label for="codigo_recomendado">Codigo de recomendado:</label>
+                <input type="text" id="codigo_recomendado" name="codigo_recomendado">
+                <label for="comentario_recomendado">Comentario sobre el recomendado:</label>
+                <input type="text" id="comentario_recomendado" name="comentario_recomendado">
+                <button type="submit" class="btn">Enviar</button>
+            </form>
+        </div>
+        <img src="/recomienda_form.jpg" width="100%">
+    </main> 
     <footer>
         <div id="textoTambien">
             <p>También podría interesarte</p>
@@ -78,7 +58,6 @@
             </a>
         </nav>
     </footer>
-
 </body>
 
 </html>
