@@ -11,8 +11,24 @@ $connection = mysqli_connect($host, $user, $pass);
 //Llamamos al input del formulario
 $id_usuario = 1;
 $id_recomendado = $_POST["id_recomendado"];
-$estrellas = 5;
-$especialidad = 4;
+$estrellas = intval($_POST["numero-estrellas"]);
+$especialidad = $_POST["experto"];
+$especialidad_recomendado;
+// Switch statement
+switch ($especialidad) {
+    case "televisores":
+        $especialidad_recomendado = 1;
+        break;
+    case "neveras":
+        $especialidad_recomendado = 2;
+        break;
+    case "lavadoras":
+        $especialidad_recomendado = 3;
+        break;
+    case "microondas":
+        $especialidad_recomendado = 4;
+        break;
+}
 $comentario = $_POST["comentario_recomendado"];
 
 //Nombre de la base de datos
@@ -20,9 +36,13 @@ $datab = "u482925761_recomienda";
 //Seleccionamos la base de datos
 $db = mysqli_select_db($connection,$datab);
 
+
+
+
 //Diseñamos la instruccion sql
-$instruccion_sql = "insert into recomendaciones(id_usuario, id_recomendado, estrellas, especialidad, comentario) values ('$id_usuario', '$id_recomendado', '$estrellas', '$especialidad', '$comentario')";
+$instruccion_sql = "insert into recomendaciones(id_usuario, id_recomendado, estrellas, especialidad, comentario) values ('$id_usuario', '$id_recomendado', '$estrellas', '$especialidad_recomendado', '$comentario')";
 $resultado = mysqli_query($connection, $instruccion_sql);
+
 
 if($resultado){
     echo '
@@ -80,6 +100,3 @@ if($resultado){
     </html>';
 }
 ?>
-
-
-

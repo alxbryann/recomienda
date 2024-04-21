@@ -8,7 +8,6 @@
     <link rel="icon" href="logo.png">
     <title>Crea un recomendado!</title>
     <link rel="icon" href="logo.png">
-    <link rel="stylesheet" href="estilosContacto.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -37,14 +36,30 @@
         <div class="container">
             <form action="nuevo_recomendado.php" method="POST">
                 <label for="id_recomendado">Id de recomendado:</label>
-                <input type="text" id="id_recomendado" name="id_recomendado">
+                <input type="text" id="id_recomendado" name="id_recomendado" required>
+                <label for="experto">Experto en:</label>
+                <select id="experto" name="experto" required>
+                    <option value="televisores">Televisores</option>
+                    <option value="neveras">Neveras</option>
+                    <option value="lavadoras">Lavadoras</option>
+                    <option value="microondas">Microondas</option>
+                </select>
                 <label for="comentario_recomendado">Comentario sobre el recomendado:</label>
                 <input type="text" id="comentario_recomendado" name="comentario_recomendado">
+                <label for="estrellas">Agrega estrellas en funcion del servicio:</label>
+                <div id=estrellas>
+                    <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer" id=1estrella;"></span>
+                    <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer" id=2estrella;"></span>
+                    <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer" id=3estrella;"></span>
+                    <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer" id=4estrella;"></span>
+                    <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer" id=5estrella;"></span>
+                </div>
+                <input type="number" id="numero-estrellas" name="numero-estrellas">       
                 <button type="submit" class="btn">Enviar</button>
             </form>
         </div>
         <img src="/recomienda_form.jpg" width="100%">
-    </main> 
+    </main>
     <footer>
         <div id="textoTambien">
             <p>También podría interesarte</p>
@@ -58,6 +73,19 @@
             </a>
         </nav>
     </footer>
+    <script>
+        function calificar(item){
+            contador = item.id[0];
+            let nombre = item.id.substring(1);
+            for(let i=0;i<5;i++){
+                if(i<contador){
+                    document.getElementById((i+1)+nombre).style.color = "orange";
+                }else{
+                    document.getElementById((i+1)+nombre).style.color = "black";
+                }
+            }    
+            document.getElementById("numero-estrellas").value = contador;
+        }
+    </script>
 </body>
-
 </html>
