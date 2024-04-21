@@ -1,0 +1,132 @@
+
+body {
+    padding-top: 20px;
+    background-color: #3c3c47;
+}
+
+.container {
+    background-color: #fff;
+    padding: 10px;
+    width: 100%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+}
+
+header {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 80%;
+    margin-top: 2%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 2%;
+    border-radius: 25px;
+    background-color: #848c8c;
+    box-shadow: 10px 14px 20px rgb(34, 34, 34);
+    animation: fadeIn linear both;
+    animation-timeline: view();
+    animation-range: entry 20% cover 30%;
+}
+#sesion {
+    height: 100%;
+    display: flex;
+    margin-right: 10%;
+}
+
+#sesion a {
+    padding: 10%;
+    color: white;
+    text-decoration: none;
+}
+#textoTambien {
+    font-size: 80%;
+    padding-top: 1.5%;
+    padding-left: 1.5%;
+}
+.card{
+    margin-bottom: 1.5%;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 10px 14px 20px rgb(34, 34, 34);
+    background-color: white;
+    border-radius: 30px;
+    border: 2px solid #848c8c;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+nav {
+    display: flex;
+    margin-right: 2%;
+    font-size: 80%;
+    padding-top: 1.5%;
+    text-decoration: none;
+}
+
+nav a {
+    color: black;
+    text-decoration: none;
+    padding-right: 10px;
+}
+
+#tituloTexto {
+    text-align: center;
+    height: 100%;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    color: white;
+    margin-top: 1.5%;
+    margin-right: 5%;
+}
+
+#tituloImagen {
+    height: 50%;
+    width: 30%;
+    margin-top: 5%;
+    margin-left: 30%;
+    margin-bottom: 1%;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+@media screen and (max-width:800px) {
+    header {
+        width: 80%;
+        grid-template-columns: repeat(1, 1fr);
+        margin-top: 10%;
+        margin-right: 10%;
+        margin-left: 10%;
+    }
+
+    #tituloImagen {
+        margin-left: 42%;
+    }
+
+    #tituloTexto {
+        margin-left: 5%;
+    }
+}
