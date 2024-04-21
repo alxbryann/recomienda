@@ -52,7 +52,6 @@ $db = mysqli_select_db($connection,$datab);
     </header>
     <div class="container">
         <div id="reseñas" class="mt-4">
-            <h2>Recomendados</h2>
             <?php
             $instruccion_sql = "select * from recomendaciones where especialidad =" . 4;
             $resultado = mysqli_query($connection, $instruccion_sql);
@@ -68,13 +67,19 @@ $db = mysqli_select_db($connection,$datab);
                     $resultado_usuarios = mysqli_query($connection, $instruccion_sql_usuarios);
                     if($resultado_usuarios){
                         $row_usuarios = $resultado_usuarios->fetch_array();
-                        $nombre = $row_usuarios['nombre'];
+                        $nombre_recomendado = $row_usuarios['nombre'];
+                    }
+                    $instruccion_sql_usuarios2 = "SELECT nombre FROM usuarios WHERE id_usuario = $id_usuario";
+                    $resultado_usuarios2 = mysqli_query($connection, $instruccion_sql_usuarios2);
+                    if($resultado_usuarios2){
+                        $row_usuarios2 = $resultado_usuarios2->fetch_array();
+                        $nombre_usuario = $row_usuarios2['nombre'];
                     }
                     ?>
                     <div class="card" id="reseñas">
                         <div class="card-body">
-                            <h5 class="card-title"><?php echo $nombre ?></h5>
-                            <p class="card-text" id="<?php echo $id_recomendacion ?>" style="display: none;"><?php echo $comentario ?></p>
+                            <h5 class="card-title"><?php echo $nombre_recomendado ?></h5>
+                            <p class="card-text" id="<?php echo $id_recomendacion ?>" style="display: none;"><?php echo "$nombre_usuario dice: $comentario" ?></p>
                             <div class="d-flex justify-content-between">
                                 <small>Calificación: <?php echo $estrellas ?> estrellas</small>
                                 <small class="text-muted">Fecha: 2024-03-30</small>
