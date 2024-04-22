@@ -1,8 +1,8 @@
 <?php //db_conn.php
+    $host = "82.197.80.210";
     $data = "u482925761_recomienda";;
     $user = "u482925761_admin";
-    $pass = "Clavetemporal/2024";
-    $host = "82.197.80.210";
+    $pass = "Clavetemporal/2024";    
     $chrs='utf8mb4';
     $attr="mysql:host=$host;dbname=$data;charset=$chrs";
     $opts=

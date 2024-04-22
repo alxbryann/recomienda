@@ -1,6 +1,6 @@
 <?php
-const APP_URL = 'https://recomienda.com/recomienda_desarrolloweb/arc';
-const SENDER_EMAIL_ADDRESS = 'jramoscol@gamil.com';
+const APP_URL = 'https://recomienda.site';
+const SENDER_EMAIL_ADDRESS = 'jramoscol@gmail.com';
 
 function generate_activation_code(): string
 {
