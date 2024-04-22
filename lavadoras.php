@@ -22,7 +22,7 @@ $db = mysqli_select_db($connection,$datab);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recomendados para microondas</title>
+    <title>Recomendados para lavadoras</title>
     <link rel="icon" href="logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -67,13 +67,13 @@ $db = mysqli_select_db($connection,$datab);
                     $resultado_usuarios = mysqli_query($connection, $instruccion_sql_usuarios);
                     if($resultado_usuarios){
                         $row_usuarios = $resultado_usuarios->fetch_array();
-                        $nombre_recomendado = $row_usuarios['nombre'];
+                        $nombre_recomendado = $row_usuarios['nombre_usuario'];
                     }
-                    $instruccion_sql_usuarios2 = "SELECT nombre FROM usuarios WHERE id_usuario = $id_usuario";
+                    $instruccion_sql_usuarios2 = "SELECT nombre_usuario FROM usuarios WHERE id_usuario = $id_usuario";
                     $resultado_usuarios2 = mysqli_query($connection, $instruccion_sql_usuarios2);
                     if($resultado_usuarios2){
                         $row_usuarios2 = $resultado_usuarios2->fetch_array();
-                        $nombre_usuario = $row_usuarios2['nombre'];
+                        $nombre_usuario = $row_usuarios2['nombre_usuario'];
                     }
                     ?>
                     <div class="card" id="reseñas">
