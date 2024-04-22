@@ -63,7 +63,7 @@ $db = mysqli_select_db($connection,$datab);
                     $estrellas = $row['estrellas'];
                     $especialidad = $row['especialidad'];
                     $comentario = $row['comentario'];
-                    $instruccion_sql_usuarios = "SELECT nombre FROM usuarios WHERE id_usuario = $id_recomendado";
+                    $instruccion_sql_usuarios = "SELECT nombre_usuario FROM usuarios WHERE id_usuario = $id_recomendado";
                     $resultado_usuarios = mysqli_query($connection, $instruccion_sql_usuarios);
                     if($resultado_usuarios){
                         $row_usuarios = $resultado_usuarios->fetch_array();
