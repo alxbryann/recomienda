@@ -1,6 +1,6 @@
 <?php
 session_start();
-$usuario = $_SESSION['nombre_usuario'];
+$usuario = $_SESSION['usuario'];
 if($usuario == null || $usuario = ''){
     header("location:login.php");
     die();
