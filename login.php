@@ -1,8 +1,3 @@
-<?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-?>
 <!DOCTYPE html>
 <html>
 <style>
@@ -92,6 +87,14 @@ if (is_post_request()) {
     session_start();
     $usuario =  $_POST['username'];
     $_SESSION['usuario'] = $usuario;
+    $query = "SELECT * FROM usuarios WHERE email_usuario = '$usuario'";
+    /*$result = mysqli_query($connection, $query);
+    if($result){
+        $row = mysqli_fetch_array($result);
+        $_SESSION['id'] = $row['id_usuario'];
+        $_SESSION['nombre'] = $row['nombre_usuario'];
+
+    }*/
     redirect_to('index.php');
 
 } else if (is_get_request()) {

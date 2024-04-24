@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 //Datos del servidor
 $user = "u482925761_admin";
 $pass = "Clavetemporal/2024";
@@ -9,7 +10,7 @@ $host = "82.197.80.210";
 $connection = mysqli_connect($host, $user, $pass);
 
 //Llamamos al input del formulario
-$id_usuario = 1;
+$id_usuario = $_SESSION['id'];
 $id_recomendado = $_POST["id_recomendado"];
 $estrellas = intval($_POST["numero-estrellas"]);
 $especialidad = $_POST["experto"];
@@ -45,7 +46,7 @@ $resultado = mysqli_query($connection, $instruccion_sql);
 
 
 if($resultado){
-    echo '
+    ?>
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -68,11 +69,13 @@ if($resultado){
         <div class="confirmation-container">
             <h1>Recomendacion agregada con exito</h1>
             <h2>Seras redirigido al inicio en 5 segundos</h2>
+            <meta http-equiv="refresh" content="5;url=index.php">
         </div>
     </body>
-    </html>';
+    </html>
+    <?php
 }else{
-    echo '
+    ?>
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -95,8 +98,9 @@ if($resultado){
         <div class="confirmation-container">
             <h1>Recomendacion fallida</h1>
             <h2>Seras redirigido al inicio en 5 segundos</h2>
+            <meta http-equiv="refresh" content="5;url=index.php">
         </div>
     </body>
-    </html>';
+    </html>
+<?php
 }
-?>

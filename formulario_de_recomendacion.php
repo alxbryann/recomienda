@@ -1,3 +1,14 @@
+<?php
+session_start();
+$usuario = $_SESSION['nombre_usuario'];
+if($usuario == null || $usuario = ''){
+    header("location:login.php");
+    die();
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 

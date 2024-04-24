@@ -52,7 +52,7 @@
     </div>
     <header>
         <div id="tituloImagen">
-            <a href="index.html">
+            <a href="index.php">
                 <img src="logo.png" width="80" />
             </a>
         </div>
@@ -126,7 +126,7 @@
             <p>Sigue este enlace, y llena el formulario para agregar tu recomendado a nuestra pagina web</p>
         </div>
         <div id="botonPrin">
-            <a class="btn" href="formulario_de_recomendacion.html">ir</a>
+            <a class="btn" href="formulario_de_recomendacion.php">ir</a>
         </div>
     </div>
     <div class="derecha">
