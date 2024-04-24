@@ -34,7 +34,7 @@
                 <p>Recomienda</p>
             </div>
             <div id="segundoTexto">
-                <p>¿Estas buscando un recomendado?</p>
+                <p>¿PRUEBA CAMBIO?</p>
             </div>
             <div id="tercerTexto">
                 <p>Con esta pagina web, puedes encontrar
