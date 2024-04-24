@@ -89,7 +89,10 @@ if (is_post_request()) {
         ]);
     }
     // login successfully
-    redirect_to('index.html');
+    session_start();
+    $usuario =  $_POST['username'];
+    $_SESSION['usuario'] = $usuario;
+    redirect_to('index.php');
 
 } else if (is_get_request()) {
     [$errors, $inputs] = session_flash('errors', 'inputs');

@@ -1,3 +1,9 @@
+<?php
+    session_start();
+    $usuario = $_SESSION['usuario'];
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,12 +60,14 @@
             <h1>¡Bienvenido a recomienda!</h1>
         </div>
         <div id="sesion">
-            <a href="nuevousuario.php">
-                <p>Registrarse</p>
-            </a>
-            <a href="login.php">
-                <p>Iniciar sesión</p>
-            </a>
+            <?php
+                if (isset($usuario)) {
+                    echo "Bienvenido, " . $usuario;
+                } else {
+                    echo '<a href="login.php">Iniciar sesión</a>';
+                    echo '<a href="nuevousuario.php">Registrarse</a>';
+                }            
+            ?>
         </div>
     </header>
     <div id="pregunta">
@@ -82,7 +90,7 @@
             <div class="card-body">
                 <h1>Neveras</h1>
                 <div id="boton">
-                    <a class="btn" href="neveras.html">ir</a>
+                    <a class="btn" href="neveras.php">ir</a>
                 </div>
             </div>
         </div>
@@ -91,7 +99,7 @@
             <div class="card-body">
                 <h1>Lavadoras</h1>
                 <div id="boton">
-                    <a class="btn" href="lavadoras.html">ir</a>
+                    <a class="btn" href="lavadoras.php">ir</a>
                 </div>
             </div>
         </div>
@@ -100,7 +108,7 @@
             <div class="card-body">
                 <h1>Televisores</h1>
                 <div id="boton">
-                    <a class="btn" href="tv.html">ir</a>
+                    <a class="btn" href="tv.php">ir</a>
                 </div>
             </div>
         </div>

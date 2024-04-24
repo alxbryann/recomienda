@@ -42,7 +42,7 @@ $db = mysqli_select_db($connection,$datab);
 <body>
     <header>
         <div id="tituloImagen">
-            <a href="index.html">
+            <a href="index.php">
                 <img src="logo.png" width="80" />
             </a>
         </div>
