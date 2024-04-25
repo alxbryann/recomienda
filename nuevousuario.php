@@ -90,6 +90,10 @@ if (is_post_request()) {
     <link rel="stylesheet" href="estilosRegistro.css">
 </head>
 <body>
+    <br>
+    <br>
+    <br>
+    <br>
     <h2>Modulo de registro</h2>
 <div class="register-container">
     <form method="post" action="nuevousuario.php">
