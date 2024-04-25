@@ -10,7 +10,7 @@ $host = "82.197.80.210";
 $connection = mysqli_connect($host, $user, $pass);
 
 //Llamamos al input del formulario
-$id_usuario = $_SESSION['id'];
+$id_usuario = 2;
 $id_recomendado = $_POST["id_recomendado"];
 $estrellas = intval($_POST["numero-estrellas"]);
 $especialidad = $_POST["experto"];
