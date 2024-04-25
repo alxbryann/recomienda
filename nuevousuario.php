@@ -70,7 +70,7 @@ if (is_post_request()) {
 
 ?>  
 <?php view('header', ['title' => 'Nuevo Usuario']) ?>
-            <link rel="stylesheet" href="estilosEspecialidades.css">
+            <link rel="stylesheet" href="estilosGenerales.css">
             <h2>Registro nuevo usuario</h2>
             <div>
                 <form method="post" action="nuevousuario.php">
@@ -145,7 +145,7 @@ if (is_post_request()) {
                         </label>
                         <small><?= $errors['agree'] ?? '' ?></small>
                     </div>
-                    <br><input type="submit" value="Guardar" >
+                    <input type="submit" value="Guardar" >
                     <footer>Already a member? <a href="login.php">Login here</a></footer> 
                 </form>
             </div>
