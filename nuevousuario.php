@@ -70,7 +70,7 @@ if (is_post_request()) {
 
 ?>  
 <?php view('header', ['title' => 'Nuevo Usuario']) ?>
-
+            <link rel="stylesheet" href="estilosEspecialidades.css">
             <h2>Registro nuevo usuario</h2>
             <div>
                 <form method="post" action="nuevousuario.php">
