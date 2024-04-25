@@ -62,7 +62,7 @@
         <div id="sesion">
             <?php
                 if (isset($usuario)) {
-                    echo "Bienvenido, " . $usuario;
+                    echo '<a href="/CAMBIAR">Bienvenido, '. $usuario;;
                 } else {
                     echo '<a href="login.php">Iniciar sesión</a>';
                     echo '<a href="nuevousuario.php">Registrarse</a>';
