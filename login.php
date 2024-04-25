@@ -35,6 +35,10 @@ span.psw {
   float: right;
   padding-top: 16px;
 }
+.olvidastecontraseña{
+    display: block;
+    text-align: right;
+}
 
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
@@ -114,7 +118,7 @@ if (is_post_request()) {
     <?php endif ?>
 
     <form action="login.php" method="post">
-        <h2>Inicion de Sesion</h2>
+        <h2>Inicio de Sesion</h2>
         <div class="container">
             <label for="username"><b>Email-usuario:</b></label>
             <input type="text" name="username" id="username" value="<?= $inputs['username'] ?? '' ?>">
@@ -126,6 +130,7 @@ if (is_post_request()) {
         <section>
             <button type="submit">Iniciar sesion</button>
             <a href="nuevousuario.php">No tiene usuario? registrese aqui</a>
+            <a href="olvidarcontraseña.php">¿Olvidaste la contraseña?</a>
         </section>
     </form>
 </main>
