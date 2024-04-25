@@ -1,129 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro nuevo usuario</title>
+    <link rel="icon" href="logo.png">
+    <title>Inicio de sesion</title>
     <link rel="stylesheet" href="estilosRegistro.css">
 </head>
+
 <body>
-    <br>
-    <br>
-    <br>
-    <br>
-    <h2>Modulo de registro</h2>
-<div class="register-container">
-    <form method="post" action="nuevousuario.php">
-        <label for="email">E-mail:</label>
-        <input type="email" name="email" id="email" placeholder="e-mail" value="<?= $inputs['email'] ?? '' ?>"
-            class="<?= error_class($errors, 'email') ?>">
-        <small><?= $errors['email'] ?? '' ?></small>
+    <h2>Inicio de Sesion</h2>
+    <div class="register-container">
+        <?php if (isset($errors['login'])) : ?>
+        <div class="alert alert-error">
+            <?= $errors['login'] ?>
+        </div>
+        <?php endif ?>
 
-
-        <label for="NombreUsuario">Nombre:</label>
-        <input type="text" name="nombre" id="nombre" placeholder="Primer nombre">
-        <label for="ApellidoUsuario">Apellido:</label>
-        <input type="text" name="apellido" id="apellido" placeholder="Apellido usuario">
-
-
-        <label for="password">Contrasena:</label>
-        <input type="password" name="password" id="password" placeholder="contrasena usuario"
-            value="<?= $inputs['password'] ?? '' ?>" class="<?= error_class($errors, 'password') ?>">
-        <small><?= $errors['password'] ?? '' ?></small>
-
-
-
-        <label for="password2">Repetir Contrasena:</label>
-        <input type="password" name="password2" id="password2" placeholder="Repetir Contrasena usuario"
-            value="<?= $inputs['password2'] ?? '' ?>" class="<?= error_class($errors, 'password2') ?>">
-        <small><?= $errors['password2'] ?? '' ?></small>
-
-
-
-        <label for="DirUsuario">Direccion:</label>
-        <input type="text" name="direccion" id="direccion" placeholder="Direccion -">
-        <label for="TelefonoUsuario">Telefono:</label>
-        <input type="text" name="telefono" id="telefono" placeholder="numero de telefono">
-        <label for="pais">Pais:</label>
-        <select id="pais" name="pais">
-            <option value="">Selecciones pais</option>
-            <?php
-            //require_once 'db_conn.php';
-            try {
-                $pdo = new PDO($attr, $user, $pass, $opts);
-            } catch (PDOException $e) {
-                throw new PDOException($e->getMessage(), (int) $e->getCode());
-            }
-            $query = "SELECT * FROM paises";
-            $result = $pdo->query($query);
-            while ($row = $result->fetch(PDO::FETCH_BOTH)) {
-                ?>
-                <option value="<?php echo $row['cod_pais']; ?>"><?php echo $row['nombre_pais']; ?></option>
-                <?php
-            }
-            ?>
-        </select>
-        <label for="Departamento">Departamento:</label>
-        <select id="id_depto" name="departamento">
-            <option disabled="" selected="">Seleccione Departamaneto</option>
-        </select>
-        <label for="Municipio">Municipio:</label>
-        <select id="id_mun" name="municipio">
-            <option disabled="" selected="">Seleccione municipio</option>
-        </select>
-
-
-        <label for="agree">
-            <input type="checkbox" name="agree" id="agree" value="checked" <?= $inputs['agree'] ?? '' ?> />
-            Estoy de acuerdo con los
-            <a href="#" title="term of services">terminos de servicio</a>
-        </label>
-        <small><?= $errors['agree'] ?? '' ?></small>
-
-        <input type="submit" value="Guardar">
-    </form>
-</div>
-<footer>Already a member? <a href="login.php">Login here</a></footer>
-<script>
-    $(document).ready(function () {
-        $("#pais").on('change', function () {
-            var countryid = $(this).val();
-
-            $.ajax({
-                method: "POST",
-                url: "consulta.php",
-                data: {
-                    id: countryid
-                },
-                datatype: "html",
-                success: function (data) {
-                    $("#id_depto").html(data);
-                    $("#id_mun").html('<option value="">Seleccione municipio</option');
-
-                }
-            });
-        });
-
-
-        //City Selection
-        $("#id_depto").on('change', function () {
-            var stateid = $(this).val();
-            $.ajax({
-                method: "POST",
-                url: "consulta.php",
-                data: {
-                    sid: stateid
-                },
-                datatype: "html",
-                success: function (data) {
-                    $("#id_mun").html(data);
-
-                }
-
-            });
-        });
-    });
-</script>
-
+        <form action="login.php" method="post">
+            <label for="username"><b>Email-usuario:</b></label>
+            <input type="text" name="username" id="username" value="<?= $inputs['username'] ?? '' ?>">
+            <small>
+                <?= $errors['username'] ?? '' ?>
+            </small>
+            <label for="password"><b>Contrasena:</b></label>
+            <input type="password" name="password" id="password">
+            <small>
+                <?= $errors['password'] ?? '' ?>
+            </small>
+            <br>
+            <input type="submit" value="Enviar">
+        </form>
+    </div>
+    <footer>
+        <a href="nuevousuario.php">Registrate aqui</a>
+        <a href="olvidarcontraseña.php">¿Olvidaste la contraseña?</a>
+    </footer>
 </body>
+
 </html>

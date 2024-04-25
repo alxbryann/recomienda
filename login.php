@@ -101,34 +101,45 @@ if (is_post_request()) {
     [$errors, $inputs] = session_flash('errors', 'inputs');
 }
 ?>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logo.png">
+    <title>Inicio de sesion</title>
+    <link rel="stylesheet" href="estilosRegistro.css">
 </head>
+
 <body>
-    <main>
+    <h2>Inicio de Sesion</h2>
+    <div class="register-container">
         <?php if (isset($errors['login'])) : ?>
         <div class="alert alert-error">
             <?= $errors['login'] ?>
         </div>
-    <?php endif ?>
+        <?php endif ?>
 
-    <form action="login.php" method="post">
-        <h2>Inicio de Sesion</h2>
-        <div class="container">
+        <form action="login.php" method="post">
             <label for="username"><b>Email-usuario:</b></label>
             <input type="text" name="username" id="username" value="<?= $inputs['username'] ?? '' ?>">
-            <small><?= $errors['username'] ?? '' ?></small>
+            <small>
+                <?= $errors['username'] ?? '' ?>
+            </small>
             <label for="password"><b>Contrasena:</b></label>
             <input type="password" name="password" id="password">
-            <small><?= $errors['password'] ?? '' ?></small>
-        </div>
-        <section>
-            <button type="submit">Iniciar sesion</button>
-            <a href="nuevousuario.php">No tiene usuario? registrese aqui</a>
-            <a href="olvidarcontraseña.php">¿Olvidaste la contraseña?</a>
-        </section>
-    </form>
-</main>
+            <small>
+                <?= $errors['password'] ?? '' ?>
+            </small>
+            <br>
+            <input type="submit" value="Enviar">
+        </form>
+    </div>
+    <footer>
+        <a href="nuevousuario.php">Registrate aqui</a>
+        <a href="olvidarcontraseña.php">¿Olvidaste la contraseña?</a>
+    </footer>
 </body>
+
 </html>

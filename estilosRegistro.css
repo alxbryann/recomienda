@@ -247,6 +247,21 @@ input[type="submit"]:hover {
         margin-right: 10%;
         margin-left: 10%;
     }
+    h2{
+        text-align: center;
+        font-size: 30px;
+        width: 60%;
+    }
+    .register-container{
+        width: 60%;
+        margin-left: 12%;
+        margin-right: auto;
+    }
+    footer{
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+    }
     main{
         width: 80%;
         grid-template-columns: repeat(1, 1fr);

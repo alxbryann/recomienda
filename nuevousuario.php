@@ -87,6 +87,7 @@ if (is_post_request()) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro nuevo usuario</title>
+    <link rel="icon" href="logo.png">
     <link rel="stylesheet" href="estilosRegistro.css">
 </head>
 <body>
@@ -166,7 +167,7 @@ if (is_post_request()) {
         <input type="submit" value="Guardar">
     </form>
 </div>
-<footer>Already a member? <a href="login.php">Login here</a></footer>
+<footer>¿Ya tienes una cuenta? <a href="login.php">Inicia sesión aqui</a></footer>
 <script>
     $(document).ready(function () {
         $("#pais").on('change', function () {
