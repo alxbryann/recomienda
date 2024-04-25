@@ -1,7 +1,7 @@
 * {
     margin: 0px;
     padding: 0px;
-    
+
 }
 
 body {
@@ -72,72 +72,6 @@ body {
     animation: movimiento 4s linear infinite;
 }
 
-@keyframes movimiento {
-    0% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(10px);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
-}
-
-@media screen and (max-width:1600px) {
-
-    #segundoTexto {
-        width: 100%;
-        scale: 100%;
-    }
-
-    #tercerTexto {
-        width: 80%;
-    }
-
-    .landing .derecha {
-        width: 110%;
-        padding-top: 20%;
-    }
-
-    .landing .btn {
-        width: 80%;
-    }
-}
-
-@media screen and (max-width:800px) {
-    .landing {
-        width: 100%;
-        grid-template-columns: repeat(1, 1fr);
-    }
-
-    .landing #segundoTexto {
-        text-align: left;
-        font-family: "Poppins", sans-serif;
-        font-weight: 500;
-        font-style: normal;
-        width: 80%;
-        scale: 100%;
-    }
-
-    .landing #tercerTexto {
-        width: 80%;
-        scale: 100%;
-    }
-
-    .landing .btn {
-        width: 80%;
-    }
-
-    .landing .derecha {
-        width: 120%;
-        padding-top: 0%;
-    }
-
-}
-
 header {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -171,29 +105,6 @@ header {
     margin-top: 5%;
     margin-left: 30%;
     margin-bottom: 1%;
-}
-
-@media screen and (max-width:800px) {
-    header {
-        width: 80%;
-        grid-template-columns: repeat(1, 1fr);
-        margin-top: 10%;
-        margin-right: 10%;
-        margin-left: 10%;
-    }
-
-    #tituloImagen {
-        margin-left: 42%;
-    }
-
-    #tituloTexto {
-        margin-left: 5%;
-    }
-
-    #sesion {
-        margin-left: 22%;
-        text-align: center;
-    }
 }
 
 #sesion {
@@ -248,7 +159,7 @@ header {
     animation-range: entry 20% cover 30%;
 }
 
-.tarjetas .card .card-body h1{
+.tarjetas .card .card-body h1 {
     scale: 100%;
     margin-left: -10%;
     width: 120%;
@@ -299,32 +210,6 @@ header {
 #tar4:hover {
     box-shadow: 10px 14px 20px rgb(34, 34, 34);
     transform: scale(1.05);
-}
-
-@media screen and (max-width:1000px) {
-    .tarjetas {
-        display: grid;
-        background-color: #ccccd4;
-        border-radius: 20px;
-        border: 3px solid #b7b7c2;
-        width: 80%;
-        margin-left: 10%;
-        margin-right: 10%;
-        grid-template-columns: repeat(1, 1fr);
-    }
-
-    .card {
-        height: 50%;
-        margin-left: 10%;
-        margin-top: 10%;
-        background-color: white;
-    }
-
-    .card-body {
-        margin-left: -20%;
-        background-color: white;
-        width: 400%;
-    }
 }
 
 
@@ -393,75 +278,6 @@ header {
     animation: movimiento 4s linear infinite;
 }
 
-@keyframes movimiento {
-    0% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(10px);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
-}
-
-@media screen and (max-width:1600px) {
-
-    #segundoTexto {
-        width: 100%;
-        scale: 100%;
-    }
-
-    #tercerTexto {
-        width: 80%;
-    }
-
-    .recomendar .derecha {
-        margin-top: -5%;
-        width: 100%;
-        padding-top: 20%;
-    }
-
-    .recomendar .btn {
-        width: 80%;
-    }
-}
-
-@media screen and (max-width:800px) {
-    .recomendar {
-        width: 100%;
-        grid-template-columns: repeat(1, 1fr);
-    }
-
-    .recomendar #segundoTexto {
-        text-align: left;
-        font-family: "Poppins", sans-serif;
-        font-weight: 500;
-        font-style: normal;
-        width: 80%;
-        scale: 100%;
-    }
-
-    .recomendar #tercerTexto {
-        width: 80%;
-        scale: 100%;
-    }
-
-    .recomendar .btn {
-        width: 80%;
-    }
-
-    .recomendar .derecha .imagen {
-        margin-top: -30%;
-        margin-left: 12%;
-        border-radius: 20px;
-        scale: 80%;
-        animation: movimiento 4s linear infinite;
-    }
-
-}
 
 footer {
     display: flex;
@@ -506,3 +322,164 @@ nav a {
         opacity: 1;
     }
 }
+
+@keyframes movimiento {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@media screen and (max-width:1600px) {
+
+    #segundoTexto {
+        width: 100%;
+        scale: 100%;
+    }
+
+    #tercerTexto {
+        width: 80%;
+    }
+
+    .recomendar .derecha {
+        margin-top: -5%;
+        width: 100%;
+        padding-top: 20%;
+    }
+
+    .recomendar .btn {
+        width: 80%;
+    }
+    #segundoTexto {
+        width: 100%;
+        scale: 100%;
+    }
+
+    #tercerTexto {
+        width: 80%;
+    }
+
+    .landing .derecha {
+        width: 110%;
+        padding-top: 20%;
+    }
+
+    .landing .btn {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width:1000px) {
+    .tarjetas {
+        display: grid;
+        background-color: #ccccd4;
+        border-radius: 20px;
+        border: 3px solid #b7b7c2;
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .card {
+        height: 50%;
+        margin-left: 10%;
+        margin-top: 10%;
+        background-color: white;
+    }
+
+    .card-body {
+        margin-left: -20%;
+        background-color: white;
+        width: 400%;
+    }
+}
+
+
+@media screen and (max-width:800px) {
+    .landing {
+        width: 100%;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .landing #segundoTexto {
+        text-align: left;
+        font-family: "Poppins", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        width: 80%;
+        scale: 100%;
+    }
+
+    .landing #tercerTexto {
+        width: 80%;
+        scale: 100%;
+    }
+
+    .landing .btn {
+        width: 80%;
+    }
+
+    .landing .derecha {
+        width: 120%;
+        padding-top: 0%;
+    }
+    .recomendar {
+        width: 100%;
+        grid-template-columns: repeat(1, 1fr);
+    
+    }
+    .recomendar #segundoTexto {
+        text-align: left;
+        font-family: "Poppins", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        width: 80%;
+        scale: 100%;
+    }
+    .recomendar #tercerTexto {
+        width: 80%;
+        scale: 100%;
+    }
+
+    .recomendar .btn {
+        width: 80%;
+    }
+
+    .recomendar .derecha .imagen {
+        margin-top: -30%;
+        margin-left: 12%;
+        border-radius: 20px;
+        scale: 80%;
+        animation: movimiento 4s linear infinite;
+    }
+    header {
+        width: 80%;
+        grid-template-columns: repeat(1, 1fr);
+        margin-top: 10%;
+        margin-right: 10%;
+        margin-left: 10%;
+    }
+
+    #tituloImagen {
+        margin-left: 42%;
+    }
+
+    #tituloTexto {
+        margin-left: 5%;
+    }
+
+    #sesion {
+        margin-left: 22%;
+        text-align: center;
+    }    
+
+}
+
