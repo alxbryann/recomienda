@@ -35,10 +35,6 @@ span.psw {
   float: right;
   padding-top: 16px;
 }
-.olvidastecontraseña{
-    display: block;
-    text-align: right;
-}
 
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
