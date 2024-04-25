@@ -153,7 +153,7 @@ if (is_post_request()) {
         </label>
         <small><?= $errors['agree'] ?? '' ?></small>
 
-        <input type="submit" value="Guardar">
+        <input type="submit" value="Guardar" class="btn">
         <footer>Already a member? <a href="login.php">Login here</a></footer>
     </form>
 </div>
