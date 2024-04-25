@@ -71,42 +71,42 @@ if (is_post_request()) {
 ?>  
 <?php view('header', ['title' => 'Nuevo Usuario']) ?>
 
-            <h2 style="background-color:#4CAF50; color:white;">Registro nuevo usuario</h2>
+            <h2>Registro nuevo usuario</h2>
             <div>
                 <form method="post" action="nuevousuario.php">
                 <div>
-                    <label for="email" style="left: 60px; top: 90px; position: absolute;">E-mail:</label>
-                    <input type="email" name="email" id="email" placeholder="e-mail" style="left: 230px; top: 70px; position: absolute;" value="<?= $inputs['email'] ?? '' ?>"
+                    <label for="email">E-mail:</label>
+                    <input type="email" name="email" id="email" placeholder="e-mail"value="<?= $inputs['email'] ?? '' ?>"
                         class="<?= error_class($errors, 'email') ?>">
                         <small><?= $errors['email'] ?? '' ?></small>
                     </div>    
 
-                    <label for="NombreUsuario" style="left: 60px; top: 150px; position: absolute;">Nombre:</label>
-                    <input type="text" name="nombre" id="nombre" placeholder="Primer nomnbre" style="left: 230px; top: 130px; position: absolute;">
-                    <label for="ApellidoUsuario" style="left: 60px; top: 210px; position: absolute;">Apellido:</label>
-                    <input type="text" name="apellido" id="apellido" placeholder="Apellido usuario" style="left: 230px; top: 190px; position: absolute;">
+                    <label for="NombreUsuario">Nombre:</label>
+                    <input type="text" name="nombre" id="nombre" placeholder="Primer nombre">
+                    <label for="ApellidoUsuario">Apellido:</label>
+                    <input type="text" name="apellido" id="apellido" placeholder="Apellido usuario">
                     
                     <div>
-                        <label for="password" style="left: 60px; top: 270px; position: absolute;">Contrasena:</label>
-                        <input type="password" name="password" id="password" placeholder="contrasena usuario" style="left: 230px; top: 250px; position: absolute;" value="<?= $inputs['password'] ?? '' ?>"
+                        <label for="password">Contrasena:</label>
+                        <input type="password" name="password" id="password" placeholder="contrasena usuario" value="<?= $inputs['password'] ?? '' ?>"
                             class="<?= error_class($errors, 'password') ?>">
                         <small><?= $errors['password'] ?? '' ?></small>
                     </div>
                     
                     <div>
-                        <label for="password2" style="left: 60px; top: 330px; position: absolute;">Repetir Contrasena:</label>
-                        <input type="password" name="password2" id="password2" placeholder="Repetir Contrasena usuario" style="left: 230px; top: 310px; position: absolute;" value="<?= $inputs['password2'] ?? '' ?>"
+                        <label for="password2">Repetir Contrasena:</label>
+                        <input type="password" name="password2" id="password2" placeholder="Repetir Contrasena usuario" value="<?= $inputs['password2'] ?? '' ?>"
                             class="<?= error_class($errors, 'password2') ?>">
                         <small><?= $errors['password2'] ?? '' ?></small>
                     </div>
 
                       
-                    <label for="DirUsuario" style="left: 60px; top: 390px; position: absolute;">Direccion:</label>
-                    <input type="text" name="direccion" id="direccion" placeholder="Direccion -" style="left: 230px; top: 370px; position: absolute;">
-                    <label for="TelefonoUsuario" style="left: 60px; top: 450px; position: absolute;">Telefono:</label>
-                    <input type="text" name="telefono" id="telefono" placeholder="numero de telefono" style="left: 230px; top: 430px; position: absolute;">
-                    <label for="pais" style="left: 60px; top: 510px; position: absolute;">Pais:</label>
-                    <select id="pais" name="pais" style="left: 230px; top: 490px; position: absolute;">
+                    <label for="DirUsuario">Direccion:</label>
+                    <input type="text" name="direccion" id="direccion" placeholder="Direccion -">
+                    <label for="TelefonoUsuario" >Telefono:</label>
+                    <input type="text" name="telefono" id="telefono" placeholder="numero de telefono" >
+                    <label for="pais">Pais:</label>
+                    <select id="pais" name="pais">
                         <option value="">Selecciones pais</option>
                         <?php
                             //require_once 'db_conn.php';
@@ -128,25 +128,25 @@ if (is_post_request()) {
                             }
                             ?>
                         </select>
-                    <label for="Departamento" style="left: 60px; top: 570px; position: absolute;">Departamento:</label>
-                    <select id="id_depto" name="departamento" style="left: 230px; top: 550px; position: absolute;"> 
+                    <label for="Departamento" >Departamento:</label>
+                    <select id="id_depto" name="departamento"> 
                         <option disabled="" selected="">Seleccione Departamaneto</option>
                     </select>
-                    <label for="Municipio" style="left: 60px; top: 630px; position: absolute;">Municipio:</label>
-                    <select id="id_mun" name="municipio" style="left: 230px; top: 610px; position: absolute;"> 
+                    <label for="Municipio" >Municipio:</label>
+                    <select id="id_mun" name="municipio"> 
                         <option disabled="" selected="">Seleccione municipio</option>
                     </select>
 
                     <div>
-                        <label for="agree" style="left: 230px; top: 690px; position: absolute;">
+                        <label for="agree" >
                             <input type="checkbox" name="agree" id="agree"  value="checked" <?= $inputs['agree'] ?? '' ?> /> 
                             Estoy de acuerdo con los
                             <a href="#" title="term of services" >terminos de servicio</a>
                         </label>
                         <small><?= $errors['agree'] ?? '' ?></small>
                     </div>
-                    <br><input type="submit" value="Guardar" style="left: 60px; top: 730px; position: absolute;">
-                    <footer style="left: 60px; top: 790px; position: absolute;">Already a member? <a href="login.php">Login here</a></footer> 
+                    <br><input type="submit" value="Guardar" >
+                    <footer>Already a member? <a href="login.php">Login here</a></footer> 
                 </form>
             </div>
             <script>
