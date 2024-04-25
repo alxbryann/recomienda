@@ -82,9 +82,9 @@ if (is_post_request()) {
 ?>
 <?php view('header', ['title' => 'Nuevo Usuario']) ?>
 <link rel="stylesheet" href="estilosGenerales.css">
+<h2>Modulo de registro</h2>
 <div class="register-container">
     <form method="post" action="nuevousuario.php">
-        <h2>Modulo de registro</h2>
         <label for="email">E-mail:</label>
         <input type="email" name="email" id="email" placeholder="e-mail" value="<?= $inputs['email'] ?? '' ?>"
             class="<?= error_class($errors, 'email') ?>">

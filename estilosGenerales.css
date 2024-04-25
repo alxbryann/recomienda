@@ -123,6 +123,8 @@ footer {
     background-color: white;
     border-radius: 30px;
     border: 2px solid #848c8c;
+    width: 80%;
+    height: 20px;
     margin-bottom: 2%;
     margin-top: 2%;
     margin-left: 10%;
@@ -186,11 +188,16 @@ form{
     box-shadow: 10px 14px 20px rgb(34, 34, 34);
 }
 
-.register-container h2{
+.h2{
     text-align: center;
     margin-top: 1%;
     margin-bottom: 1%;
     color: black;
+    width: auto;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    background-color: white;
+    border-radius: 20px;
 }
 
 input[type="submit"] {
@@ -202,14 +209,14 @@ input[type="submit"] {
     padding-top: 20px;
     padding-bottom: 20px;
     color: black;
-    background-color: white;
+    background-color: rgb(88, 78, 78);
     transition: all 0.3s;
 }
 input[type="submit"]:hover {
     color: white;
     background-color: #3c3c47;
 }
-.password2{
+input[type="password"]{
     width: 80%;
     margin-left: auto;
 }
