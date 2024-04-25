@@ -182,7 +182,10 @@ form{
     margin-left: auto;
     margin-right: auto;
     background-color: white;
+    border: 2px solid black;
     border-radius: 30px;
+    padding: 20px;
+    box-shadow: 10px 14px 20px rgb(34, 34, 34);
 }
 
 .register-container h2{

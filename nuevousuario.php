@@ -79,11 +79,9 @@ if (is_post_request()) {
 } else if (is_get_request()) {
     [$inputs, $errors] = session_flash('inputs', 'errors');
 }
-
 ?>
 <?php view('header', ['title' => 'Nuevo Usuario']) ?>
 <link rel="stylesheet" href="estilosGenerales.css">
-
 <div class="register-container">
     <form method="post" action="nuevousuario.php">
         <h2>Modulo de registro</h2>
