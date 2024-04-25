@@ -31,6 +31,7 @@ label {
 }
 input[type="text"],
 input[type="email"],
+input[type="password"],
 select {
     resize: none;
     margin-left: 10%;
@@ -192,8 +193,10 @@ h2{
     text-align: center;
     margin-top: 1%;
     margin-bottom: 1%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
     color: black;
-    width: auto;
     font-family: "Poppins", sans-serif;
     font-weight: 600;
     background-color: white;
@@ -215,10 +218,6 @@ input[type="submit"] {
 input[type="submit"]:hover {
     color: white;
     background-color: #3c3c47;
-}
-input[type="password"]{
-    width: 80%;
-    margin-left: auto;
 }
 #numero{
     width: 115%;
