@@ -151,10 +151,10 @@ if (is_post_request()) {
         </label>
         <small><?= $errors['agree'] ?? '' ?></small>
 
-        <input type="submit" value="Guardar" class="btn">
-        <footer>Already a member? <a href="login.php">Login here</a></footer>
+        <input type="submit" value="Guardar">
     </form>
 </div>
+<footer>Already a member? <a href="login.php">Login here</a></footer>
 <script>
     $(document).ready(function () {
         $("#pais").on('change', function () {
