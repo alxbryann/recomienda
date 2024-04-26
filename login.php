@@ -86,7 +86,7 @@ if (is_post_request()) {
     // login successfully
     session_start();
     $usuario =  $_POST['username'];
-    // $_SESSION['email'] = $usuario;
+    $_SESSION['email'] = $usuario;
     // $query = "SELECT * FROM usuarios WHERE email_usuario = '$usuario'";
     // require_once 'db_conn.php';
     // $connection = db_conn(); // Establish database connection
