@@ -170,6 +170,8 @@ a {
 }
 
 form{
+    border: none;
+    box-shadow: none;
     width: 80%;
     margin-left: auto;
 }

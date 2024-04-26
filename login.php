@@ -86,16 +86,18 @@ if (is_post_request()) {
     // login successfully
     session_start();
     $usuario =  $_POST['username'];
-    $_SESSION['email'] = $usuario;
-    //$query = "SELECT * FROM usuarios WHERE email_usuario = '$usuario'";
+    // $_SESSION['email'] = $usuario;
+    // $query = "SELECT * FROM usuarios WHERE email_usuario = '$usuario'";
+    // require_once 'db_conn.php';
+    // $connection = db_conn(); // Establish database connection
 
-    $result = mysqli_query($connection, $query);
-    if($result){
-        $row = mysqli_fetch_array($result);
-        $_SESSION['id'] = $row['id_usuario'];
-        $_SESSION['nombre'] = $row['nombre_usuario'];
+    // $result = mysqli_query($connection, $query);
+    // if($result){
+    //     $row = mysqli_fetch_array($result);
+    //     $_SESSION['id'] = $row['id_usuario'];
+    //     $_SESSION['nombre'] = $row['nombre_usuario'];
 
-    }
+    // }
     redirect_to('index.php');
 
 } else if (is_get_request()) {
