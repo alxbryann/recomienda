@@ -88,8 +88,6 @@ if (is_post_request()) {
     $usuario =  $_POST['username'];
     $_SESSION['email'] = $usuario;
     $query = "SELECT * FROM usuarios WHERE email_usuario = '$usuario'";
-    require_once 'db_conn.php';
-    $connection = db_conn(); // Establish database connection
 
     $result = mysqli_query($connection, $query);
     if($result){
