@@ -87,6 +87,7 @@ if (is_post_request()) {
     }
     // login successfully
     session_start();
+    $usuario = $inputs['username'];
     try {
         $pdo = new PDO($attr, $user, $pass, $opts);
     } catch (PDOException $e) {
