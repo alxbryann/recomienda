@@ -87,22 +87,18 @@ if (is_post_request()) {
     }
     // login successfully
     session_start();
-    require ('db_conn.php');
-    $usuario =  $_POST['username'];
-    $_SESSION['email'] = $usuario;
+    try {
+        $pdo = new PDO($attr, $user, $pass, $opts);
+    } catch (PDOException $e) {
+        throw new PDOException($e->getMessage(), (int) $e->getCode());
+    }
     $query = "SELECT * FROM usuarios WHERE email_usuario = '$usuario'";
-    $result = $mysqli->query($query);
-    $rows = $result->num_rows;
-    $id_usuario = strval($row["id_usuario"]);
+    $result = $pdo->query($query);
+    while ($row = $result->fetch(PDO::FETCH_BOTH)) {
+        $id_usuario = strval($row["id_usuario"]);
+    
+    }
     echo $id_usuario;
-    // $result = mysqli_query($connection, $query);
-    // if($result){
-    //     echo "consulta exitosa";
-    //     $row = mysqli_fetch_array($result);
-    //     $_SESSION['id'] = $row['id_usuario'];
-    //     $_SESSION['nombre'] = $row['nombre_usuario'];
-    // }
-
     redirect_to('index.php');
 
 } else if (is_get_request()) {
