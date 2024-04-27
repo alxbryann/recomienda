@@ -90,14 +90,14 @@ if (is_post_request()) {
     require ('db_conn.php');
     $usuario =  $_POST['username'];
     $_SESSION['email'] = $usuario;
-    $query = "SELECT * FROM usuarios WHERE email_usuario = '$usuario'";
-    $result = mysqli_query($connection, $query);
-    if($result){
-        echo "consulta exitosa";
-        $row = mysqli_fetch_array($result);
-        $_SESSION['id'] = $row['id_usuario'];
-        $_SESSION['nombre'] = $row['nombre_usuario'];
-    }
+    // $query = "SELECT * FROM usuarios WHERE email_usuario = '$usuario'";
+    // $result = mysqli_query($connection, $query);
+    // if($result){
+    //     echo "consulta exitosa";
+    //     $row = mysqli_fetch_array($result);
+    //     $_SESSION['id'] = $row['id_usuario'];
+    //     $_SESSION['nombre'] = $row['nombre_usuario'];
+    // }
 
     redirect_to('index.php');
 
