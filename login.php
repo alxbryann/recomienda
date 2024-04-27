@@ -94,9 +94,11 @@ if (is_post_request()) {
     }
     $query = "SELECT * FROM usuarios WHERE email_usuario = '$usuario'";
     $result = $pdo->query($query);
-    while ($row = $result->fetch(PDO::FETCH_BOTH)) {
+    if($row = $result->fetch(PDO::FETCH_BOTH)) {
         $id_usuario = strval($row["id_usuario"]);
     
+    }else{
+        echo "No se encontro el usuario";
     }
     $_SESSION['email'] = $usuario;
     $_SESSION['id_usuario'] = $id_usuario;
