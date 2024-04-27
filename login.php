@@ -93,6 +93,7 @@ if (is_post_request()) {
         throw new PDOException($e->getMessage(), (int) $e->getCode());
     }
     $query = "SELECT * FROM usuarios WHERE email_usuario = '$usuario'";
+    echo $query;
     $result = $pdo->query($query);
     if($row = $result->fetch(PDO::FETCH_BOTH)) {
         $id_usuario = strval($row["id_usuario"]);
