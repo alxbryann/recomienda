@@ -57,6 +57,8 @@ span.psw {
     require_once 'results.php';
     require_once 'connection.php';
     require_once 'db.php';
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
 
 $inputs = [];
 $errors = [];
