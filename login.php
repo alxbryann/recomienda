@@ -90,7 +90,11 @@ if (is_post_request()) {
     require ('db_conn.php');
     $usuario =  $_POST['username'];
     $_SESSION['email'] = $usuario;
-    // $query = "SELECT * FROM usuarios WHERE email_usuario = '$usuario'";
+    $query = "SELECT * FROM usuarios WHERE email_usuario = '$usuario'";
+    $result = $mysqli->query($query);
+    $rows = $result->num_rows;
+    $id_usuario = strval($row["id_usuario"]);
+    echo $id_usuario;
     // $result = mysqli_query($connection, $query);
     // if($result){
     //     echo "consulta exitosa";
