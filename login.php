@@ -98,8 +98,9 @@ if (is_post_request()) {
         $id_usuario = strval($row["id_usuario"]);
     
     }
-    $_SESSION['email'] = $inputs['email'];
+    $_SESSION['email'] = $usuario;
     $_SESSION['id_usuario'] = $id_usuario;
+    echo $_SESSION['email'];
     echo $_SESSION['id_usuario'];
     redirect_to('index.php');
 
