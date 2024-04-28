@@ -108,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validar el correo electrónico
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "El formato del correo electrónico no es válido.";
+        $message = "<div class='error'>El formato del correo electrónico no es válido.</div>";
         exit();
     }
 
@@ -124,7 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
     $result = $stmt->get_result();
     if ($result->num_rows == 0) {
-        "<div class='error'>Este correo electrónico no está registrado.</div>";
+        $message = "<div class='error'>Este correo electrónico no está registrado.</div>";
         exit();
     }
 
