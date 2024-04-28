@@ -63,7 +63,7 @@
     <div id="sesion" style="margin-left: 40px;">
         <?php
         if (isset($usuario)) {
-            echo '<div class="dropdown" style="position: relative; left: 40px;">';
+            echo '<div class="dropdown" style="position: relative; left: 90px;">';
             echo '<a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">Bienvenido, '. $usuario .'</a>';
             echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="margin-left: 40px;">';
             echo '<li><a class="dropdown-item" href="#" style="font-size: 14px; color: black;">Ver perfil</a></li>';
