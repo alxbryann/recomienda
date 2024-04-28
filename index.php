@@ -63,11 +63,11 @@
     <div id="sesion">
         <?php
         if (isset($usuario)) {
-            echo '<div class="dropdown">';
-            echo '<a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Bienvenido, '. $usuario .'</a>';
+            echo '<div class="dropdown" style="margin-top: 20px;">';
+            echo '<a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">Bienvenido, '. $usuario .'</a>';
             echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">';
-            echo '<li><a class="dropdown-item" href="#">Ver perfil</a></li>';
-            echo '<li><a class="dropdown-item" href="#">Cerrar sesión</a></li>';
+            echo '<li><a class="dropdown-item" href="#" style="color: black;">Ver perfil</a></li>';
+            echo '<li><a class="dropdown-item" href="#" style="color: black;">Cerrar sesión</a></li>';
             echo '</ul>';
             echo '</div>';
         } else {
