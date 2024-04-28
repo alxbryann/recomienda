@@ -137,7 +137,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message = "Para restablecer tu contraseña, haz clic en el siguiente enlace: " . $reset_link;
     $headers = "From: recomienda@gmail.com";
 
-    if (mail($to, $subject, $message $headers)) {
+    if (mail($to, $subject, $message, $headers)) {
         $message = "<div class='success'>El correo electrónico de restablecimiento de contraseña ha sido enviado a " . $to . "</div>";
     } else {
         $message = "<div class='error'>Hubo un error al enviar el correo electrónico de restablecimiento de contraseña.</div>";
