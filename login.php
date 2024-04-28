@@ -57,6 +57,8 @@ span.psw {
     require_once 'results.php';
     require_once 'connection.php';
     require_once 'db.php';
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
 
 $inputs = [];
 $errors = [];
@@ -85,19 +87,23 @@ if (is_post_request()) {
     }
     // login successfully
     session_start();
-    $usuario =  $_POST['username'];
+    $usuario = $inputs['username'];
+    try {
+        $pdo = new PDO($attr, $user, $pass, $opts);
+    } catch (PDOException $e) {
+        throw new PDOException($e->getMessage(), (int) $e->getCode());
+    }
+    $query = "SELECT * FROM usuarios WHERE email_usuario = '$usuario'";
+    echo $query;
+    $result = $pdo->query($query);
+    if($row = $result->fetch(PDO::FETCH_BOTH)) {
+        $id_usuario = strval($row["id_usuario"]);
+    
+    }else{
+        echo "No se encontro el usuario";
+    }
     $_SESSION['email'] = $usuario;
-    // $query = "SELECT * FROM usuarios WHERE email_usuario = '$usuario'";
-    // require_once 'db_conn.php';
-    // $connection = db_conn(); // Establish database connection
-
-    // $result = mysqli_query($connection, $query);
-    // if($result){
-    //     $row = mysqli_fetch_array($result);
-    //     $_SESSION['id'] = $row['id_usuario'];
-    //     $_SESSION['nombre'] = $row['nombre_usuario'];
-
-    // }
+    $_SESSION['id_usuario'] = $id_usuario;
     redirect_to('index.php');
 
 } else if (is_get_request()) {
