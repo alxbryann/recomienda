@@ -39,7 +39,7 @@ if($usuario == null || $usuario = ''){
             </a>
         </div>
         <div id="tituloTexto">
-            <h1>Creando un recomendado...</h1>
+            <h1 style="margin-top: -10px;">Creando un recomendado...</h1>
         </div>
     </header>
     <main>
