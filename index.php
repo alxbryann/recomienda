@@ -57,17 +57,23 @@
                 <img src="logo.png" width="80" />
             </a>
         </div>
-        <div id="tituloTexto">
-            <h1>¡Bienvenido a recomienda!</h1>
-        </div>
-        <div id="sesion">
-            <?php
-                if (isset($usuario)) {
-                    echo '<a href="/CAMBIAR">Bienvenido, '. $usuario .'</a>';
-                } else {
-                    echo '<a href="login.php">Iniciar sesión</a>';
-                    echo '<a href="nuevousuario.php">Registrarse</a>';
-                }            
+    <div id="tituloTexto">
+        <h1>¡Bienvenido a recomienda!</h1>
+    </div>
+    <div id="sesion">
+        <?php
+        if (isset($usuario)) {
+            echo '<div class="dropdown">';
+            echo '<a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Bienvenido, '. $usuario .'</a>';
+            echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">';
+            echo '<li><a class="dropdown-item" href="#">Ver perfil</a></li>';
+            echo '<li><a class="dropdown-item" href="#">Cerrar sesión</a></li>';
+            echo '</ul>';
+            echo '</div>';
+        } else {
+            echo '<a href="login.php">Iniciar sesión</a>';
+            echo '<a href="nuevousuario.php">Registrarse</a>';
+             }
             ?>
         </div>
     </header>
