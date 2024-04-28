@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="logo.png">
+    <title>Correo electrónico</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -108,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validar el correo electrónico
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "El formato del correo electrónico no es válido.";
+        header("location: error.html")
         exit();
     }
 
@@ -124,7 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
     $result = $stmt->get_result();
     if ($result->num_rows == 0) {
-        echo "Este correo electrónico no está registrado.";
+        header("location: error.html")
         exit();
     }
 
