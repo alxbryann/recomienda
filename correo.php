@@ -73,6 +73,20 @@
             float: right;
             padding-top: 16px;
         }
+        .form-container .error {
+            color: #E53935;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #FFCDD2;
+            border-radius: 5px;
+        }
+        .form-container .success {
+            color: #2E7D32;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #C8E6C9;
+            border-radius: 5px;
+        }
 
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
@@ -121,18 +135,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $to = $email;
     $subject = "Restablecimiento de contraseña";
     $message = "Para restablecer tu contraseña, haz clic en el siguiente enlace: " . $reset_link;
-    $headers = "From: noreply@yourwebsite.com";
+    $headers = "From: recomienda@gmail.com";
 
-    if (mail($to, $subject, $message, $headers)) {
-        echo "El correo electrónico de restablecimiento de contraseña ha sido enviado a " . $to;
+    if (mail($to, $subject, $message_body, $headers)) {
+        $message = "<div class='success'>El correo electrónico de restablecimiento de contraseña ha sido enviado a " . $to . "</div>";
     } else {
-        echo "Hubo un error al enviar el correo electrónico de restablecimiento de contraseña.";
+        $message = "<div class='error'>Hubo un error al enviar el correo electrónico de restablecimiento de contraseña.</div>";
     }
 }
 ?>
-
-
-
     <body>
         <div class="form-container">
             <h2>Recuperar tu cuenta </h2>
@@ -142,6 +153,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <button type="submit">Enviar correo electronico</button>
                 <a>¿Te acordaste de tu cuenta?</a>
                 <a href="login.php">Ve a tu cuenta</a>
+                <?php echo $message; ?>
             </form>
         </div>
     </body>
