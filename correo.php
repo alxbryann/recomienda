@@ -87,13 +87,6 @@
             background-color: #C8E6C9;
             border-radius: 5px;
         }
-        .form-container .noregistrado {
-            color: #e53935;
-            margin-bottom: 100px;
-            padding: 100px;
-            background-color: #FFCDD2;
-            border-radius: 5px;
-        }
 
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
@@ -115,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validar el correo electrónico
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $message = "<div class='error'>El formato del correo electrónico no es válido.</div>";
+        echo "El formato del correo electrónico no es válido.";
         exit();
     }
 
@@ -131,7 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
     $result = $stmt->get_result();
     if ($result->num_rows == 0) {
-        $message = "<div class='noregistrado'>Este correo electrónico no está registrado.</div>";
+        echo "Este correo electrónico no está registrado.";
         exit();
     }
 
