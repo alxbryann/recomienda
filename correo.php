@@ -124,7 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
     $result = $stmt->get_result();
     if ($result->num_rows == 0) {
-        echo "Este correo electrónico no está registrado.";
+        "<div class='error'>Este correo electrónico no está registrado.</div>";
         exit();
     }
 
