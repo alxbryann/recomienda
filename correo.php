@@ -109,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validar el correo electrónico
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        header("location: error.html")
+        header("location: error.html");
         exit();
     }
 
@@ -125,7 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
     $result = $stmt->get_result();
     if ($result->num_rows == 0) {
-        header("location: error.html")
+        header("location: error.html");
         exit();
     }
 
