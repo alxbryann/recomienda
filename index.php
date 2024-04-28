@@ -58,14 +58,14 @@
         </a>
     </div>
     <div id="tituloTexto">
-        <h1 style="margin-top: 40px; color: white;">¡Bienvenido a recomienda!</h1> <!-- Movido hacia abajo y color blanco -->
+        <h1 style="margin-top: 40px; margin-left: 60px; color: white;">¡Bienvenido a recomienda!</h1> <!-- Movido hacia abajo y hacia la izquierda, y color blanco -->
     </div>
-    <div id="sesion" style="margin-left: 40px;"> <!-- Ajuste en el margen izquierdo -->
+    <div id="sesion" style="margin-left: 40px;">
         <?php
         if (isset($usuario)) {
-            echo '<div class="dropdown" style="position: relative; left: 40px;">'; // Ajuste en la posición relativa
+            echo '<div class="dropdown" style="position: relative; left: 40px;">';
             echo '<a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">Bienvenido, '. $usuario .'</a>';
-            echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="margin-left: 40px;">'; // Ajuste en margin-left
+            echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="margin-left: 40px;">';
             echo '<li><a class="dropdown-item" href="#" style="font-size: 14px; color: black;">Ver perfil</a></li>';
             echo '<li><a class="dropdown-item" href="#" style="font-size: 14px; color: black;">Cerrar sesión</a></li>';
             echo '</ul>';
