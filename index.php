@@ -51,14 +51,14 @@
             <img class="imagen" src="ar1.webp" alt="">
         </div>
     </div>
-    <header>
-        <div id="tituloImagen">
-            <a href="index.php">
-                <img src="logo.png" width="80" />
-            </a>
-        </div>
+<header>
+    <div id="tituloImagen">
+        <a href="index.php">
+            <img src="logo.png" width="80" />
+        </a>
+    </div>
     <div id="tituloTexto">
-        <h1>¡Bienvenido a recomienda!</h1>
+        <h1 style="margin-top: 20px;">¡Bienvenido a recomienda!</h1>
     </div>
     <div id="sesion">
         <?php
@@ -73,10 +73,10 @@
         } else {
             echo '<a href="login.php">Iniciar sesión</a>';
             echo '<a href="nuevousuario.php">Registrarse</a>';
-             }
-            ?>
-        </div>
-    </header>
+        }
+        ?>
+    </div>
+</header>
     <div id="pregunta">
         <div id="textoPregunta">
             <p>Selecciona el tipo de trabajo que necesitas</p>
