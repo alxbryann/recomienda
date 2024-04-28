@@ -147,7 +147,7 @@ if (is_post_request()) {
     </div>
     <footer>
         <a href="nuevousuario.php">Registrate aqui</a>
-        <a href="correo.html">¿Olvidaste la contraseña?</a>
+        <a href="correo.php">¿Olvidaste la contraseña?</a>
     </footer>
 </body>
 
