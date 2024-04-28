@@ -60,10 +60,10 @@
     <div id="tituloTexto">
         <h1 style="margin-top: 30px; color: white;">¡Bienvenido a recomienda!</h1>
     </div>
-    <div id="sesion">
+    <div id="sesion" style="margin-left: 40px;"> <!-- Ajuste en el margen izquierdo -->
         <?php
         if (isset($usuario)) {
-            echo '<div class="dropdown" style="margin-top: 10px;">';
+            echo '<div class="dropdown">';
             echo '<a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">Bienvenido, '. $usuario .'</a>';
             echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="margin-left: 140px;">'; // Ajuste en margin-left
             echo '<li><a class="dropdown-item" href="#" style="font-size: 14px; color: black;">Ver perfil</a></li>';
