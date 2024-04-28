@@ -58,16 +58,16 @@
         </a>
     </div>
     <div id="tituloTexto">
-        <h1 style="margin-top: 20px;">¡Bienvenido a recomienda!</h1>
+        <h1 style="margin-top: 30px; color: white;">¡Bienvenido a recomienda!</h1>
     </div>
     <div id="sesion">
         <?php
         if (isset($usuario)) {
-            echo '<div class="dropdown" style="margin-top: 20px;">';
+            echo '<div class="dropdown" style="margin-top: 10px;">';
             echo '<a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">Bienvenido, '. $usuario .'</a>';
             echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">';
-            echo '<li><a class="dropdown-item" href="#" style="color: black;">Ver perfil</a></li>';
-            echo '<li><a class="dropdown-item" href="#" style="color: black;">Cerrar sesión</a></li>';
+            echo '<li><a class="dropdown-item" href="#" style="font-size: 14px; color: black;">Ver perfil</a></li>';
+            echo '<li><a class="dropdown-item" href="#" style="font-size: 14px; color: black;">Cerrar sesión</a></li>';
             echo '</ul>';
             echo '</div>';
         } else {
