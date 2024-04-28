@@ -87,25 +87,6 @@
 }
     </style>
 </head>
-<?php
-    require_once 'db.php'; 
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $email = $_POST['email'];
-
-        $user = find_user_by_email($email);
-
-        if ($user) {
-            $verification_code = generate_verification_code();
-            send_verification_code($email, $verification_code);
-            header('Location: ingresarcodigo.php');
-            exit;
-        } else {
-            $error = 'No se encontró ningún usuario con ese correo electrónico.';
-        }
-    }
-    ?>
-
     <body>
         <div class="form-container">
             <h2>Recuperar tu cuenta </h2>

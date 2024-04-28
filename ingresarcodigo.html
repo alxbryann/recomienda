@@ -86,29 +86,13 @@
 }
     </style>
 </head>
-<?php
-require_once 'db.php';
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $code = $_POST['code'];
-
-    if (verify_code($code)) {
-        // Si el código es correcto, redirige al usuario a la página para restablecer su contraseña
-        header('Location: olvidarcontraseña.html');
-        exit;
-    } else {
-        $error = 'El código de verificación es incorrecto.';
-    }
-}
-?>
-
 <body>
     <div class="form-container">
         <h2>Ingrese el codigo de verificación</h2>
         <form method="POST">
             <label for="code">Código de verificación:</label>
             <input type="text" placeholder="Ingrese el código" id="code" name="code" required>
-            <button type="submit">Verificar código</button>
+            <button type="submit" onclick="location.href='olvidarcontraseña.html'">Verificar código</button>
             <a>¿Te acordaste de tu cuenta?</a>
             <a href="login.php">Ve a tu cuenta</a>
         </form>
