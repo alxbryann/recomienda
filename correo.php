@@ -1,5 +1,4 @@
-    
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -87,13 +86,60 @@
 }
     </style>
 </head>
+<?php
+require_once 'db.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+
+    // Validar el correo electrónico
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "El formato del correo electrónico no es válido.";
+        exit();
+    }
+
+    // Conectar a la base de datos
+    $conn = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+    if ($conn->connect_error) {
+        die("Error de conexión: " . $conn->connect_error);
+    }
+
+    // Verificar si el correo electrónico existe en la base de datos
+    $stmt = $conn->prepare("SELECT * FROM usuarios WHERE email_usuario = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows == 0) {
+        echo "Este correo electrónico no está registrado.";
+        exit();
+    }
+
+    // Crear el enlace de restablecimiento de contraseña
+    $reset_link = "https://recomienda.site/olvidarcontraseña.html?email=" . urlencode($email);
+
+    // Enviar el correo electrónico con el enlace de restablecimiento de contraseña
+    $to = $email;
+    $subject = "Restablecimiento de contraseña";
+    $message = "Para restablecer tu contraseña, haz clic en el siguiente enlace: " . $reset_link;
+    $headers = "From: noreply@yourwebsite.com";
+
+    if (mail($to, $subject, $message, $headers)) {
+        echo "El correo electrónico de restablecimiento de contraseña ha sido enviado a " . $to;
+    } else {
+        echo "Hubo un error al enviar el correo electrónico de restablecimiento de contraseña.";
+    }
+}
+?>
+
+
+
     <body>
         <div class="form-container">
             <h2>Recuperar tu cuenta </h2>
             <form method="POST">
                 <label for="email">Ingresa tu correo electronico para enviarte el código de verificación</label>
                 <input type="email" placeholder="Correo electrónico" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Por favor, introduce un correo electrónico válido." required>
-                <button type="submit" onclick="location.href='ingresarcodigo.html'">Enviar código de verificación</button>
+                <button type="submit">Enviar correo electronico</button>
                 <a>¿Te acordaste de tu cuenta?</a>
                 <a href="login.php">Ve a tu cuenta</a>
             </form>
