@@ -65,7 +65,7 @@
         if (isset($usuario)) {
             echo '<div class="dropdown" style="margin-top: 10px;">';
             echo '<a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">Bienvenido, '. $usuario .'</a>';
-            echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">';
+            echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="margin-left: 140px;">'; // Ajuste en margin-left
             echo '<li><a class="dropdown-item" href="#" style="font-size: 14px; color: black;">Ver perfil</a></li>';
             echo '<li><a class="dropdown-item" href="#" style="font-size: 14px; color: black;">Cerrar sesión</a></li>';
             echo '</ul>';
