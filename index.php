@@ -67,8 +67,8 @@
             echo '<div class="dropdown" style="position: relative; top: 40px ;left: -1px;">';
             echo '<a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">Bienvenido, '. $nombre .'</a>';
             echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="margin-left: 40px;">';
-            echo '<li><a class="dropdown-item" href="#" style="font-size: 12px; color: black;" z-index: "3";>Ver perfil</a></li>';
-            echo '<li><a class="dropdown-item" href="cerrar_sesion.php" style="font-size: 12px; color: black;"  z-index "3">Cerrar sesión</a></li>';
+            echo '<li><a class="dropdown-item" href="#" style="font-size: 12px; color: black;" z-index: "3;">Ver perfil</a></li>';
+            echo '<li><a class="dropdown-item" href="cerrar_sesion.php" style="font-size: 12px; color: black;"  z-index "3;">Cerrar sesión</a></li>';
             echo '</ul>';
             echo '</div>';
         } else {
