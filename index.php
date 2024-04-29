@@ -61,7 +61,7 @@
     <div id="tituloTexto">
         <h1>¡Bienvenido a recomienda!</h1>
     </div>
-    <div id="sesion>
+    <div id="sesion">
         <?php
         if (isset($nombre)) {
             echo '<div class="dropdown" style="position: relative; top: 30px ;left: -1px;">';
