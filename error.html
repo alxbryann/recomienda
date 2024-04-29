@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logo.png">
+    <title>Formulario de Registro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #3c3c47;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+        .error-message {
+            margin-top: 30%;
+            margin-left: 10%;
+            margin-right: 10%;
+            padding: 20px; 
+            background-color: #FFCDD2;
+            border-radius: 30px;
+            border: 3px solid black;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            animation: fadein 2s;
+        }
+    </style>
+</head>
+<body>
+    <form action="procesar_formulario.php" method="post">
+        <div class="error-message">Este correo electrónico no está registrado o el formato del correo electrónico no es válido.
+        </div>
+    </form>
+</body>
+</html>
