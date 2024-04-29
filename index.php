@@ -1,8 +1,8 @@
 <?php
-    session_start();
-    $usuario = $_SESSION['email'];
-    $nombre = $_SESSION['nombre'];
-    $id_usuario = $_SESSION['id_usuario'];
+session_start();
+$usuario = $_SESSION['email'];
+$nombre = $_SESSION['nombre'];
+$id_usuario = $_SESSION['id_usuario'];
 ?>
 
 
@@ -52,32 +52,35 @@
             <img class="imagen" src="ar1.webp" alt="">
         </div>
     </div>
-<header>
-    <div id="tituloImagen">
-        <a href="index.php">
-            <img src="logo.png" width="80" />
-        </a>
-    </div>
-    <div id="tituloTexto">
-        <h1>¡Bienvenido a recomienda!</h1>
-    </div>
-    <div id="sesion" style="margin-left: 40px;">
-        <?php
-        if (isset($nombre)) {
-            echo '<div class="dropdown" style="position: relative; top: 20px ;left: -1px;">';
-            echo '<a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">Bienvenido, '. $nombre .'</a>';
-            echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="margin-left: 40px;">';
-            echo '<li><a class="dropdown-item" href="#" style="font-size: 12px; color: black;">Ver perfil</a></li>';
-            echo '<li><a class="dropdown-item" href="cerrar_sesion.php" style="font-size: 12px; color: black;">Cerrar sesión</a></li>';
-            echo '</ul>';
-            echo '</div>';
-        } else {
-            echo '<a href="login.php">Iniciar sesión</a>';
-            echo '<a href="nuevousuario.php">Registrarse</a>';
-        }
-        ?>
-    </div>
-</header>
+    <header>
+        <div id="tituloImagen">
+            <a href="index.php">
+                <img src="logo.png" width="80" />
+            </a>
+        </div>
+        <div id="tituloTexto">
+            <h1>¡Bienvenido a recomienda!</h1>
+        </div>
+        <div id="sesion" style="margin-left: 40px;">
+            <?php
+            if (isset($nombre)) {
+                echo '<div class="dropdown" style="position: relative; top: 40px ;left: -1px;">';
+                echo '<a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">Bienvenido, ' . $nombre . '</a>';
+                echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="margin-left: 40px;">';
+                echo '<li><a class="dropdown-item" href="#" style="font-size: 12px; color: black;">Ver perfil</a></li>';
+                echo '<li><a class="dropdown-item" href="cerrar_sesion.php" style="font-size: 12px; color: black;">Cerrar sesión</a></li>';
+                echo '</ul>';
+                echo '</div>';
+            } else {
+                echo '<a href="login.php">Iniciar sesión</a>';
+                echo '<a href="nuevousuario.php">Registrarse</a>';
+            }
+            ?>
+        </div>
+    </header>
+    <br>
+    <br>
+    <br>
     <div id="pregunta">
         <div id="textoPregunta">
             <p>Selecciona el tipo de trabajo que necesitas</p>
