@@ -130,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Crear el enlace de restablecimiento de contraseña
-    $reset_link = "https://recomienda.site/olvidarcontraseña.html?email=" . urlencode($email);
+    $reset_link = "https://recomienda.site/olvidarcontraseña.php?email=" . urlencode($email);
 
     // Enviar el correo electrónico con el enlace de restablecimiento de contraseña
     $to = $email;
