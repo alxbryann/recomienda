@@ -1,6 +1,7 @@
 <?php
     session_start();
     $usuario = $_SESSION['email'];
+    $nombre = $_SESSION['nombre'];
     $id_usuario = $_SESSION['id_usuario'];
 ?>
 
@@ -62,9 +63,9 @@
     </div>
     <div id="sesion" style="margin-left: 40px;">
         <?php
-        if (isset($usuario)) {
+        if (isset($nombre)) {
             echo '<div class="dropdown" style="position: relative; top: 20px ;left: -1px;">';
-            echo '<a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">Bienvenido, '. $usuario .'</a>';
+            echo '<a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">Bienvenido, '. $nombre .'</a>';
             echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="margin-left: 40px;">';
             echo '<li><a class="dropdown-item" href="#" style="font-size: 12px; color: black;">Ver perfil</a></li>';
             echo '<li><a class="dropdown-item" href="cerrar_sesion.php" style="font-size: 12px; color: black;">Cerrar sesión</a></li>';

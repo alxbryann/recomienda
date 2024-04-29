@@ -98,10 +98,12 @@ if (is_post_request()) {
     $result = $pdo->query($query);
     if($row = $result->fetch(PDO::FETCH_BOTH)) {
         $id_usuario = strval($row["id_usuario"]);
+        $nombre_usuario = $row["nombre_usuario"];
     
     }else{
         echo "No se encontro el usuario";
     }
+    $_SESSION['nombre'] = $nombre_usuario;
     $_SESSION['email'] = $usuario;
     $_SESSION['id_usuario'] = $id_usuario;
     redirect_to('index.php');
