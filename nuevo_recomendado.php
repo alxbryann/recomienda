@@ -1,6 +1,4 @@
 <?php
-
-session_start();
 //Datos del servidor
 $user = "u482925761_admin";
 $pass = "Clavetemporal/2024";
@@ -8,9 +6,9 @@ $host = "82.197.80.210";
 
 //Conexion a la base de datos
 $connection = mysqli_connect($host, $user, $pass);
-
+session_start();
+$id_usuario = $_SESSION['id_usuario'];
 //Llamamos al input del formulario
-$id_usuario = 2;
 $id_recomendado = $_POST["id_recomendado"];
 $estrellas = intval($_POST["numero-estrellas"]);
 $especialidad = $_POST["experto"];
