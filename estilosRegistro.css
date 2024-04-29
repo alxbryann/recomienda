@@ -57,7 +57,6 @@ header {
     border-radius: 25px;
     background-color: #848c8c;
     box-shadow: 10px 14px 20px rgb(34, 34, 34);
-    animation: fadeIn 1.5s;
 }
 
 #tituloTexto {
@@ -90,7 +89,6 @@ main{
     margin-top: 2%;
     margin-left: 10%;
     margin-right: 10%;
-    animation: fadeIn 2s;
 }
 main img{
     border-radius: 30px;
@@ -160,7 +158,6 @@ a {
     font-style: normal;
     padding: 20px;
     box-shadow: 10px 14px 20px rgb(34, 34, 34);
-    animation: fadeIn 1s;
 }
 
 #estrellas{
@@ -185,7 +182,6 @@ form{
     border: 5px solid #74748a;
     border-radius: 40px;
     box-shadow: 10px 14px 20px rgb(34, 34, 34);
-    animation: 1.5s fadeIn; 
 }
 
 h2{
@@ -201,7 +197,6 @@ h2{
     font-weight: 600;
     background-color: #848c8c;
     border-radius: 20px;
-    animation: 1.5s fadeIn;
 }
 
 input[type="submit"] {
@@ -230,17 +225,6 @@ input[type="submit"]:hover {
     text-align: center;
     margin-left: 5px;
 }
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translatey(+30px);
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
 @media screen and (max-width: 800px) {
     header {
         width: 80%;

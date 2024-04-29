@@ -59,9 +59,9 @@
         </a>
     </div>
     <div id="tituloTexto">
-        <h1 style="margin-top: 40px; margin-left: 60px; color: white;">¡Bienvenido a recomienda!</h1>
+        <h1>¡Bienvenido a recomienda!</h1>
     </div>
-    <div id="sesion" style="margin-left: 40px;">
+    <div id="sesion">
         <?php
         if (isset($nombre)) {
             echo '<div class="dropdown" style="position: relative; top: 20px ;left: -1px;">';
