@@ -52,15 +52,12 @@ $connection->close();
                 <p>Teléfono:</p> <h2><?php echo htmlspecialchars($telefono); ?></h2>
                 <p>ID Usuario:</p> <h2><?php echo htmlspecialchars($id_usuario); ?></h2>
             </div>
-            <div id="container-picture">
-                <img src="/bryan.PNG" alt="perfil" id="profilepicture">
-                <div id="stars">
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                </div>
+            <div id="stars">
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
             </div>
         </div>
         <div class="container-recomendaciones">
