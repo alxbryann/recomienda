@@ -128,7 +128,9 @@ $connection->close();
         </div>
         <div class="container-recomendaciones">
             <h1>Resumen de recomendaciones</h1>
-            <canvas id="recomendacionesChart"></canvas>
+            <div style="width: 50%; margin-left: auto;">
+                <canvas id="recomendacionesChart"></canvas>
+            </div>
         </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -141,8 +143,8 @@ $connection->close();
                 datasets: [{
                     label: 'Recomendaciones',
                     data: [<?php echo count($recomendaciones_hechas); ?>, <?php echo count($recomendaciones_recibidas); ?>],
-                    backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)'],
-                    borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
+                    backgroundColor: ['rgba(54, 162, 235, 0.7)', 'rgba(255, 99, 132, 0.7)'],
+                    borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)'],
                     borderWidth: 1
                 }]
             },
@@ -151,7 +153,19 @@ $connection->close();
                     y: {
                         beginAtZero: true
                     }
-                }
+                },
+                plugins: {
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'top',
+                        formatter: Math.round,
+                        font: {
+                            weight: 'bold'
+                        }
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false
             }
         });
     </script>
