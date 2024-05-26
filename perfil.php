@@ -3,7 +3,7 @@
 $user = "u482925761_admin";
 $pass = "Clavetemporal/2024";
 $host = "82.197.80.210";
-$dbname = "u482925761_recomienda"; // Nombre de tu base de datos
+$dbname = "u482925761_recomienda"; 
 
 // Conexión a la base de datos
 $connection = mysqli_connect($host, $user, $pass, $dbname);
