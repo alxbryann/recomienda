@@ -25,6 +25,34 @@ $stmt->execute();
 $stmt->bind_result($nombre, $apellido, $email, $telefono);
 $stmt->fetch();
 $stmt->close();
+
+// Obtener calificación promedio del usuario
+$sql = "SELECT AVG(estrellas) as promedio_estrellas, COUNT(*) as total_recomendaciones FROM recomendaciones WHERE id_recomendado = ?";
+$stmt = $connection->prepare($sql);
+$stmt->bind_param("i", $id_usuario);
+$stmt->execute();
+$stmt->bind_result($promedio_estrellas, $total_recomendaciones);
+$stmt->fetch();
+$stmt->close();
+
+// Obtener recomendaciones hechas por el usuario
+$sql = "SELECT * FROM recomendaciones WHERE id_usuario = ?";
+$stmt = $connection->prepare($sql);
+$stmt->bind_param("i", $id_usuario);
+$stmt->execute();
+$result_recomendaciones_hechas = $stmt->get_result();
+$recomendaciones_hechas = $result_recomendaciones_hechas->fetch_all(MYSQLI_ASSOC);
+$stmt->close();
+
+// Obtener recomendaciones recibidas por el usuario
+$sql = "SELECT * FROM recomendaciones WHERE id_recomendado = ?";
+$stmt = $connection->prepare($sql);
+$stmt->bind_param("i", $id_usuario);
+$stmt->execute();
+$result_recomendaciones_recibidas = $stmt->get_result();
+$recomendaciones_recibidas = $result_recomendaciones_recibidas->fetch_all(MYSQLI_ASSOC);
+$stmt->close();
+
 $connection->close();
 ?>
 
@@ -53,19 +81,79 @@ $connection->close();
                 <p>ID Usuario:</p> <h2><?php echo htmlspecialchars($id_usuario); ?></h2>
             </div>
             <div id="stars">
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
+                <?php
+                if ($total_recomendaciones > 0) {
+                    $promedio_estrellas = round($promedio_estrellas);
+                    for ($i = 0; $i < 5; $i++) {
+                        if ($i < $promedio_estrellas) {
+                            echo '<span class="fa fa-star checked"></span>';
+                        } else {
+                            echo '<span class="fa fa-star"></span>';
+                        }
+                    }
+                    echo "<p>Calificación: $promedio_estrellas de 5</p>";
+                } else {
+                    echo "<p>Aún no te han recomendado, no podemos obtener una calificación de tus servicios.</p>";
+                }
+                ?>
             </div>
         </div>
         <div class="container-recomendaciones">
             <h1>Mis recomendaciones</h1>
+            <ul>
+                <?php
+                if (count($recomendaciones_hechas) > 0) {
+                    foreach ($recomendaciones_hechas as $recomendacion) {
+                        echo "<li>{$recomendacion['descripcion']}</li>";
+                    }
+                } else {
+                    echo "<li>No has hecho ninguna recomendación.</li>";
+                }
+                ?>
+            </ul>
         </div>
         <div class="container-recomendaciones">
             <h1>Me han recomendado</h1>
+            <ul>
+                <?php
+                if (count($recomendaciones_recibidas) > 0) {
+                    foreach ($recomendaciones_recibidas as $recomendacion) {
+                        echo "<li>{$recomendacion['descripcion']}</li>";
+                    }
+                } else {
+                    echo "<li>No has recibido ninguna recomendación.</li>";
+                }
+                ?>
+            </ul>
+        </div>
+        <div class="container-recomendaciones">
+            <h1>Resumen de recomendaciones</h1>
+            <canvas id="recomendacionesChart"></canvas>
         </div>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('recomendacionesChart').getContext('2d');
+        const recomendacionesChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Hechas', 'Recibidas'],
+                datasets: [{
+                    label: 'Recomendaciones',
+                    data: [<?php echo count($recomendaciones_hechas); ?>, <?php echo count($recomendaciones_recibidas); ?>],
+                    backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+                    borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
