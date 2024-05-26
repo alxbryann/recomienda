@@ -36,7 +36,10 @@ $stmt->fetch();
 $stmt->close();
 
 // Obtener recomendaciones hechas por el usuario
-$sql = "SELECT * FROM recomendaciones WHERE id_usuario = ?";
+$sql = "SELECT r.estrellas, r.comentario, u.nombre_usuario, u.apellido_usuario 
+        FROM recomendaciones r 
+        JOIN usuarios u ON r.id_recomendado = u.id_usuario 
+        WHERE r.id_usuario = ?";
 $stmt = $connection->prepare($sql);
 $stmt->bind_param("i", $id_usuario);
 $stmt->execute();
@@ -45,7 +48,10 @@ $recomendaciones_hechas = $result_recomendaciones_hechas->fetch_all(MYSQLI_ASSOC
 $stmt->close();
 
 // Obtener recomendaciones recibidas por el usuario
-$sql = "SELECT * FROM recomendaciones WHERE id_recomendado = ?";
+$sql = "SELECT r.estrellas, r.comentario, u.nombre_usuario, u.apellido_usuario 
+        FROM recomendaciones r 
+        JOIN usuarios u ON r.id_usuario = u.id_usuario 
+        WHERE r.id_recomendado = ?";
 $stmt = $connection->prepare($sql);
 $stmt->bind_param("i", $id_usuario);
 $stmt->execute();
@@ -70,6 +76,11 @@ $connection->close();
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="estilosPerfil.css" />
+    <style>
+        .fa-star.checked {
+            color: orange;
+        }
+    </style>
 </head>
 <body>
     <main>
@@ -104,7 +115,11 @@ $connection->close();
                 <?php
                 if (count($recomendaciones_hechas) > 0) {
                     foreach ($recomendaciones_hechas as $recomendacion) {
-                        echo "<li>{$recomendacion['descripcion']}</li>";
+                        echo "<li>
+                                <p><strong>Para:</strong> " . htmlspecialchars($recomendacion['nombre_usuario'] . ' ' . $recomendacion['apellido_usuario']) . "</p>
+                                <p><strong>Calificación:</strong> " . htmlspecialchars($recomendacion['estrellas']) . "</p>
+                                <p><strong>Comentario:</strong> " . htmlspecialchars($recomendacion['comentario']) . "</p>
+                              </li>";
                     }
                 } else {
                     echo "<li>No has hecho ninguna recomendación.</li>";
@@ -118,7 +133,11 @@ $connection->close();
                 <?php
                 if (count($recomendaciones_recibidas) > 0) {
                     foreach ($recomendaciones_recibidas as $recomendacion) {
-                        echo "<li>{$recomendacion['descripcion']}</li>";
+                        echo "<li>
+                                <p><strong>De:</strong> " . htmlspecialchars($recomendacion['nombre_usuario'] . ' ' . $recomendacion['apellido_usuario']) . "</p>
+                                <p><strong>Calificación:</strong> " . htmlspecialchars($recomendacion['estrellas']) . "</p>
+                                <p><strong>Comentario:</strong> " . htmlspecialchars($recomendacion['comentario']) . "</p>
+                              </li>";
                     }
                 } else {
                     echo "<li>No has recibido ninguna recomendación.</li>";
@@ -128,7 +147,7 @@ $connection->close();
         </div>
         <div class="container-recomendaciones">
             <h1>Resumen de recomendaciones</h1>
-            <div style="width: 50%; margin-left: auto;">
+            <div style="width: 40%; margin-left: 0;">
                 <canvas id="recomendacionesChart"></canvas>
             </div>
         </div>
