@@ -18,13 +18,50 @@ session_start();
 $id_usuario = $_SESSION['id_usuario'];
 
 // Obtener datos del usuario
-$sql = "SELECT nombre_usuario, apellido_usuario, email_usuario, tel_usuario FROM usuarios WHERE id_usuario = ?";
-$stmt = $connection->prepare($sql);
-$stmt->bind_param("i", $id_usuario);
-$stmt->execute();
-$stmt->bind_result($nombre, $apellido, $email, $telefono);
-$stmt->fetch();
-$stmt->close();
+$sql_usuario = "SELECT nombre_usuario, apellido_usuario, email_usuario, tel_usuario, foto_perfil FROM usuarios WHERE id_usuario = ?";
+$stmt_usuario = $connection->prepare($sql_usuario);
+$stmt_usuario->bind_param("i", $id_usuario);
+$stmt_usuario->execute();
+$stmt_usuario->bind_result($nombre, $apellido, $email, $telefono, $foto_perfil);
+$stmt_usuario->fetch();
+$stmt_usuario->close();
+
+// Obtener recomendaciones hechas por el usuario
+$sql_recomendaciones_hechas = "SELECT COUNT(*) FROM recomendaciones WHERE id_usuario = ?";
+$stmt_recomendaciones_hechas = $connection->prepare($sql_recomendaciones_hechas);
+$stmt_recomendaciones_hechas->bind_param("i", $id_usuario);
+$stmt_recomendaciones_hechas->execute();
+$stmt_recomendaciones_hechas->bind_result($num_recomendaciones_hechas);
+$stmt_recomendaciones_hechas->fetch();
+$stmt_recomendaciones_hechas->close();
+
+// Obtener recomendaciones recibidas por el usuario
+$sql_recomendaciones_recibidas = "SELECT COUNT(*) FROM recomendaciones WHERE id_recomendado = ?";
+$stmt_recomendaciones_recibidas = $connection->prepare($sql_recomendaciones_recibidas);
+$stmt_recomendaciones_recibidas->bind_param("i", $id_usuario);
+$stmt_recomendaciones_recibidas->execute();
+$stmt_recomendaciones_recibidas->bind_result($num_recomendaciones_recibidas);
+$stmt_recomendaciones_recibidas->fetch();
+$stmt_recomendaciones_recibidas->close();
+
+// Obtener estrellas de las recomendaciones hechas por el usuario
+$sql_estrellas_hechas = "SELECT AVG(estrellas) FROM recomendaciones WHERE id_usuario = ?";
+$stmt_estrellas_hechas = $connection->prepare($sql_estrellas_hechas);
+$stmt_estrellas_hechas->bind_param("i", $id_usuario);
+$stmt_estrellas_hechas->execute();
+$stmt_estrellas_hechas->bind_result($promedio_estrellas_hechas);
+$stmt_estrellas_hechas->fetch();
+$stmt_estrellas_hechas->close();
+
+// Obtener estrellas de las recomendaciones recibidas por el usuario
+$sql_estrellas_recibidas = "SELECT AVG(estrellas) FROM recomendaciones WHERE id_recomendado = ?";
+$stmt_estrellas_recibidas = $connection->prepare($sql_estrellas_recibidas);
+$stmt_estrellas_recibidas->bind_param("i", $id_usuario);
+$stmt_estrellas_recibidas->execute();
+$stmt_estrellas_recibidas->bind_result($promedio_estrellas_recibidas);
+$stmt_estrellas_recibidas->fetch();
+$stmt_estrellas_recibidas->close();
+
 $connection->close();
 ?>
 
@@ -53,21 +90,29 @@ $connection->close();
                 <p>ID Usuario:</p> <h2><?php echo htmlspecialchars($id_usuario); ?></h2>
             </div>
             <div id="container-picture">
-                <img src="/bryan.PNG" alt="perfil" id="profilepicture">
+                <img src="<?php echo htmlspecialchars($foto_perfil); ?>" alt="perfil" id="profilepicture">
                 <div id="stars">
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
+                    <?php
+                    $rounded_stars_hechas = round($promedio_estrellas_hechas);
+                    for ($i = 1; $i <= 5; $i++) {
+                        if ($i <= $rounded_stars_hechas) {
+                            echo '<span class="fa fa-star checked"></span>';
+                        } else {
+                            echo '<span class="fa fa-star"></span>';
+                        }
+                    }
+                    ?>
+                    <p>Promedio de estrellas en mis recomendaciones: <?php echo htmlspecialchars(number_format($promedio_estrellas_hechas, 2)); ?></p>
                 </div>
             </div>
         </div>
         <div class="container-recomendaciones">
-            <h1>Mis recomendaciones</h1>
+            <h1>Mis recomendaciones (<?php echo $num_recomendaciones_hechas; ?>)</h1>
+            <!-- Aquí puedes mostrar las recomendaciones hechas por el usuario -->
         </div>
         <div class="container-recomendaciones">
-            <h1>Me han recomendado</h1>
+            <h1>Me han recomendado (<?php echo $num_recomendaciones_recibidas; ?>)</h1>
+            <!-- Aquí puedes mostrar las recomendaciones recibidas por el usuario -->
         </div>
     </main>
 </body>
