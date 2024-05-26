@@ -44,15 +44,6 @@ $stmt_recomendaciones_recibidas->bind_result($num_recomendaciones_recibidas);
 $stmt_recomendaciones_recibidas->fetch();
 $stmt_recomendaciones_recibidas->close();
 
-// Obtener estrellas de las recomendaciones hechas por el usuario
-$sql_estrellas_hechas = "SELECT AVG(estrellas) FROM recomendaciones WHERE id_usuario = ?";
-$stmt_estrellas_hechas = $connection->prepare($sql_estrellas_hechas);
-$stmt_estrellas_hechas->bind_param("i", $id_usuario);
-$stmt_estrellas_hechas->execute();
-$stmt_estrellas_hechas->bind_result($promedio_estrellas_hechas);
-$stmt_estrellas_hechas->fetch();
-$stmt_estrellas_hechas->close();
-
 // Obtener estrellas de las recomendaciones recibidas por el usuario
 $sql_estrellas_recibidas = "SELECT AVG(estrellas) FROM recomendaciones WHERE id_recomendado = ?";
 $stmt_estrellas_recibidas = $connection->prepare($sql_estrellas_recibidas);
@@ -61,6 +52,24 @@ $stmt_estrellas_recibidas->execute();
 $stmt_estrellas_recibidas->bind_result($promedio_estrellas_recibidas);
 $stmt_estrellas_recibidas->fetch();
 $stmt_estrellas_recibidas->close();
+
+// Obtener recomendaciones hechas
+$sql_detalle_recomendaciones_hechas = "SELECT descripcion, estrellas FROM recomendaciones WHERE id_usuario = ?";
+$stmt_detalle_recomendaciones_hechas = $connection->prepare($sql_detalle_recomendaciones_hechas);
+$stmt_detalle_recomendaciones_hechas->bind_param("i", $id_usuario);
+$stmt_detalle_recomendaciones_hechas->execute();
+$result_recomendaciones_hechas = $stmt_detalle_recomendaciones_hechas->get_result();
+$recomendaciones_hechas = $result_recomendaciones_hechas->fetch_all(MYSQLI_ASSOC);
+$stmt_detalle_recomendaciones_hechas->close();
+
+// Obtener recomendaciones recibidas
+$sql_detalle_recomendaciones_recibidas = "SELECT descripcion, estrellas FROM recomendaciones WHERE id_recomendado = ?";
+$stmt_detalle_recomendaciones_recibidas = $connection->prepare($sql_detalle_recomendaciones_recibidas);
+$stmt_detalle_recomendaciones_recibidas->bind_param("i", $id_usuario);
+$stmt_detalle_recomendaciones_recibidas->execute();
+$result_recomendaciones_recibidas = $stmt_detalle_recomendaciones_recibidas->get_result();
+$recomendaciones_recibidas = $result_recomendaciones_recibidas->fetch_all(MYSQLI_ASSOC);
+$stmt_detalle_recomendaciones_recibidas->close();
 
 $connection->close();
 ?>
@@ -93,27 +102,65 @@ $connection->close();
                 <img src="<?php echo htmlspecialchars($foto_perfil); ?>" alt="perfil" id="profilepicture">
                 <div id="stars">
                     <?php
-                    $rounded_stars_hechas = round($promedio_estrellas_hechas);
+                    $rounded_stars = round($promedio_estrellas_recibidas);
                     for ($i = 1; $i <= 5; $i++) {
-                        if ($i <= $rounded_stars_hechas) {
+                        if ($i <= $rounded_stars) {
                             echo '<span class="fa fa-star checked"></span>';
                         } else {
                             echo '<span class="fa fa-star"></span>';
                         }
                     }
                     ?>
-                    <p>Promedio de estrellas en mis recomendaciones: <?php echo htmlspecialchars(number_format($promedio_estrellas_hechas, 2)); ?></p>
+                    <p>Promedio de estrellas: <?php echo htmlspecialchars(number_format($promedio_estrellas_recibidas, 2)); ?></p>
                 </div>
             </div>
         </div>
         <div class="container-recomendaciones">
             <h1>Mis recomendaciones (<?php echo $num_recomendaciones_hechas; ?>)</h1>
-            <!-- Aquí puedes mostrar las recomendaciones hechas por el usuario -->
+            <?php foreach ($recomendaciones_hechas as $recomendacion) { ?>
+                <div class="recomendacion">
+                    <p><?php echo htmlspecialchars($recomendacion['descripcion']); ?></p>
+                    <p>Estrellas: <?php echo htmlspecialchars($recomendacion['estrellas']); ?></p>
+                </div>
+            <?php } ?>
         </div>
         <div class="container-recomendaciones">
             <h1>Me han recomendado (<?php echo $num_recomendaciones_recibidas; ?>)</h1>
-            <!-- Aquí puedes mostrar las recomendaciones recibidas por el usuario -->
+            <?php foreach ($recomendaciones_recibidas as $recomendacion) { ?>
+                <div class="recomendacion">
+                    <p><?php echo htmlspecialchars($recomendacion['descripcion']); ?></p>
+                    <p>Estrellas: <?php echo htmlspecialchars($recomendacion['estrellas']); ?></p>
+                </div>
+            <?php } ?>
+        </div>
+        <div class="container-grafico">
+            <h1>Estadísticas</h1>
+            <canvas id="graficoRecomendaciones"></canvas>
         </div>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('graficoRecomendaciones').getContext('2d');
+        const graficoRecomendaciones = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Recomendaciones Hechas', 'Recomendaciones Recibidas'],
+                datasets: [{
+                    label: 'Cantidad',
+                    data: [<?php echo $num_recomendaciones_hechas; ?>, <?php echo $num_recomendaciones_recibidas; ?>],
+                    backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)'],
+                    borderColor: ['rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
