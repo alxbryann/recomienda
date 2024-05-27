@@ -28,6 +28,8 @@ if (is_post_request()) {
         'password' => 'string | required | secure',
         'password2' => 'string | required | same: password',
         'agree' => 'string | required',
+        'activation_code' => 'string',
+        'imagen_usuario' => 'file'
     ];
 
     // custom messages
@@ -41,14 +43,14 @@ if (is_post_request()) {
         ],
         'imagen_usuario' => [
             'required' => 'Please upload a profile image',
-            'file' => 'Invalid file type. Only PNG, JPEG, and JPG are allowed'
+            'file' => 'The profile image must be a valid file'
         ]
     ];
 
     [$inputs, $errors] = filter($_POST, $fields, $messages);
 
-    // Handle the image upload
-    if (isset($_FILES['imagen_usuario']) && $_FILES['imagen_usuario']['error'] == UPLOAD_ERR_OK) {
+    // Handle image upload
+    if ($_FILES['imagen_usuario']['error'] === UPLOAD_ERR_OK) {
         $fileTmpPath = $_FILES['imagen_usuario']['tmp_name'];
         $fileName = $_FILES['imagen_usuario']['name'];
         $fileSize = $_FILES['imagen_usuario']['size'];
@@ -56,16 +58,16 @@ if (is_post_request()) {
         $fileNameCmps = explode(".", $fileName);
         $fileExtension = strtolower(end($fileNameCmps));
 
-        $allowedfileExtensions = ['jpg', 'jpeg', 'png'];
+        $allowedfileExtensions = array('jpg', 'jpeg', 'png');
         if (in_array($fileExtension, $allowedfileExtensions)) {
             $imageData = file_get_contents($fileTmpPath);
             $base64Image = base64_encode($imageData);
             $inputs['imagen_usuario'] = $base64Image;
         } else {
-            $errors['imagen_usuario'] = 'Invalid file type. Only PNG, JPEG, and JPG are allowed';
+            $errors['imagen_usuario'] = 'Only jpg, jpeg, and png files are allowed';
         }
     } else {
-        $errors['imagen_usuario'] = 'Please upload a profile image';
+        $errors['imagen_usuario'] = 'There was an error uploading the image';
     }
 
     if ($errors) {
@@ -74,6 +76,7 @@ if (is_post_request()) {
             'errors' => $errors
         ]);
     }
+
     $activation_code = generate_activation_code();
 
     if (
@@ -88,23 +91,21 @@ if (is_post_request()) {
             $inputs['municipio'],
             $inputs['password'],
             $activation_code,
-            $inputs['imagen_usuario'] 
+            $inputs['imagen_usuario']
         )
     ) {
-
         send_activation_email($inputs['email'], $activation_code);
-
         redirect_with_message(
             'login.php',
             'Your account has been created successfully. Please login here.'
         );
-
     }
 
 } else if (is_get_request()) {
     [$inputs, $errors] = session_flash('inputs', 'errors');
 }
 ?>
+
 
 <?php view('header', ['title' => 'Nuevo Usuario']) ?>
 <!DOCTYPE html>

@@ -20,9 +20,11 @@ int $id_dpto, int $id_mun, string $password, string $activation_code, string $im
     $statement->bindValue(':is_admin', (int)$is_admin, PDO::PARAM_INT);
     $statement->bindValue(':activation_code', password_hash($activation_code, PASSWORD_DEFAULT));
     $statement->bindValue(':activation_expiry', date('Y-m-d H:i:s', time() + $expiry));
-    $statement->bindValue(':imagen_usuario', $imagen_usuario, PDO::PARAM_LOB);  
+    $statement->bindValue(':imagen_usuario', $imagen_usuario, PDO::PARAM_LOB);  // Añadir esto
+
     return $statement->execute();   
 }
+
 
 
 function find_user_by_username(string $username)
