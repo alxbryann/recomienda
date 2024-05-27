@@ -99,6 +99,12 @@ $connection->close();
                     echo "<p>Aún no te han recomendado, no podemos obtener una calificación de tus servicios.</p>";
                 }
                 ?>
+                <h1>Subir foto de perfil</h1>
+            <form action="upload.php" method="post" enctype="multipart/form-data">
+                <label for="profilePic">Selecciona una foto de perfil:</label>
+                <input type="file" name="profilePic" id="profilePic">
+                <input type="submit" value="Subir foto" name="submit">
+            </form>
             </div>
         </div>
         <div class="container-recomendaciones">

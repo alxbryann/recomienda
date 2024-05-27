@@ -1,30 +1,26 @@
 <?php
-$target_dir = "uploads/"; // Directorio donde se guardarán las imágenes
-$target_file = $target_dir . basename($_FILES["profilePicture"]["name"]); // Ruta completa del archivo
+if(isset($_POST["submit"])) {
+    $check = getimagesize($_FILES["profilePic"]["tmp_name"]);
+    if($check !== false) {
+        $image = $_FILES['profilePic']['tmp_name'];
+        $imgContent = addslashes(file_get_contents($image));
 
-// Comprueba si el archivo ya existe
-if (file_exists($target_file)) {
-    echo "Lo siento, el archivo ya existe.";
-    exit;
-}
+        // Conexión a la base de datos
+        $db = new mysqli($host, $user, $pass, $dbname);
+        if($db->connect_error){
+            die("Conexión fallida: " . $db->connect_error);
+        }
 
-// Comprueba el tamaño del archivo (en este caso, el límite es 500KB)
-if ($_FILES["profilePicture"]["size"] > 500000) {
-    echo "Lo siento, tu archivo es demasiado grande.";
-    exit;
-}
-
-// Permite ciertos formatos de archivo
-$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-    echo "Lo siento, solo se permiten archivos JPG, JPEG y PNG.";
-    exit;
-}
-
-// Intenta subir el archivo
-if (move_uploaded_file($_FILES["profilePicture"]["tmp_name"], $target_file)) {
-    echo "El archivo ". htmlspecialchars(basename( $_FILES["profilePicture"]["name"])). " ha sido subido.";
-} else {
-    echo "Lo siento, hubo un error al subir tu archivo.";
+        // Insertar imagen en la base de datos
+        $insert = $db->query("UPDATE usuarios SET imagen_usuario = '$imgContent' WHERE id_usuario = '$id_usuario'");
+        if($insert){
+            echo "Archivo subido correctamente.";
+        }else{
+            echo "Ha ocurrido un error al subir el archivo.";
+        } 
+    }else{
+        echo "Por favor, selecciona una imagen para subir.";
+    }
 }
 ?>
+
