@@ -1,23 +1,18 @@
 <?php
-// Datos del servidor
 $user = "u482925761_admin";
 $pass = "Clavetemporal/2024";
 $host = "82.197.80.210";
 $dbname = "u482925761_recomienda"; 
 
-// Conexión a la base de datos
 $connection = mysqli_connect($host, $user, $pass, $dbname);
 
-// Verificar la conexión
 if (!$connection) {
     die("Conexión fallida: " . mysqli_connect_error());
 }
 
-// Iniciar sesión
 session_start();
 $id_usuario = $_SESSION['id_usuario'];
 
-// Obtener datos del usuario
 $sql = "SELECT nombre_usuario, apellido_usuario, email_usuario, tel_usuario FROM usuarios WHERE id_usuario = ?";
 $stmt = $connection->prepare($sql);
 $stmt->bind_param("i", $id_usuario);
@@ -26,7 +21,6 @@ $stmt->bind_result($nombre, $apellido, $email, $telefono);
 $stmt->fetch();
 $stmt->close();
 
-// Obtener calificación promedio del usuario
 $sql = "SELECT AVG(estrellas) as promedio_estrellas, COUNT(*) as total_recomendaciones FROM recomendaciones WHERE id_recomendado = ?";
 $stmt = $connection->prepare($sql);
 $stmt->bind_param("i", $id_usuario);
@@ -35,7 +29,6 @@ $stmt->bind_result($promedio_estrellas, $total_recomendaciones);
 $stmt->fetch();
 $stmt->close();
 
-// Obtener recomendaciones hechas por el usuario
 $sql = "SELECT r.estrellas, r.comentario, u.nombre_usuario, u.apellido_usuario 
         FROM recomendaciones r 
         JOIN usuarios u ON r.id_recomendado = u.id_usuario 
@@ -47,7 +40,6 @@ $result_recomendaciones_hechas = $stmt->get_result();
 $recomendaciones_hechas = $result_recomendaciones_hechas->fetch_all(MYSQLI_ASSOC);
 $stmt->close();
 
-// Obtener recomendaciones recibidas por el usuario
 $sql = "SELECT r.estrellas, r.comentario, u.nombre_usuario, u.apellido_usuario 
         FROM recomendaciones r 
         JOIN usuarios u ON r.id_usuario = u.id_usuario 
@@ -107,6 +99,14 @@ $connection->close();
                     echo "<p>Aún no te han recomendado, no podemos obtener una calificación de tus servicios.</p>";
                 }
                 ?>
+                <div id="profile-picture">
+                    <img src="ruta/a/tu/imagen.jpg" alt="Foto de perfil">
+                </div>
+                <form action="upload.php" method="post" enctype="multipart/form-data">
+                    <label for="profilePicture">Selecciona una imagen para tu perfil:</label>
+                    <input type="file" id="profilePicture" name="profilePicture" accept=".jpg, .jpeg, .png">
+                    <input type="submit" value="Subir imagen" name="submit">
+                </form>
             </div>
         </div>
         <div class="container-recomendaciones">
