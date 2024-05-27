@@ -3,8 +3,6 @@ session_start();
 $usuario = $_SESSION['email'];
 $nombre = $_SESSION['nombre'];
 $id_usuario = $_SESSION['id_usuario'];
-
-var_dump($_SESSION);
 ?>
 
 

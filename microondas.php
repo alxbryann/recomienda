@@ -83,7 +83,7 @@ $db = mysqli_select_db($connection,$datab);
                             <div class="card-footer">
                                 <button class="btn btn-secondary" onclick="verReseñasDetalles('<?php echo $id_recomendacion ?>')">Ver reseñas</button>
                                 <a href="perfil.php?id=<?php echo $id_recomendado; ?>" class="btn btn-primary">Ver perfil</a>
-                                <?php if ($_SESSION['es_admin'] == 1) : ?>
+                                <?php if ($_SESSION['es_admin'] == 1) : // Si el usuario es administrador ?>
                                 <form action="index.php" method="post" style="display: inline;">
                                     <input type="hidden" name="id_recomendacion" value="<?= $id_recomendacion ?>">
                                     <input type="submit" name="eliminar" value="Eliminar" class="btn btn-danger">
