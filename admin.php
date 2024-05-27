@@ -47,6 +47,18 @@ require_once 'db.php';
 
 session_start();
 
+// Actualiza la información de la sesión del usuario
+if (isset($_SESSION['email'])) {
+    $usuario = $_SESSION['email'];
+    $query = "SELECT * FROM usuarios WHERE email_usuario = '$usuario'";
+    $result = $pdo->query($query);
+    if($row = $result->fetch(PDO::FETCH_BOTH)) {
+        $_SESSION['nombre'] = $row["nombre_usuario"];
+        $_SESSION['id_usuario'] = strval($row["id_usuario"]);
+        $_SESSION['es_admin'] = $row["es_admin"];
+    }
+}
+
 if (!isset($_SESSION['es_admin']) || $_SESSION['es_admin'] != 1) {
     echo "No tienes permiso para acceder a esta página.";
     exit;
