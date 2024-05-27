@@ -19,6 +19,19 @@ if (isset($_GET['id'])) {
     die("Error: No se proporcionó un ID de usuario.");
 }
 
+if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['imagen_usuario'])){
+  if($_FILES['imagen_usuario']['error'] == 0){
+    $imgData = addslashes(file_get_contents($_FILES['imagen_usuario']['tmp_name']));
+    $imageProperties = getimageSize($_FILES['imagen_usuario']['tmp_name']);
+    
+    $sql = "UPDATE usuarios SET imagen_usuario=? WHERE id_usuario=?";
+    $stmt = $connection->prepare($sql);
+    $stmt->bind_param("bi", $imgData, $id_usuario);
+    $stmt->execute();
+    $stmt->close();
+  }
+}
+
 $sql = "SELECT nombre_usuario, apellido_usuario, email_usuario, tel_usuario FROM usuarios WHERE id_usuario = ?";
 $stmt = $connection->prepare($sql);
 $stmt->bind_param("i", $id_usuario);
@@ -88,6 +101,11 @@ $connection->close();
                 <p>Email:</p> <h2><?php echo htmlspecialchars($email); ?></h2>
                 <p>Teléfono:</p> <h2><?php echo htmlspecialchars($telefono); ?></h2>
                 <p>ID Usuario:</p> <h2><?php echo htmlspecialchars($id_usuario); ?></h2>
+                <form method="post" enctype="multipart/form-data">
+                  Selecciona la imagen de perfil:
+                  <input type="file" name="imagen_usuario" id="imagen_usuario">
+                  <input type="submit" value="Subir imagen" name="submit">
+                </form>
             </div>
             <div id="stars">
                 <?php
@@ -188,3 +206,4 @@ $connection->close();
     </script>
 </body>
 </html>
+

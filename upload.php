@@ -1,26 +1,37 @@
 <?php
-if(isset($_POST["submit"])) {
-    $check = getimagesize($_FILES["profilePic"]["tmp_name"]);
-    if($check !== false) {
-        $image = $_FILES['profilePic']['tmp_name'];
-        $imgContent = addslashes(file_get_contents($image));
+$servername = "localhost";
+$username = "username";
+$password = "password";
+$dbname = "database";
 
-        // Conexión a la base de datos
-        $db = new mysqli($host, $user, $pass, $dbname);
-        if($db->connect_error){
-            die("Conexión fallida: " . $db->connect_error);
-        }
+$connection = mysqli_connect($host, $user, $pass, $dbname);
 
-        // Insertar imagen en la base de datos
-        $insert = $db->query("UPDATE usuarios SET imagen_usuario = '$imgContent' WHERE id_usuario = '$id_usuario'");
-        if($insert){
-            echo "Archivo subido correctamente.";
-        }else{
-            echo "Ha ocurrido un error al subir el archivo.";
-        } 
-    }else{
-        echo "Por favor, selecciona una imagen para subir.";
-    }
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
 }
+
+if($_SERVER['REQUEST_METHOD'] == 'POST'){}
+  if(isset($_FILES['imagen_usuario']) && $_FILES['imagen_usuario']['error'] == 0){
+    $imgData = addslashes(file_get_contents($_FILES['imagen_usuario']['tmp_name']));
+    $imageProperties = getimageSize($_FILES['imagen_usuario']['tmp_name']);
+    
+    $sql = "INSERT INTO profile_images(imageType ,imageData)
+    VALUES('{$imageProperties['mime']}', '{$imgData}')";
+    
+    if ($conn->query($sql) === TRUE) {
+      echo "Imagen subida correctamente.";
+    } else {
+      echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+  }
+}
+
+$conn->close();
 ?>
+
+<form method="post" enctype="multipart/form-data">
+  <input type="file" name="imagen_usuario" id="imagen_usuario">
+  <input type="submit" value="Subir imagen" name="submit">
+</form>
+
 
