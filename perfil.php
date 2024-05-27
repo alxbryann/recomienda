@@ -100,6 +100,11 @@ $connection->close();
                     <input type="file" name="profile_picture" accept="image/png, image/jpeg, image/jpg" required>
                     <button type="submit">Subir Imagen</button>
                 </form>
+                <form action="upload_profile_picture.php" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="profile_picture" accept="image/png, image/jpeg, image/jpg" required>
+                    <button type="submit">Cambiar Imagen de Perfil</button>
+                </form>
+
             </div>
             <div id="stars">
                 <?php
