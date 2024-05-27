@@ -13,11 +13,11 @@ if (!$connection) {
 session_start();
 $id_usuario = $_SESSION['id_usuario'];
 
-$sql = "SELECT nombre_usuario, apellido_usuario, email_usuario, tel_usuario, imagen_usuario FROM usuarios WHERE id_usuario = ?";
+$sql = "SELECT nombre_usuario, apellido_usuario, email_usuario, tel_usuario FROM usuarios WHERE id_usuario = ?";
 $stmt = $connection->prepare($sql);
 $stmt->bind_param("i", $id_usuario);
 $stmt->execute();
-$stmt->bind_result($nombre, $apellido, $email, $telefono, $imagen_usuario);
+$stmt->bind_result($nombre, $apellido, $email, $telefono);
 $stmt->fetch();
 $stmt->close();
 
@@ -72,39 +72,16 @@ $connection->close();
         .fa-star.checked {
             color: orange;
         }
-        .profile-image {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 50%;
-        }
     </style>
 </head>
 <body>
     <main>
         <div class="container-profile">
-            <!-- Información del usuario existente -->
             <div id="container-info">
                 <p>Nombre:</p> <h1><?php echo htmlspecialchars($nombre . ' ' . $apellido); ?></h1>
                 <p>Email:</p> <h2><?php echo htmlspecialchars($email); ?></h2>
                 <p>Teléfono:</p> <h2><?php echo htmlspecialchars($telefono); ?></h2>
                 <p>ID Usuario:</p> <h2><?php echo htmlspecialchars($id_usuario); ?></h2>
-            </div>
-            <div id="profile-picture">
-                <?php if (!empty($imagen_usuario)) { ?>
-                    <img src="data:image/jpeg;base64,<?php echo htmlspecialchars($imagen_usuario); ?>" class="profile-image" alt="Foto de perfil">
-                <?php } else { ?>
-                    <img src="default-profile.png" class="profile-image" alt="Foto de perfil">
-                <?php } ?>
-                <form action="upload_profile_picture.php" method="POST" enctype="multipart/form-data">
-                    <input type="file" name="profile_picture" accept="image/png, image/jpeg, image/jpg" required>
-                    <button type="submit">Subir Imagen</button>
-                </form>
-                <form action="upload_profile_picture.php" method="POST" enctype="multipart/form-data">
-                    <input type="file" name="profile_picture" accept="image/png, image/jpeg, image/jpg" required>
-                    <button type="submit">Cambiar Imagen de Perfil</button>
-                </form>
-
             </div>
             <div id="stars">
                 <?php
@@ -125,7 +102,7 @@ $connection->close();
             </div>
         </div>
         <div class="container-recomendaciones">
-            <h1>Mis recomendaciones</zh1>
+            <h1>Mis recomendaciones</h1>
             <ul>
                 <?php
                 if (count($recomendaciones_hechas) > 0) {
