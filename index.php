@@ -53,7 +53,7 @@ $id_usuario = $_SESSION['id_usuario'];
                 </p>
             </div>
             <div id="botonPrin">
-                <a class="btn" href="#tituloImagen">ir</a>
+                <a class="btn" href="#tituloImagen">Ir</a>
             </div>
         </div>
         <div class="derecha">
