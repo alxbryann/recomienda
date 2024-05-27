@@ -1,7 +1,4 @@
 <?php
-ini_set('upload_max_filesize', '64M');
-ini_set('post_max_size', '64M');
-
 session_start();
 require_once 'helpers.php';
 require_once 'flash.php';
@@ -31,8 +28,6 @@ if (is_post_request()) {
         'password' => 'string | required | secure',
         'password2' => 'string | required | same: password',
         'agree' => 'string | required',
-        'activation_code' => 'string',
-        'imagen_usuario' => 'file | required | mimes:jpeg,jpg,png',
     ];
 
     // custom messages
@@ -45,12 +40,33 @@ if (is_post_request()) {
             'required' => 'You need to agree to the term of services to register'
         ],
         'imagen_usuario' => [
-            'required' => 'You need to upload an image',
-            'mimes' => 'The image must be a file of type: jpeg, jpg, png'
+            'required' => 'Please upload a profile image',
+            'file' => 'Invalid file type. Only PNG, JPEG, and JPG are allowed'
         ]
     ];
 
     [$inputs, $errors] = filter($_POST, $fields, $messages);
+
+    // Handle the image upload
+    if (isset($_FILES['imagen_usuario']) && $_FILES['imagen_usuario']['error'] == UPLOAD_ERR_OK) {
+        $fileTmpPath = $_FILES['imagen_usuario']['tmp_name'];
+        $fileName = $_FILES['imagen_usuario']['name'];
+        $fileSize = $_FILES['imagen_usuario']['size'];
+        $fileType = $_FILES['imagen_usuario']['type'];
+        $fileNameCmps = explode(".", $fileName);
+        $fileExtension = strtolower(end($fileNameCmps));
+
+        $allowedfileExtensions = ['jpg', 'jpeg', 'png'];
+        if (in_array($fileExtension, $allowedfileExtensions)) {
+            $imageData = file_get_contents($fileTmpPath);
+            $base64Image = base64_encode($imageData);
+            $inputs['imagen_usuario'] = $base64Image;
+        } else {
+            $errors['imagen_usuario'] = 'Invalid file type. Only PNG, JPEG, and JPG are allowed';
+        }
+    } else {
+        $errors['imagen_usuario'] = 'Please upload a profile image';
+    }
 
     if ($errors) {
         redirect_with('nuevousuario.php', [
@@ -59,12 +75,6 @@ if (is_post_request()) {
         ]);
     }
     $activation_code = generate_activation_code();
-
-    // Convert image to base64
-    if (isset($_FILES['imagen_usuario'])) {
-        $imagen_usuario = file_get_contents($_FILES['imagen_usuario']['tmp_name']);
-        $imagen_usuario_base64 = base64_encode($imagen_usuario);
-    }
 
     if (
         register_user(
@@ -78,7 +88,7 @@ if (is_post_request()) {
             $inputs['municipio'],
             $inputs['password'],
             $activation_code,
-            $imagen_usuario_base64  // Add this line
+            $inputs['imagen_usuario'] 
         )
     ) {
 
@@ -95,8 +105,8 @@ if (is_post_request()) {
     [$inputs, $errors] = session_flash('inputs', 'errors');
 }
 ?>
-<?php view('header', ['title' => 'Nuevo Usuario']) ?>
 
+<?php view('header', ['title' => 'Nuevo Usuario']) ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -113,7 +123,7 @@ if (is_post_request()) {
     <br>
     <h2>Modulo de registro</h2>
 <div class="register-container">
-        <form method="post" action="nuevousuario.php" enctype="multipart/form-data">
+    <form method="post" action="nuevousuario.php">
         <label for="email">E-mail:</label>
         <input type="email" name="email" id="email" placeholder="e-mail" value="<?= $inputs['email'] ?? '' ?>"
             class="<?= error_class($errors, 'email') ?>">
@@ -148,6 +158,7 @@ if (is_post_request()) {
         <select id="pais" name="pais">
             <option value="">Selecciones pais</option>
             <?php
+            //require_once 'db_conn.php';
             try {
                 $pdo = new PDO($attr, $user, $pass, $opts);
             } catch (PDOException $e) {
@@ -171,9 +182,10 @@ if (is_post_request()) {
             <option disabled="" selected="">Seleccione municipio</option>
         </select>
 
-        <label for="imagen_usuario">Imagen de usuario:</label>
-        <input type="file" name="imagen_usuario" id="imagen_usuario" accept=".jpeg, .jpg, .png">
-        <small><?= $errors['imagen_usuario'] ?? '' ?></small>
+        <label for="imagen_usuario">Foto de Perfil:</label>
+            <input type="file" name="imagen_usuario" id="imagen_usuario" accept="image/png, image/jpeg, image/jpg">
+            <small><?= $errors['imagen_usuario'] ?? '' ?></small>
+
 
 
         <label for="agree">
