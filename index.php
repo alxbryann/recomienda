@@ -15,7 +15,7 @@ $id_usuario = $_SESSION['id_usuario'];
             white-space: nowrap; 
             overflow: hidden; 
             text-overflow: ellipsis; 
-            font-size: 20px; 
+            font-size: 24px; 
         }
     </style>
     <meta charset="UTF-8">
