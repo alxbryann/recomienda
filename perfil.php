@@ -11,41 +11,7 @@ if (!$connection) {
 }
 
 session_start();
-if (isset($_GET['id'])) {
-    $id_usuario = $_GET['id'];
-} elseif (isset($_SESSION['id_usuario'])) {
-    $id_usuario = $_SESSION['id_usuario'];
-} else {
-    die("Error: No se proporcionó un ID de usuario.");
-}
-
-if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['imagen_usuario'])){
-    // Asegúrate de que el archivo fue subido sin errores
-    if($_FILES['imagen_usuario']['error'] == 0){
-      // Verifica que el archivo es una imagen
-      $imageProperties = getimageSize($_FILES['imagen_usuario']['tmp_name']);
-      if($imageProperties === false) {
-        die("El archivo subido no es una imagen.");
-      }
-      // Verifica que el tipo de imagen es permitido
-      $allowedTypes = array(IMAGETYPE_PNG, IMAGETYPE_JPEG, IMAGETYPE_GIF);
-      if(!in_array($imageProperties[2], $allowedTypes)) {
-        die("Solo se permiten imágenes PNG, JPEG y GIF.");
-      }
-      $imgData = addslashes(file_get_contents($_FILES['imagen_usuario']['tmp_name']));
-      
-      $sql = "UPDATE usuarios SET imagen_usuario=? WHERE id_usuario=?";
-      $stmt = $connection->prepare($sql);
-      $stmt->bind_param("bi", $imgData, $id_usuario);
-      if(!$stmt->execute()) {
-        die("Error al insertar la imagen en la base de datos: " . $stmt->error);
-      }
-      $stmt->close();
-    } else {
-      die("Error al subir el archivo: " . $_FILES['imagen_usuario']['error']);
-    }
-  }
-  
+$id_usuario = $_SESSION['id_usuario'];
 
 $sql = "SELECT nombre_usuario, apellido_usuario, email_usuario, tel_usuario FROM usuarios WHERE id_usuario = ?";
 $stmt = $connection->prepare($sql);
@@ -116,11 +82,6 @@ $connection->close();
                 <p>Email:</p> <h2><?php echo htmlspecialchars($email); ?></h2>
                 <p>Teléfono:</p> <h2><?php echo htmlspecialchars($telefono); ?></h2>
                 <p>ID Usuario:</p> <h2><?php echo htmlspecialchars($id_usuario); ?></h2>
-                <form method="post" enctype="multipart/form-data">
-                  Selecciona la imagen de perfil:
-                  <input type="file" name="imagen_usuario" id="imagen_usuario">
-                  <input type="submit" value="Subir imagen" name="submit">
-                </form>
             </div>
             <div id="stars">
                 <?php
@@ -221,4 +182,3 @@ $connection->close();
     </script>
 </body>
 </html>
-
