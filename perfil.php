@@ -92,11 +92,11 @@ $connection->close();
             </div>
             <div id="profile-picture">
                 <?php if (!empty($imagen_usuario)) { ?>
-                    <img src="data:image/jpeg;base64,<?php echo base64_encode($imagen_usuario); ?>" class="profile-image" alt="Foto de perfil">
+                    <img src="data:image/jpeg;base64,<?php echo htmlspecialchars($imagen_usuario); ?>" class="profile-image" alt="Foto de perfil">
                 <?php } else { ?>
                     <img src="default-profile.png" class="profile-image" alt="Foto de perfil">
                 <?php } ?>
-                <form action="upload.php" method="POST" enctype="multipart/form-data">
+                <form action="upload_profile_picture.php" method="POST" enctype="multipart/form-data">
                     <input type="file" name="profile_picture" accept="image/png, image/jpeg, image/jpg" required>
                     <button type="submit">Subir Imagen</button>
                 </form>
