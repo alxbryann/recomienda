@@ -51,49 +51,64 @@ $db = mysqli_select_db($connection,$datab);
         </div>
     </header>
     <div class="container">
-        <div id="reseñas" class="mt-4">
-            <?php
-            $instruccion_sql = "select * from recomendaciones where especialidad =" . 4;
-            $resultado = mysqli_query($connection, $instruccion_sql);
-            if($resultado){
-                while($row = $resultado->fetch_array()){
-                    $id_recomendacion = $row['id_recomendacion'];
-                    $id_usuario = $row['id_usuario'];
-                    $id_recomendado = $row['id_recomendado'];
-                    $estrellas = $row['estrellas'];
-                    $especialidad = $row['especialidad'];
-                    $comentario = $row['comentario'];
-                    $instruccion_sql_usuarios = "SELECT nombre_usuario FROM usuarios WHERE id_usuario = $id_recomendado";
-                    $resultado_usuarios = mysqli_query($connection, $instruccion_sql_usuarios);
-                    if($resultado_usuarios){
-                        $row_usuarios = $resultado_usuarios->fetch_array();
-                        $nombre_recomendado = $row_usuarios['nombre_usuario'];
-                    }
-                    $instruccion_sql_usuarios2 = "SELECT nombre_usuario FROM usuarios WHERE id_usuario = $id_usuario";
-                    $resultado_usuarios2 = mysqli_query($connection, $instruccion_sql_usuarios2);
-                    if($resultado_usuarios2){
-                        $row_usuarios2 = $resultado_usuarios2->fetch_array();
-                        $nombre_usuario = $row_usuarios2['nombre_usuario'];
-                    }
-                    ?>
-                    <div class="card" id="reseñas">
-                        <div class="card-body">
-                        <h5 class="card-title"><?php echo $nombre_recomendado ?></h5>
-                            <p class="card-text" id="<?php echo $id_recomendacion ?>" style="display: none;"><?php echo "$nombre_usuario dice: $comentario" ?></p>
-                            <div class="d-flex justify-content-between">
-                                <small>Calificación: <?php echo $estrellas ?> estrellas</small>
-                                <small class="text-muted">Fecha: 2024-03-30</small>
+            <div id="reseñas" class="mt-4">
+                <?php
+                $instruccion_sql = "select * from recomendaciones where especialidad =" . 4;
+                $resultado = mysqli_query($connection, $instruccion_sql);
+                if($resultado){
+                    while($row = $resultado->fetch_array()){
+                        $id_recomendacion = $row['id_recomendacion'];
+                        $id_usuario = $row['id_usuario'];
+                        $id_recomendado = $row['id_recomendado'];
+                        $estrellas = $row['estrellas'];
+                        $especialidad = $row['especialidad'];
+                        $comentario = $row['comentario'];
+                        $instruccion_sql_usuarios = "SELECT nombre_usuario FROM usuarios WHERE id_usuario = $id_recomendado";
+                        $resultado_usuarios = mysqli_query($connection, $instruccion_sql_usuarios);
+                        if($resultado_usuarios){
+                            $row_usuarios = $resultado_usuarios->fetch_array();
+                            $nombre_recomendado = $row_usuarios['nombre_usuario'];
+                        }
+                        $instruccion_sql_usuarios2 = "SELECT nombre_usuario FROM usuarios WHERE id_usuario = $id_usuario";
+                        $resultado_usuarios2 = mysqli_query($connection, $instruccion_sql_usuarios2);
+                        if($resultado_usuarios2){
+                            $row_usuarios2 = $resultado_usuarios2->fetch_array();
+                            $nombre_usuario = $row_usuarios2['nombre_usuario'];
+                        }
+                        ?>
+                        <div class="card" id="reseñas">
+                            <div class="card-body">
+                            <h5 class="card-title"><?php echo $nombre_recomendado ?></h5>
+                                <p class="card-text" id="<?php echo $id_recomendacion ?>" style="display: none;"><?php echo "$nombre_usuario dice: $comentario" ?></p>
+                                <div class="d-flex justify-content-between">
+                                    <small>Calificación: <?php echo $estrellas ?> estrellas</small>
+                                    <small class="text-muted">Fecha: 2024-03-30</small>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-secondary" onclick="verReseñasDetalles('<?php echo $id_recomendacion ?>')">Ver reseñas</button>
+                                <a href="perfil.php?id=<?php echo $id_recomendado; ?>" class="btn btn-primary">Ver perfil</a>
+                                <?php if ($_SESSION['es_admin'] == 1) : // Si el usuario es administrador ?>
+                                <form action="index.php" method="post" style="display: inline;">
+                                    <input type="hidden" name="id_recomendacion" value="<?= $id_recomendacion ?>">
+                                    <input type="submit" name="eliminar" value="Eliminar" class="btn btn-danger">
+                                </form>
+                                <?php endif ?>
                             </div>
                         </div>
-                        <div class="card-footer">
-                            <button class="btn btn-secondary" onclick="verReseñasDetalles('<?php echo $id_recomendacion ?>')">Ver reseñas</button>
-                            <a href="perfil.php?id=<?php echo $id_recomendado; ?>" class="btn btn-primary">Ver perfil</a>
-                        </div>
-                    </div>
-                    <?php
+                        <?php
+                    }
                 }
-            }
-            ?>
+
+                // Si se envió el formulario de eliminar reseña
+                if (isset($_POST['eliminar'])) {
+                    $id_recomendacion = $_POST['id_recomendacion'];
+                    $query = "DELETE FROM recomendaciones WHERE id_recomendacion = '$id_recomendacion'";
+                    $pdo->exec($query);
+                    // Recarga la página para que el usuario vea que la reseña ha sido eliminada
+                    header("Location: index.php");
+                }
+                ?>
         </div>
     </div>
     <footer>
