@@ -1,37 +1,29 @@
 <?php
-$servername = "localhost";
-$username = "username";
-$password = "password";
-$dbname = "database";
+if(isset($_POST["submit"])) {
+    $check = getimagesize($_FILES["profileImage"]["tmp_name"]);
+    if($check !== false) {
+        $image = $_FILES['profileImage']['tmp_name'];
+        $imgContent = addslashes(file_get_contents($image));
 
-$connection = mysqli_connect($host, $user, $pass, $dbname);
+        $user = "u482925761_admin";
+        $pass = "Clavetemporal/2024";
+        $host = "82.197.80.210";
+        $dbname = "u482925761_recomienda"; 
+        $connection = mysqli_connect($host, $user, $pass, $dbname);
 
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
+        if (!$connection) {
+            die("Conexión fallida: " . mysqli_connect_error());
+        }
 
-if($_SERVER['REQUEST_METHOD'] == 'POST'){}
-  if(isset($_FILES['imagen_usuario']) && $_FILES['imagen_usuario']['error'] == 0){
-    $imgData = addslashes(file_get_contents($_FILES['imagen_usuario']['tmp_name']));
-    $imageProperties = getimageSize($_FILES['imagen_usuario']['tmp_name']);
-    
-    $sql = "INSERT INTO profile_images(imageType ,imageData)
-    VALUES('{$imageProperties['mime']}', '{$imgData}')";
-    
-    if ($conn->query($sql) === TRUE) {
-      echo "Imagen subida correctamente.";
+        $sql = "UPDATE usuarios SET imagen_usuario = ? WHERE id_usuario = ?";
+        $stmt = $connection->prepare($sql);
+        $stmt->bind_param("si", $imgContent, $id_usuario);
+        $stmt->execute();
+        $stmt->close();
+
+        echo "Imagen subida correctamente.";
     } else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Por favor, sube una imagen válida.";
     }
-  }
 }
-
-$conn->close();
 ?>
-
-<form method="post" enctype="multipart/form-data">
-  <input type="file" name="imagen_usuario" id="imagen_usuario">
-  <input type="submit" value="Subir imagen" name="submit">
-</form>
-
-
