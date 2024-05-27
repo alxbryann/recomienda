@@ -1,30 +1,38 @@
 <?php
-$target_dir = "uploads/"; // Directorio donde se guardarán las imágenes
-$target_file = $target_dir . basename($_FILES["profilePicture"]["name"]); // Ruta completa del archivo
+session_start();
+$id_usuario = $_SESSION['id_usuario'];
 
-// Comprueba si el archivo ya existe
-if (file_exists($target_file)) {
-    echo "Lo siento, el archivo ya existe.";
-    exit;
-}
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
+        $image = $_FILES['profile_picture']['tmp_name'];
+        $image_content = file_get_contents($image);
+        $image_base64 = base64_encode($image_content);
 
-// Comprueba el tamaño del archivo (en este caso, el límite es 500KB)
-if ($_FILES["profilePicture"]["size"] > 500000) {
-    echo "Lo siento, tu archivo es demasiado grande.";
-    exit;
-}
+        $user = "u482925761_admin";
+        $pass = "Clavetemporal/2024";
+        $host = "82.197.80.210";
+        $dbname = "u482925761_recomienda";
 
-// Permite ciertos formatos de archivo
-$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-    echo "Lo siento, solo se permiten archivos JPG, JPEG y PNG.";
-    exit;
-}
+        $connection = mysqli_connect($host, $user, $pass, $dbname);
 
-// Intenta subir el archivo
-if (move_uploaded_file($_FILES["profilePicture"]["tmp_name"], $target_file)) {
-    echo "El archivo ". htmlspecialchars(basename( $_FILES["profilePicture"]["name"])). " ha sido subido.";
-} else {
-    echo "Lo siento, hubo un error al subir tu archivo.";
+        if (!$connection) {
+            die("Conexión fallida: " . mysqli_connect_error());
+        }
+
+        $sql = "UPDATE usuarios SET imagen_usuario = ? WHERE id_usuario = ?";
+        $stmt = $connection->prepare($sql);
+        $stmt->bind_param("si", $image_base64, $id_usuario);
+        if ($stmt->execute()) {
+            header("Location: perfil.php");
+        } else {
+            echo "Error al subir la imagen.";
+        }
+
+        $stmt->close();
+        $connection->close();
+    } else {
+        echo "Error en la carga de la imagen.";
+    }
 }
 ?>
+
