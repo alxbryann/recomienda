@@ -6,9 +6,6 @@ if($usuario == null || $usuario = ''){
     die();
 }
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
