@@ -16,7 +16,7 @@ $inputs = [];
 
 if (is_post_request()) {
 
-    $fields = [
+     $fields = [
         'email' => 'email | required | email | unique: usuarios, email_usuario',
         'nombre' => 'string',
         'apellido' => 'string',
@@ -29,10 +29,9 @@ if (is_post_request()) {
         'password2' => 'string | required | same: password',
         'agree' => 'string | required',
         'activation_code' => 'string',
-        'imagen_usuario' => 'file | image',  // Añade esto
+        'imagen_usuario' => 'file | image', 
     ];
 
-    // custom messages
     $messages = [
         'password2' => [
             'required' => 'Please enter the password again',
@@ -53,6 +52,11 @@ if (is_post_request()) {
     }
     $activation_code = generate_activation_code();
 
+    $imagen_usuario = '';
+    if (isset($_FILES['imagen_usuario']) && $_FILES['imagen_usuario']['error'] == 0) {
+        $imagen_usuario = file_get_contents($_FILES['imagen_usuario']['tmp_name']);
+    }
+
     if (
         register_user(
             $inputs['email'],
@@ -64,7 +68,7 @@ if (is_post_request()) {
             $inputs['departamento'],
             $inputs['municipio'],
             $inputs['password'],
-            $_FILES['imagen_usuario'],
+            $imagen_usuario,  
             $activation_code
         )
     ) {
