@@ -78,11 +78,7 @@ $db = mysqli_select_db($connection,$datab);
                     ?>
                     <div class="card" id="reseñas">
                         <div class="card-body">
-                        <h5 class="card-title">
-                            <a href="perfil.php?id=<?php echo $id_recomendado; ?>">
-                                <?php echo $nombre_recomendado ?>
-                            </a>
-                        </h5>
+                        <h5 class="card-title"><?php echo $nombre_recomendado ?></h5>
                             <p class="card-text" id="<?php echo $id_recomendacion ?>" style="display: none;"><?php echo "$nombre_usuario dice: $comentario" ?></p>
                             <div class="d-flex justify-content-between">
                                 <small>Calificación: <?php echo $estrellas ?> estrellas</small>
@@ -91,6 +87,7 @@ $db = mysqli_select_db($connection,$datab);
                         </div>
                         <div class="card-footer">
                             <button class="btn btn-secondary" onclick="verReseñasDetalles('<?php echo $id_recomendacion ?>')">Ver reseñas</button>
+                            <a href="perfil.php?id=<?php echo $id_recomendado; ?>" class="btn btn-primary">Ver perfil</a>
                         </div>
                     </div>
                     <?php
