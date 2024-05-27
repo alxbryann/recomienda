@@ -11,6 +11,8 @@ if (!$connection) {
 }
 if (isset($_GET['id'])) {
     $id_usuario = $_GET['id'];
+} elseif (isset($_SESSION['id_usuario'])) {
+    $id_usuario = $_SESSION['id_usuario'];
 } else {
     die("Error: No se proporcionó un ID de usuario.");
 }
