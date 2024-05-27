@@ -107,14 +107,6 @@ $connection->close();
                     echo "<p>Aún no te han recomendado, no podemos obtener una calificación de tus servicios.</p>";
                 }
                 ?>
-                <div id="profile-picture">
-                     <img src="ruta/a/tu/imagen.jpg" alt="Foto de perfil">
-                </div>
-                <form action="upload.php" method="post" enctype="multipart/form-data">
-                    <label for="profilePicture">Selecciona una imagen para tu perfil:</label>
-                    <input type="file" id="profilePicture" name="profilePicture" accept=".jpg, .jpeg, .png">
-                    <input type="submit" value="Subir imagen" name="submit">
-                </form>
             </div>
         </div>
         <div class="container-recomendaciones">
