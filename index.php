@@ -10,6 +10,14 @@ $id_usuario = $_SESSION['id_usuario'];
 <html lang="en">
 
 <head>
+    <style>
+        .card-body h1 {
+            white-space: nowrap; 
+            overflow: hidden; 
+            text-overflow: ellipsis; 
+            font-size: 20px; 
+        }
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recomienda!</title>
