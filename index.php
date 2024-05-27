@@ -1,3 +1,11 @@
+<?php
+session_start();
+$usuario = $_SESSION['email'];
+$nombre = $_SESSION['nombre'];
+$id_usuario = $_SESSION['id_usuario'];
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,11 +17,6 @@
             text-overflow: ellipsis; 
             font-size: 24px; 
         }
-        .dropdown-menu {
-            position: absolute;
-            z-index: 1050; /* Asegúrate de que el menú esté por encima de otros elementos */
-            overflow: visible; /* Asegúrate de que el contenido se muestre */
-        }
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,12 +25,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -67,16 +70,16 @@
             <h1>¡Bienvenido a recomienda!</h1>
         </div>
         <div id="sesion" style="margin-left: 40px;">
-            <?php
+        <?php
             if (isset($nombre)) {
                 echo '<div class="dropdown" style="position: relative; top: 40px ;left: -1px;">';
                 echo '<a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">Bienvenido, ' . $nombre . '</a>';
                 echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="margin-left: 40px;">';
                 echo '<li><a class="dropdown-item" href="perfil.php" style="font-size: 12px; color: black;">Ver perfil</a></li>';
-                if ($_SESSION['es_admin'] == 1) { 
-                    echo '<li><a class="dropdown-item" href="admin.php" style="font-size: 12px; color: black;">Panel de administrador</a></li>'; // Agrega un enlace al panel de administrador
-                    echo '<li><a class="dropdown-item" href="dejar_de_ser_admin.php" style="font-size: 12px; color: black;">Dejar de ser administrador</a></li>'; // Agrega un enlace para dejar de ser administrador
-                }
+            if ($_SESSION['es_admin'] == 1) { 
+                echo '<li><a class="dropdown-item" href="admin.php" style="font-size: 12px; color: black;">Panel de administrador</a></li>'; // Agrega un enlace al panel de administrador
+                echo '<li><a class="dropdown-item" href="dejar_de_ser_admin.php" style="font-size: 12px; color: black;">Dejar de ser administrador</a></li>'; // Agrega un enlace para dejar de ser administrador
+            }
                 echo '<li><a class="dropdown-item" href="cerrar_sesion.php" style="font-size: 12px; color: black;">Cerrar sesión</a></li>';
                 echo '</ul>';
                 echo '</div>';
@@ -84,7 +87,8 @@
                 echo '<a href="login.php">Iniciar sesión</a>';
                 echo '<a href="nuevousuario.php">Registrarse</a>';
             }
-            ?>
+?>
+
         </div>
     </header>
     <br>
@@ -172,5 +176,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
     integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
     crossorigin="anonymous"></script>
-</html>
 
+
+</html>
