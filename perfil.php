@@ -9,7 +9,11 @@ $connection = mysqli_connect($host, $user, $pass, $dbname);
 if (!$connection) {
     die("Conexión fallida: " . mysqli_connect_error());
 }
-
+if (isset($_GET['id'])) {
+    $id_usuario = $_GET['id'];
+} else {
+    die("Error: No se proporcionó un ID de usuario.");
+}
 session_start();
 $id_usuario = $_SESSION['id_usuario'];
 
