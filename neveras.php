@@ -1,6 +1,5 @@
 <?php
 session_start();
-// Datos del servidor
 $user = "u482925761_admin";
 $pass = "Clavetemporal/2024";
 $host = "82.197.80.210";
