@@ -25,7 +25,7 @@ if (isset($_POST['eliminar']) && isset($_SESSION['es_admin']) && $_SESSION['es_a
 <!DOCTYPE html>
 <html lang="en">
 
-head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recomendados para neveras</title>
