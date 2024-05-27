@@ -20,17 +20,32 @@ if (isset($_GET['id'])) {
 }
 
 if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['imagen_usuario'])){
-  if($_FILES['imagen_usuario']['error'] == 0){
-    $imgData = addslashes(file_get_contents($_FILES['imagen_usuario']['tmp_name']));
-    $imageProperties = getimageSize($_FILES['imagen_usuario']['tmp_name']);
-    
-    $sql = "UPDATE usuarios SET imagen_usuario=? WHERE id_usuario=?";
-    $stmt = $connection->prepare($sql);
-    $stmt->bind_param("bi", $imgData, $id_usuario);
-    $stmt->execute();
-    $stmt->close();
+    // Asegúrate de que el archivo fue subido sin errores
+    if($_FILES['imagen_usuario']['error'] == 0){
+      // Verifica que el archivo es una imagen
+      $imageProperties = getimageSize($_FILES['imagen_usuario']['tmp_name']);
+      if($imageProperties === false) {
+        die("El archivo subido no es una imagen.");
+      }
+      // Verifica que el tipo de imagen es permitido
+      $allowedTypes = array(IMAGETYPE_PNG, IMAGETYPE_JPEG, IMAGETYPE_GIF);
+      if(!in_array($imageProperties[2], $allowedTypes)) {
+        die("Solo se permiten imágenes PNG, JPEG y GIF.");
+      }
+      $imgData = addslashes(file_get_contents($_FILES['imagen_usuario']['tmp_name']));
+      
+      $sql = "UPDATE usuarios SET imagen_usuario=? WHERE id_usuario=?";
+      $stmt = $connection->prepare($sql);
+      $stmt->bind_param("bi", $imgData, $id_usuario);
+      if(!$stmt->execute()) {
+        die("Error al insertar la imagen en la base de datos: " . $stmt->error);
+      }
+      $stmt->close();
+    } else {
+      die("Error al subir el archivo: " . $_FILES['imagen_usuario']['error']);
+    }
   }
-}
+  
 
 $sql = "SELECT nombre_usuario, apellido_usuario, email_usuario, tel_usuario FROM usuarios WHERE id_usuario = ?";
 $stmt = $connection->prepare($sql);
