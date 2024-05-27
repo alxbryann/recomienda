@@ -4,36 +4,45 @@ $id_usuario = $_SESSION['id_usuario'];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
-        $image = $_FILES['profile_picture']['tmp_name'];
-        $image_content = file_get_contents($image);
-        $image_base64 = base64_encode($image_content);
+        // Obtén la extensión del archivo
+        $extension = pathinfo($_FILES['profile_picture']['name'], PATHINFO_EXTENSION);
 
-        $user = "u482925761_admin";
-        $pass = "Clavetemporal/2024";
-        $host = "82.197.80.210";
-        $dbname = "u482925761_recomienda";
+        // Asegúrate de que la extensión es jpeg, jpg o png
+        if(in_array($extension, ['jpeg', 'jpg', 'png'])){
+            $image = $_FILES['profile_picture']['tmp_name'];
+            $image_content = file_get_contents($image);
+            $image_base64 = base64_encode($image_content);
 
-        $connection = mysqli_connect($host, $user, $pass, $dbname);
+            $user = "u482925761_admin";
+            $pass = "Clavetemporal/2024";
+            $host = "82.197.80.210";
+            $dbname = "u482925761_recomienda";
 
-        if (!$connection) {
-            die("Conexión fallida: " . mysqli_connect_error());
-        }
+            $connection = mysqli_connect($host, $user, $pass, $dbname);
 
-        $sql = "UPDATE usuarios SET imagen_usuario = ? WHERE id_usuario = ?";
-        $stmt = $connection->prepare($sql);
-        $stmt->bind_param("si", $image_base64, $id_usuario);
-        if ($stmt->execute()) {
-            header("Location: perfil.php");
+            if (!$connection) {
+                die("Conexión fallida: " . mysqli_connect_error());
+            }
+
+            $sql = "UPDATE usuarios SET imagen_usuario = ? WHERE id_usuario = ?";
+            $stmt = $connection->prepare($sql);
+            $stmt->bind_param("si", $image_base64, $id_usuario);
+            if ($stmt->execute()) {
+                header("Location: perfil.php");
+            } else {
+                echo "Error al subir la imagen.";
+            }
+
+            $stmt->close();
+            $connection->close();
         } else {
-            echo "Error al subir la imagen.";
+            echo "Formato de archivo no soportado.";
         }
-
-        $stmt->close();
-        $connection->close();
     } else {
         echo "Error en la carga de la imagen.";
     }
 }
 ?>
+
 
 
