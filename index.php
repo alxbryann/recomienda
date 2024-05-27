@@ -70,12 +70,15 @@ $id_usuario = $_SESSION['id_usuario'];
             <h1>¡Bienvenido a recomienda!</h1>
         </div>
         <div id="sesion" style="margin-left: 40px;">
-            <?php
+        <?php
             if (isset($nombre)) {
                 echo '<div class="dropdown" style="position: relative; top: 40px ;left: -1px;">';
                 echo '<a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">Bienvenido, ' . $nombre . '</a>';
                 echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="margin-left: 40px;">';
                 echo '<li><a class="dropdown-item" href="perfil.php" style="font-size: 12px; color: black;">Ver perfil</a></li>';
+                if ($_SESSION['es_admin'] == 1) { 
+                    echo '<li><a class="dropdown-item" href="admin.php" style="font-size: 12px; color: black;">Panel de administrador</a></li>'; // Agrega un enlace al panel de administrador
+                }
                 echo '<li><a class="dropdown-item" href="cerrar_sesion.php" style="font-size: 12px; color: black;">Cerrar sesión</a></li>';
                 echo '</ul>';
                 echo '</div>';
