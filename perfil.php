@@ -13,11 +13,11 @@ if (!$connection) {
 session_start();
 $id_usuario = $_SESSION['id_usuario'];
 
-$sql = "SELECT nombre_usuario, apellido_usuario, email_usuario, tel_usuario, imagen_usuario FROM usuarios WHERE id_usuario = ?";
+$sql = "SELECT nombre_usuario, apellido_usuario, email_usuario, tel_usuario FROM usuarios WHERE id_usuario = ?";
 $stmt = $connection->prepare($sql);
 $stmt->bind_param("i", $id_usuario);
 $stmt->execute();
-$stmt->bind_result($nombre, $apellido, $email, $telefono, $imagen_usuario);
+$stmt->bind_result($nombre, $apellido, $email, $telefono);
 $stmt->fetch();
 $stmt->close();
 
@@ -143,13 +143,6 @@ $connection->close();
                 <canvas id="recomendacionesChart"></canvas>
             </div>
         </div>
-        <form action="upload.php" method="post" enctype="multipart/form-data">
-            <input type="file" name="profileImage" accept=".jpeg, .jpg, .png" required>
-            <input type="submit" name="submit" value="Subir imagen">
-        </form>
-        <?php if ($imagen_usuario): ?>
-            <img src="data:image/jpeg;base64,<?php echo base64_encode($imagen_usuario) ?>" />
-        <?php endif; ?>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
