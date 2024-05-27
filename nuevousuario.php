@@ -126,7 +126,6 @@ if (is_post_request()) {
 
         <label for="imagen_usuario">Imagen de perfil:</label>
         <input type="file" name="imagen_usuario" id="imagen_usuario" accept="image/*">
-        <input type="submit" value="Guardar">
 
         <label for="DirUsuario">Direccion:</label>
         <input type="text" name="direccion" id="direccion" placeholder="Direccion -">
