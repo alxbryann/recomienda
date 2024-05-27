@@ -76,9 +76,10 @@ $id_usuario = $_SESSION['id_usuario'];
                 echo '<a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">Bienvenido, ' . $nombre . '</a>';
                 echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="margin-left: 40px;">';
                 echo '<li><a class="dropdown-item" href="perfil.php" style="font-size: 12px; color: black;">Ver perfil</a></li>';
-                if ($_SESSION['es_admin'] == 1) { 
-                    echo '<li><a class="dropdown-item" href="admin.php" style="font-size: 12px; color: black;">Panel de administrador</a></li>'; // Agrega un enlace al panel de administrador
-                }
+            if ($_SESSION['es_admin'] == 1) { 
+                echo '<li><a class="dropdown-item" href="admin.php" style="font-size: 12px; color: black;">Panel de administrador</a></li>'; // Agrega un enlace al panel de administrador
+                echo '<li><a class="dropdown-item" href="dejar_de_ser_admin.php" style="font-size: 12px; color: black;">Dejar de ser administrador</a></li>'; // Agrega un enlace para dejar de ser administrador
+            }
                 echo '<li><a class="dropdown-item" href="cerrar_sesion.php" style="font-size: 12px; color: black;">Cerrar sesión</a></li>';
                 echo '</ul>';
                 echo '</div>';
@@ -86,7 +87,8 @@ $id_usuario = $_SESSION['id_usuario'];
                 echo '<a href="login.php">Iniciar sesión</a>';
                 echo '<a href="nuevousuario.php">Registrarse</a>';
             }
-            ?>
+?>
+
         </div>
     </header>
     <br>
