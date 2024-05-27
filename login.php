@@ -75,47 +75,38 @@ if (is_post_request()) {
         redirect_with('login.php', ['errors' => $errors, 'inputs' => $inputs]);
     }
 
-    if ($inputs['username'] == 'soyadmin@gmail.com' && $inputs['password'] == '12345') {
-        session_start();
-        $_SESSION['nombre'] = 'Admin';
-        $_SESSION['email'] = 'soyadmin@gmail.com';
-        $_SESSION['es_admin'] = 1;
-        redirect_to('admin.php');
+    if (!login($inputs['username'], $inputs['password'])) {
+
+        $errors['login'] = 'Invalid username or password';
+
+        redirect_with('login.php', [
+            'errors' => $errors,
+            'inputs' => $inputs
+        ]);
     }
-    else {
-        if (!login($inputs['username'], $inputs['password'])) {
-
-            $errors['login'] = 'Invalid username or password';
-
-            redirect_with('login.php', [
-                'errors' => $errors,
-                'inputs' => $inputs
-            ]);
-        }
-        session_start();
-        $usuario = $inputs['username'];
-        try {
-            $pdo = new PDO($attr, $user, $pass, $opts);
-        } catch (PDOException $e) {
-            throw new PDOException($e->getMessage(), (int) $e->getCode());
-        }
-        $query = "SELECT * FROM usuarios WHERE email_usuario = '$usuario'";
-        echo $query;
-        $result = $pdo->query($query);
-        if($row = $result->fetch(PDO::FETCH_BOTH)) {
-            $id_usuario = strval($row["id_usuario"]);
-            $nombre_usuario = $row["nombre_usuario"];
-            $es_admin = $row["es_admin"]; 
-
-        }else{
-            echo "No se encontro el usuario";
-        }
-        $_SESSION['nombre'] = $nombre_usuario;
-        $_SESSION['email'] = $usuario;
-        $_SESSION['id_usuario'] = $id_usuario;
-        $_SESSION['es_admin'] = $es_admin; 
-        redirect_to('index.php');
+    session_start();
+    $usuario = $inputs['username'];
+    try {
+        $pdo = new PDO($attr, $user, $pass, $opts);
+    } catch (PDOException $e) {
+        throw new PDOException($e->getMessage(), (int) $e->getCode());
     }
+    $query = "SELECT * FROM usuarios WHERE email_usuario = '$usuario'";
+    echo $query;
+    $result = $pdo->query($query);
+    if($row = $result->fetch(PDO::FETCH_BOTH)) {
+        $id_usuario = strval($row["id_usuario"]);
+        $nombre_usuario = $row["nombre_usuario"];
+        $es_admin = $row["es_admin"]; 
+
+    }else{
+        echo "No se encontro el usuario";
+    }
+    $_SESSION['nombre'] = $nombre_usuario;
+    $_SESSION['email'] = $usuario;
+    $_SESSION['id_usuario'] = $id_usuario;
+    $_SESSION['es_admin'] = $es_admin; 
+    redirect_to('index.php');
 
 } else if (is_get_request()) {
     [$errors, $inputs] = session_flash('errors', 'inputs');
