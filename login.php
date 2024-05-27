@@ -47,18 +47,18 @@ span.psw {
   }
 }
 </style>
-    <?php
-    require_once 'helpers.php';
-    require_once 'flash.php';
-    require_once 'sanitization.php';
-    require_once 'validation.php';
-    require_once 'filter.php';
-    require_once 'db_conn.php';
-    require_once 'results.php';
-    require_once 'connection.php';
-    require_once 'db.php';
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
+<?php
+require_once 'helpers.php';
+require_once 'flash.php';
+require_once 'sanitization.php';
+require_once 'validation.php';
+require_once 'filter.php';
+require_once 'db_conn.php';
+require_once 'results.php';
+require_once 'connection.php';
+require_once 'db.php';
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 $inputs = [];
 $errors = [];
@@ -99,14 +99,20 @@ if (is_post_request()) {
     if($row = $result->fetch(PDO::FETCH_BOTH)) {
         $id_usuario = strval($row["id_usuario"]);
         $nombre_usuario = $row["nombre_usuario"];
-    
+        $es_admin = $row["es_admin"]; 
+
     }else{
         echo "No se encontro el usuario";
     }
     $_SESSION['nombre'] = $nombre_usuario;
     $_SESSION['email'] = $usuario;
     $_SESSION['id_usuario'] = $id_usuario;
-    redirect_to('index.php');
+    $_SESSION['es_admin'] = $es_admin; 
+    if ($_SESSION['es_admin'] == 1) {
+        redirect_to('admin.php');
+    } else {
+        redirect_to('index.php'); 
+    }
 
 } else if (is_get_request()) {
     [$errors, $inputs] = session_flash('errors', 'inputs');
