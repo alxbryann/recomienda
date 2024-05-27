@@ -29,6 +29,7 @@ if (is_post_request()) {
         'password2' => 'string | required | same: password',
         'agree' => 'string | required',
         'activation_code' => 'string',
+        'imagen_usuario' => 'file | image',  // Añade esto
     ];
 
     // custom messages
@@ -63,6 +64,7 @@ if (is_post_request()) {
             $inputs['departamento'],
             $inputs['municipio'],
             $inputs['password'],
+            $_FILES['imagen_usuario'],
             $activation_code
         )
     ) {
@@ -97,7 +99,7 @@ if (is_post_request()) {
     <br>
     <h2>Modulo de registro</h2>
 <div class="register-container">
-    <form method="post" action="nuevousuario.php">
+    <form method="post" action="nuevousuario.php" enctype="multipart/form-data">
         <label for="email">E-mail:</label>
         <input type="email" name="email" id="email" placeholder="e-mail" value="<?= $inputs['email'] ?? '' ?>"
             class="<?= error_class($errors, 'email') ?>">
@@ -122,7 +124,9 @@ if (is_post_request()) {
             value="<?= $inputs['password2'] ?? '' ?>" class="<?= error_class($errors, 'password2') ?>">
         <small><?= $errors['password2'] ?? '' ?></small>
 
-
+        <label for="imagen_usuario">Imagen de perfil:</label>
+        <input type="file" name="imagen_usuario" id="imagen_usuario" accept="image/*">
+        <input type="submit" value="Guardar">
 
         <label for="DirUsuario">Direccion:</label>
         <input type="text" name="direccion" id="direccion" placeholder="Direccion -">
