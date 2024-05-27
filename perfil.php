@@ -18,8 +18,6 @@ if (isset($_GET['id'])) {
 } else {
     die("Error: No se proporcionó un ID de usuario.");
 }
-session_start();
-
 
 $sql = "SELECT nombre_usuario, apellido_usuario, email_usuario, tel_usuario FROM usuarios WHERE id_usuario = ?";
 $stmt = $connection->prepare($sql);
