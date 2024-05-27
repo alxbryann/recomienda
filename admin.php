@@ -1,3 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f1f1f1;
+        }
+        h1 {
+            text-align: center;
+            color: #04AA6D;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        th {
+            background-color: #04AA6D;
+            color: white;
+        }
+        input[type=submit] {
+            background-color: #04AA6D;
+            color: white;
+            padding: 5px 10px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+        }
+        input[type=submit]:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
 <?php
 require_once 'db_conn.php';
 require_once 'connection.php';
@@ -34,9 +76,6 @@ $usuarios = $result->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
-<!DOCTYPE html>
-<html>
-
 <h1>Panel de administrador</h1>
 
 <table>
@@ -61,4 +100,6 @@ $usuarios = $result->fetchAll(PDO::FETCH_ASSOC);
     </tr>
     <?php endforeach ?>
 </table>
+
+</body>
 </html>
