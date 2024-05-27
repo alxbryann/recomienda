@@ -5,7 +5,6 @@ $user = "u482925761_admin";
 $pass = "Clavetemporal/2024";
 $host = "82.197.80.210";
 
-// Conexión a la base de datos
 $connection = mysqli_connect($host, $user, $pass, "u482925761_recomienda");
 
 if (!$connection) {
@@ -93,7 +92,7 @@ if (isset($_POST['eliminar']) && isset($_SESSION['es_admin']) && $_SESSION['es_a
                         <div class="card-footer">
                             <button class="btn btn-secondary" onclick="verReseñasDetalles('<?php echo $id_recomendacion ?>')">Ver reseñas</button>
                             <a href="perfil.php?id=<?php echo $id_recomendado; ?>" class="btn btn-primary">Ver perfil</a>
-                            <?php if (isset($_SESSION['es_admin']) && $_SESSION['es_admin'] == 1) : // Si el usuario es administrador ?>
+                            <?php if (isset($_SESSION['es_admin']) && $_SESSION['es_admin'] == 1) : ?>
                             <form action="neveras.php" method="post" style="display: inline;">
                                 <input type="hidden" name="id_recomendacion" value="<?php echo $id_recomendacion; ?>">
                                 <input type="submit" name="eliminar" value="Eliminar" class="btn btn-danger">
