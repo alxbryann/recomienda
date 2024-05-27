@@ -29,7 +29,6 @@ if (is_post_request()) {
         'password2' => 'string | required | same: password',
         'agree' => 'string | required',
         'activation_code' => 'string',
-        'imagen_usuario' => 'file'
     ];
 
     // custom messages
@@ -40,35 +39,10 @@ if (is_post_request()) {
         ],
         'agree' => [
             'required' => 'You need to agree to the term of services to register'
-        ],
-        'imagen_usuario' => [
-            'required' => 'Please upload a profile image',
-            'file' => 'The profile image must be a valid file'
         ]
     ];
 
     [$inputs, $errors] = filter($_POST, $fields, $messages);
-
-    // Handle image upload
-    if ($_FILES['imagen_usuario']['error'] === UPLOAD_ERR_OK) {
-        $fileTmpPath = $_FILES['imagen_usuario']['tmp_name'];
-        $fileName = $_FILES['imagen_usuario']['name'];
-        $fileSize = $_FILES['imagen_usuario']['size'];
-        $fileType = $_FILES['imagen_usuario']['type'];
-        $fileNameCmps = explode(".", $fileName);
-        $fileExtension = strtolower(end($fileNameCmps));
-
-        $allowedfileExtensions = array('jpg', 'jpeg', 'png');
-        if (in_array($fileExtension, $allowedfileExtensions)) {
-            $imageData = file_get_contents($fileTmpPath);
-            $base64Image = base64_encode($imageData);
-            $inputs['imagen_usuario'] = $base64Image;
-        } else {
-            $errors['imagen_usuario'] = 'Only jpg, jpeg, and png files are allowed';
-        }
-    } else {
-        $errors['imagen_usuario'] = 'There was an error uploading the image';
-    }
 
     if ($errors) {
         redirect_with('nuevousuario.php', [
@@ -76,7 +50,6 @@ if (is_post_request()) {
             'errors' => $errors
         ]);
     }
-
     $activation_code = generate_activation_code();
 
     if (
@@ -90,23 +63,23 @@ if (is_post_request()) {
             $inputs['departamento'],
             $inputs['municipio'],
             $inputs['password'],
-            $activation_code,
-            $inputs['imagen_usuario']
+            $activation_code
         )
     ) {
+
         send_activation_email($inputs['email'], $activation_code);
+
         redirect_with_message(
             'login.php',
             'Your account has been created successfully. Please login here.'
         );
+
     }
 
 } else if (is_get_request()) {
     [$inputs, $errors] = session_flash('inputs', 'errors');
 }
 ?>
-
-
 <?php view('header', ['title' => 'Nuevo Usuario']) ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -182,11 +155,6 @@ if (is_post_request()) {
         <select id="id_mun" name="municipio">
             <option disabled="" selected="">Seleccione municipio</option>
         </select>
-
-        <label for="imagen_usuario">Foto de Perfil:</label>
-            <input type="file" name="imagen_usuario" id="imagen_usuario" accept="image/png, image/jpeg, image/jpg">
-            <small><?= $errors['imagen_usuario'] ?? '' ?></small>
-
 
 
         <label for="agree">

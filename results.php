@@ -1,12 +1,13 @@
 <?php
 
 function register_user(string $email, string $nombre, string $apellido, string $direccion, string $telefono, int $cod_pais, 
-int $id_dpto, int $id_mun, string $password, string $activation_code, string $imagen_usuario, int $expiry=1*24*60*60, $is_admin = false): bool
+int $id_dpto, int $id_mun, string $password, string $activation_code, int $expiry=1*24*60*60, $is_admin = false): bool
 {
-    $sql = 'INSERT INTO usuarios (email_usuario, nombre_usuario, apellido_usuario, dir_usuario, tel_usuario, cod_pais, id_departamento, id_municipio, password, activation_code, activation_expiry, is_admin, imagen_usuario)
-            VALUES(:email, :nombre, :apellido, :dir, :tel, :cod_pais, :depto, :mun, :password, :activation_code, :activation_expiry, :is_admin, :imagen_usuario)';
+    $sql = 'INSERT INTO usuarios (email_usuario,nombre_usuario, apellido_usuario, dir_usuario, tel_usuario, cod_pais, id_departamento,id_municipio, password, activation_code, activation_expiry, is_admin)
+            VALUES(:email, :nombre, :apellido, :dir, :tel, :cod_pais, :depto, :mun, :password, :activation_code, :activation_expiry,:is_admin)';
 
     $statement = db()->prepare($sql);
+                
 
     $statement->bindValue(':email', $email, PDO::PARAM_STR);
     $statement->bindValue(':nombre', $nombre, PDO::PARAM_STR);
@@ -18,14 +19,12 @@ int $id_dpto, int $id_mun, string $password, string $activation_code, string $im
     $statement->bindValue(':mun', $id_mun, PDO::PARAM_INT);
     $statement->bindValue(':password', password_hash($password, PASSWORD_BCRYPT), PDO::PARAM_STR);
     $statement->bindValue(':is_admin', (int)$is_admin, PDO::PARAM_INT);
-    $statement->bindValue(':activation_code', password_hash($activation_code, PASSWORD_DEFAULT));
-    $statement->bindValue(':activation_expiry', date('Y-m-d H:i:s', time() + $expiry));
-    $statement->bindValue(':imagen_usuario', $imagen_usuario, PDO::PARAM_LOB);  // Añadir esto
+    $statement->bindvalue(':activation_code', password_hash($activation_code, PASSWORD_DEFAULT));
+    $statement->bindValue(':activation_expiry', date('Y-m-d H:i:s',  time() + $expiry));
 
     return $statement->execute();   
+
 }
-
-
 
 function find_user_by_username(string $username)
 {
