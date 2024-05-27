@@ -28,7 +28,7 @@ if (isset($_POST['eliminar']) && isset($_SESSION['es_admin']) && $_SESSION['es_a
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recomendados para neveras</title>
+    <title>Recomendados para televisores</title>
     <link rel="icon" href="logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -92,7 +92,7 @@ if (isset($_POST['eliminar']) && isset($_SESSION['es_admin']) && $_SESSION['es_a
                                 <button class="btn btn-secondary" onclick="verReseñasDetalles('<?php echo $id_recomendacion ?>')">Ver reseñas</button>
                                 <a href="perfil.php?id=<?php echo $id_recomendado; ?>" class="btn btn-primary">Ver perfil</a>
                                 <?php if (isset($_SESSION['es_admin']) && $_SESSION['es_admin'] == 1) : ?>
-                                <form action="neveras.php" method="post" style="display: inline;">
+                                <form action="tv.php" method="post" style="display: inline;">
                                     <input type="hidden" name="id_recomendacion" value="<?php echo $id_recomendacion; ?>">
                                     <input type="submit" name="eliminar" value="Eliminar" class="btn btn-danger">
                                 </form>
