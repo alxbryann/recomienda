@@ -1,17 +1,12 @@
 <?php
-
-//Datos del servidor
 $user = "u482925761_admin";
 $pass = "Clavetemporal/2024";
 $host = "82.197.80.210";
 
-//Conexion a la base de datos
 $connection = mysqli_connect($host, $user, $pass);
 
-
-//Nombre de la base de datos
 $datab = "u482925761_recomienda";
-//Seleccionamos la base de datos
+
 $db = mysqli_select_db($connection,$datab);
 
 ?>
@@ -88,7 +83,7 @@ $db = mysqli_select_db($connection,$datab);
                             <div class="card-footer">
                                 <button class="btn btn-secondary" onclick="verReseñasDetalles('<?php echo $id_recomendacion ?>')">Ver reseñas</button>
                                 <a href="perfil.php?id=<?php echo $id_recomendado; ?>" class="btn btn-primary">Ver perfil</a>
-                                <?php if ($_SESSION['es_admin'] == 1) : // Si el usuario es administrador ?>
+                                <?php if ($_SESSION['es_admin'] == 1) : ?>
                                 <form action="index.php" method="post" style="display: inline;">
                                     <input type="hidden" name="id_recomendacion" value="<?= $id_recomendacion ?>">
                                     <input type="submit" name="eliminar" value="Eliminar" class="btn btn-danger">
@@ -100,12 +95,10 @@ $db = mysqli_select_db($connection,$datab);
                     }
                 }
 
-                // Si se envió el formulario de eliminar reseña
                 if (isset($_POST['eliminar'])) {
                     $id_recomendacion = $_POST['id_recomendacion'];
                     $query = "DELETE FROM recomendaciones WHERE id_recomendacion = '$id_recomendacion'";
                     $pdo->exec($query);
-                    // Recarga la página para que el usuario vea que la reseña ha sido eliminada
                     header("Location: index.php");
                 }
                 ?>
