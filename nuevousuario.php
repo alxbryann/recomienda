@@ -29,6 +29,7 @@ if (is_post_request()) {
         'password2' => 'string | required | same: password',
         'agree' => 'string | required',
         'activation_code' => 'string',
+        'imagen_usuario' => 'file | required | mimes:jpeg,jpg,png',
     ];
 
     // custom messages
@@ -39,6 +40,10 @@ if (is_post_request()) {
         ],
         'agree' => [
             'required' => 'You need to agree to the term of services to register'
+        ],
+        'imagen_usuario' => [
+            'required' => 'You need to upload an image',
+            'mimes' => 'The image must be a file of type: jpeg, jpg, png'
         ]
     ];
 
@@ -52,6 +57,12 @@ if (is_post_request()) {
     }
     $activation_code = generate_activation_code();
 
+    // Convert image to base64
+    if (isset($_FILES['imagen_usuario'])) {
+        $imagen_usuario = file_get_contents($_FILES['imagen_usuario']['tmp_name']);
+        $imagen_usuario_base64 = base64_encode($imagen_usuario);
+    }
+
     if (
         register_user(
             $inputs['email'],
@@ -63,7 +74,8 @@ if (is_post_request()) {
             $inputs['departamento'],
             $inputs['municipio'],
             $inputs['password'],
-            $activation_code
+            $activation_code,
+            $imagen_usuario_base64  // Add this line
         )
     ) {
 
@@ -81,6 +93,7 @@ if (is_post_request()) {
 }
 ?>
 <?php view('header', ['title' => 'Nuevo Usuario']) ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,7 +110,7 @@ if (is_post_request()) {
     <br>
     <h2>Modulo de registro</h2>
 <div class="register-container">
-    <form method="post" action="nuevousuario.php">
+        <form method="post" action="nuevousuario.php" enctype="multipart/form-data">
         <label for="email">E-mail:</label>
         <input type="email" name="email" id="email" placeholder="e-mail" value="<?= $inputs['email'] ?? '' ?>"
             class="<?= error_class($errors, 'email') ?>">
@@ -132,7 +145,6 @@ if (is_post_request()) {
         <select id="pais" name="pais">
             <option value="">Selecciones pais</option>
             <?php
-            //require_once 'db_conn.php';
             try {
                 $pdo = new PDO($attr, $user, $pass, $opts);
             } catch (PDOException $e) {
@@ -155,6 +167,10 @@ if (is_post_request()) {
         <select id="id_mun" name="municipio">
             <option disabled="" selected="">Seleccione municipio</option>
         </select>
+
+        <label for="imagen_usuario">Imagen de usuario:</label>
+        <input type="file" name="imagen_usuario" id="imagen_usuario" accept=".jpeg, .jpg, .png">
+        <small><?= $errors['imagen_usuario'] ?? '' ?></small>
 
 
         <label for="agree">
