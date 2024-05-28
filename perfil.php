@@ -131,7 +131,7 @@ $connection->close();
             echo "Numero de recomendaciones: " . count($recomendaciones_recibidas);
             ?>
             <?php
-                echo '<div class="dropdown" style="position: relative; top: 40px ;left: -1px;">';
+                echo '<div class="dropdown" style="position: relative; top: 100px ;left: 30px;">';
                 echo '<a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">Ver recomendaciones</a>';
                 echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="margin-left: 100px;">';
                 if (count($recomendaciones_recibidas) > 0) {                    
