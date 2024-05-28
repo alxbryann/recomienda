@@ -127,10 +127,13 @@ $connection->close();
         </div>
         <div class="container-recomendaciones">
             <h1>Me han recomendado</h1>
-            <div class="dropdown" style="position: relative; top: 40px ;left: -1px;">
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="margin-left: 40px;">
             <?php
-                echo "Numero de recomendaciones: " . count($recomendaciones_recibidas);
+            echo "Numero de recomendaciones: " . count($recomendaciones_recibidas);
+            ?>
+            <div class="dropdown">
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <?php
+                echo '<li><a class="dropdown-item" href="perfil.php" style="font-size: 12px; color: black;">Ver perfil</a></li>';
                 if (count($recomendaciones_recibidas) > 0) {                    
                     foreach ($recomendaciones_recibidas as $recomendacion) {
                         echo "<li >
