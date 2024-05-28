@@ -126,21 +126,30 @@ $connection->close();
             </ul>
         </div>
         <div class="container-recomendaciones">
-            <h1>Me han recomendado</h1>
+            <h1>Me han recomendado <?php
+            $sql = "SELECT COUNT(*) as total_recomendaciones_recibidas FROM recomendaciones WHERE id_recomendado = ?";
+            $stmt = $connection->prepare($sql);
+            $stmt->bind_param("i", $id_usuario);
+            $stmt->execute();
+            $stmt->bind_result($total_recomendaciones_recibidas);
+            $stmt->fetch();
+            $stmt->close();
+            echo "(" . $total_recomendaciones_recibidas . ")";
+            ?></h1>
             <ul>
-                <?php
-                if (count($recomendaciones_recibidas) > 0) {
-                    foreach ($recomendaciones_recibidas as $recomendacion) {
-                        echo "<li>
-                                <p><strong>De:</strong> " . htmlspecialchars($recomendacion['nombre_usuario'] . ' ' . $recomendacion['apellido_usuario']) . "</p>
-                                <p><strong>Calificación:</strong> " . htmlspecialchars($recomendacion['estrellas']) . "</p>
-                                <p><strong>Comentario:</strong> " . htmlspecialchars($recomendacion['comentario']) . "</p>
-                              </li>";
-                    }
-                } else {
-                    echo "<li>No has recibido ninguna recomendación.</li>";
+            <?php
+            if (count($recomendaciones_recibidas) > 0) {
+                foreach ($recomendaciones_recibidas as $recomendacion) {
+                echo "<li>
+                    <p><strong>De:</strong> " . htmlspecialchars($recomendacion['nombre_usuario'] . ' ' . $recomendacion['apellido_usuario']) . "</p>
+                    <p><strong>Calificación:</strong> " . htmlspecialchars($recomendacion['estrellas']) . "</p>
+                    <p><strong>Comentario:</strong> " . htmlspecialchars($recomendacion['comentario']) . "</p>
+                      </li>";
                 }
-                ?>
+            } else {
+                echo "<li>No has recibido ninguna recomendación.</li>";
+            }
+            ?>
             </ul>
         </div>
         <div class="container-recomendaciones">
