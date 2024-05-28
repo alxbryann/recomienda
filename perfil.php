@@ -141,7 +141,7 @@ $connection->close();
                 if (count($recomendaciones_recibidas) > 0) {                    
                     foreach ($recomendaciones_recibidas as $recomendacion) {
                         echo "<li >
-                                <p><strong>De:</strong> " . htmlspecialchars($recomendacion['nombre_usuario'] . ' ' . $recomendacion['apellido_usuario']) . "</p>
+                                <p class='dropdown-item' href='perfil.php' style='font-size: 12px; color: black;'><strong>De:</strong> " . htmlspecialchars($recomendacion['nombre_usuario'] . ' ' . $recomendacion['apellido_usuario']) . "</p>
                                 <p><strong>Calificación:</strong> " . htmlspecialchars($recomendacion['estrellas']) . "</p>
                                 <p><strong>Comentario:</strong> " . htmlspecialchars($recomendacion['comentario']) . "</p>
                               </li>";
