@@ -128,10 +128,10 @@ $connection->close();
         <div class="container-recomendaciones">
             <h1>Me han recomendado</h1>
             <?php
-            echo "           Numero de recomendaciones: " . count($recomendaciones_recibidas);
+            echo "<p style='position: relative; top: 20px ;left: 30px;'>Numero de recomendaciones: " . count($recomendaciones_recibidas) . "</p>";
             ?>
             <?php
-                echo '<div class="dropdown" style="position: relative; top: 40px ;left: 30px;" width:"40%">';
+                echo '<div class="dropdown" style="position: relative; top: 20px ;left: 30px;" width:"40%">';
                 echo '<a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">Ver recomendacion</a>';
                 echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="margin-left: 40px;">';
                 if (count($recomendaciones_recibidas) > 0) {                    
