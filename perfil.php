@@ -130,10 +130,14 @@ $connection->close();
             <?php
             echo "Numero de recomendaciones: " . count($recomendaciones_recibidas);
             ?>
-            <div class="dropdown">
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
             <?php
+                echo '<div class="dropdown" style="position: relative; top: 40px ;left: -1px;">';
+                echo '<a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">Bienvenido, ' . $nombre . '</a>';
+                echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="margin-left: 40px;">';
                 echo '<li><a class="dropdown-item" href="perfil.php" style="font-size: 12px; color: black;">Ver perfil</a></li>';
+                echo '<li><a class="dropdown-item" href="cerrar_sesion.php" style="font-size: 12px; color: black;">Cerrar sesión</a></li>';
+                echo '</ul>';
+                echo '</div>';
                 if (count($recomendaciones_recibidas) > 0) {                    
                     foreach ($recomendaciones_recibidas as $recomendacion) {
                         echo "<li >
@@ -146,8 +150,6 @@ $connection->close();
                     echo "<li>No has recibido ninguna recomendación.</li>";
                 }
             ?>
-            </ul>
-            </div>
         </div>
         <div class="container-recomendaciones">
             <h1>Resumen de recomendaciones</h1>
