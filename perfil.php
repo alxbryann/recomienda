@@ -128,16 +128,16 @@ $connection->close();
         <div class="container-recomendaciones">
             <h1>Me han recomendado</h1>
             <?php
-            echo "Numero de recomendaciones: " . count($recomendaciones_recibidas);
+            echo "           Numero de recomendaciones: " . count($recomendaciones_recibidas);
             ?>
             <?php
-                echo '<div class="dropdown" style="position: relative; top: 100px ;left: 30px;">';
-                echo '<a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">Ver recomendaciones</a>';
-                echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="margin-left: 100px;">';
+                echo '<div class="dropdown" style="position: relative; top: 40px ;left: 30px;" width:"40%">';
+                echo '<a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">Ver recomendacion</a>';
+                echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="margin-left: 40px;">';
                 if (count($recomendaciones_recibidas) > 0) {                    
                     foreach ($recomendaciones_recibidas as $recomendacion) {
                         echo "<li >
-                                <p class='dropdown-item' href='perfil.php' style='font-size: 40px; color: black;'><strong>De:</strong> " . htmlspecialchars($recomendacion['nombre_usuario'] . ' ' . $recomendacion['apellido_usuario']) . "</p>
+                                <p class='dropdown-item' href='perfil.php' style='font-size: 12px; color: black;'><strong>De:</strong> " . htmlspecialchars($recomendacion['nombre_usuario'] . ' ' . $recomendacion['apellido_usuario']) . "</p>
                                 <p><strong>Calificación:</strong> " . htmlspecialchars($recomendacion['estrellas']) . "</p>
                                 <p><strong>Comentario:</strong> " . htmlspecialchars($recomendacion['comentario']) . "</p>
                               </li>";
