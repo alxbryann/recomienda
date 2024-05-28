@@ -130,12 +130,13 @@ $connection->close();
             <ul>
                 <?php
                 if (count($recomendaciones_recibidas) > 0) {
+                    echo count($recomendaciones_recibidas);
                     foreach ($recomendaciones_recibidas as $recomendacion) {
-                        echo "<option>
+                        echo "<li>
                                 <p><strong>De:</strong> " . htmlspecialchars($recomendacion['nombre_usuario'] . ' ' . $recomendacion['apellido_usuario']) . "</p>
                                 <p><strong>Calificación:</strong> " . htmlspecialchars($recomendacion['estrellas']) . "</p>
                                 <p><strong>Comentario:</strong> " . htmlspecialchars($recomendacion['comentario']) . "</p>
-                              </option>";
+                              </li>";
                     }
                 } else {
                     echo "<li>No has recibido ninguna recomendación.</li>";
