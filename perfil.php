@@ -127,12 +127,12 @@ $connection->close();
         </div>
         <div class="container-recomendaciones">
             <h1>Me han recomendado</h1>
-            <ul>
+            <ul class="dropdown-menu">
                 <?php
                 if (count($recomendaciones_recibidas) > 0) {
                     echo "Numero de recomendaciones: " . count($recomendaciones_recibidas);
                     foreach ($recomendaciones_recibidas as $recomendacion) {
-                        echo "<li>
+                        echo "<li >
                                 <p><strong>De:</strong> " . htmlspecialchars($recomendacion['nombre_usuario'] . ' ' . $recomendacion['apellido_usuario']) . "</p>
                                 <p><strong>Calificación:</strong> " . htmlspecialchars($recomendacion['estrellas']) . "</p>
                                 <p><strong>Comentario:</strong> " . htmlspecialchars($recomendacion['comentario']) . "</p>
