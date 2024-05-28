@@ -127,7 +127,7 @@ $connection->close();
         </div>
         <div class="container-recomendaciones">
             <h1>Me han recomendado</h1>
-            <ul class="dropdown-menu">
+            <ul>
                 <?php
                 if (count($recomendaciones_recibidas) > 0) {
                     echo "Numero de recomendaciones: " . count($recomendaciones_recibidas);
