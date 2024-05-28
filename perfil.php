@@ -130,7 +130,7 @@ $connection->close();
             <ul>
                 <?php
                 if (count($recomendaciones_recibidas) > 0) {
-                    echo count($recomendaciones_recibidas);
+                    echo "Numero de recomendaciones: " . count($recomendaciones_recibidas);
                     foreach ($recomendaciones_recibidas as $recomendacion) {
                         echo "<li>
                                 <p><strong>De:</strong> " . htmlspecialchars($recomendacion['nombre_usuario'] . ' ' . $recomendacion['apellido_usuario']) . "</p>
