@@ -133,11 +133,11 @@ $connection->close();
             <?php
                 echo '<div class="dropdown" style="position: relative; top: 40px ;left: -1px;">';
                 echo '<a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">Ver recomendaciones</a>';
-                echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="margin-left: 40px;">';
+                echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="margin-left: 100px;">';
                 if (count($recomendaciones_recibidas) > 0) {                    
                     foreach ($recomendaciones_recibidas as $recomendacion) {
                         echo "<li >
-                                <p class='dropdown-item' href='perfil.php' style='font-size: 12px; color: black;'><strong>De:</strong> " . htmlspecialchars($recomendacion['nombre_usuario'] . ' ' . $recomendacion['apellido_usuario']) . "</p>
+                                <p class='dropdown-item' href='perfil.php' style='font-size: 40px; color: black;'><strong>De:</strong> " . htmlspecialchars($recomendacion['nombre_usuario'] . ' ' . $recomendacion['apellido_usuario']) . "</p>
                                 <p><strong>Calificación:</strong> " . htmlspecialchars($recomendacion['estrellas']) . "</p>
                                 <p><strong>Comentario:</strong> " . htmlspecialchars($recomendacion['comentario']) . "</p>
                               </li>";
