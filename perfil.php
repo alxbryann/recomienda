@@ -127,10 +127,11 @@ $connection->close();
         </div>
         <div class="container-recomendaciones">
             <h1>Me han recomendado</h1>
-            <ul>
-                <?php
-                if (count($recomendaciones_recibidas) > 0) {
-                    echo "Numero de recomendaciones: " . count($recomendaciones_recibidas);
+            <div class="dropdown" style="position: relative; top: 40px ;left: -1px;">
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="margin-left: 40px;">
+            <?php
+                echo "Numero de recomendaciones: " . count($recomendaciones_recibidas);
+                if (count($recomendaciones_recibidas) > 0) {                    
                     foreach ($recomendaciones_recibidas as $recomendacion) {
                         echo "<li >
                                 <p><strong>De:</strong> " . htmlspecialchars($recomendacion['nombre_usuario'] . ' ' . $recomendacion['apellido_usuario']) . "</p>
@@ -141,8 +142,9 @@ $connection->close();
                 } else {
                     echo "<li>No has recibido ninguna recomendación.</li>";
                 }
-                ?>
+            ?>
             </ul>
+            </div>
         </div>
         <div class="container-recomendaciones">
             <h1>Resumen de recomendaciones</h1>
