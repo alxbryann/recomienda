@@ -2,4 +2,4 @@
 
 In this project you can see a crud implemented with PHP and MYSQL as a database engine, in addition to having an easy and intuitive graphical interface.
 
-Try it yourself at recommend.site
+Try it yourself at recomienda.site
