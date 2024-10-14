@@ -1,5 +1,5 @@
 <?php //db_conn.php
-    $host = "82.197.80.210";
+    $host = "82.197.82.18";
     $data = "u482925761_recomienda";;
     $user = "u482925761_admin";
     $pass = "Clavetemporal/2024";    
