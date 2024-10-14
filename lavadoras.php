@@ -2,7 +2,7 @@
 session_start();
 $user = "u482925761_admin";
 $pass = "Clavetemporal/2024";
-$host = "82.197.80.210";
+$host = "82.197.82.18";
 
 $connection = mysqli_connect($host, $user, $pass, "u482925761_recomienda");
 
